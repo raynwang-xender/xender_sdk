@@ -210,6 +210,36 @@ public class WifiApManager {
 		} 
 	}
 
+	public String getWifiApPwd() {
+		try {
+
+			WifiConfiguration apConfig = getWifiApConfiguration(mWifiManager);
+
+			if(Logger.r) Logger.c(TAG, "getWifiApPwd, apConfig=" + apConfig);
+
+			if (apConfig == null) { //HHH的bug
+				return "";
+			}
+
+			if(Logger.r) Logger.c(TAG, "getWifiApPwd, pwd=" + apConfig.preSharedKey);
+
+			if (TextUtils.isEmpty(apConfig.preSharedKey)) {
+
+				return "";
+			}
+
+			return apConfig.preSharedKey;
+
+		} catch (SecurityException e) {
+			if(Logger.r) Logger.ce(TAG, "getWifiApPwd,e1=" + e);
+			return "";
+		} catch (IllegalArgumentException e) {
+			if(Logger.r) Logger.ce(TAG, "getWifiApPwd,e2=" + e);
+			return "";
+		}
+	}
+
+
 	// @jiang 得到自己的地址，连接到别人的wifi下，或者 自己是热点！
 	public String getWifiApIP() {
 

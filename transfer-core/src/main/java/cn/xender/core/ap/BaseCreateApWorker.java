@@ -43,6 +43,8 @@ public class BaseCreateApWorker implements ICreateApWorker {
 
     static AtomicBoolean creating = new AtomicBoolean(false);
 
+    static AtomicBoolean newCreateWaiting = new AtomicBoolean(false);
+
     private static AtomicBoolean apStatusReceiverRegistered = new AtomicBoolean(false);
 
     static ApStatusReceiver mApStatusReceiver;
@@ -106,7 +108,6 @@ public class BaseCreateApWorker implements ICreateApWorker {
 
     @Override
     public void closeAp() {
-
     }
 
     @Override
@@ -149,24 +150,22 @@ public class BaseCreateApWorker implements ICreateApWorker {
         if (Logger.r) {
             Logger.c(TAG,"do create ap ,and the password is " + password);
         }
+
+
         if (WifiAPUtil.isWifiEnabled(getWifiManager())) {
             if (Logger.r) {
                 Logger.c(TAG, "wifi enabled, turn it off, and waiting " + ssid);
             }
-//            mApStatusReceiver.init();
-//            context.registerReceiver(new WiFiStateBroadcastReceiver(ssid, password), new IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION));
-//            try {
-//                getWifiManager().setWifiEnabled(false);
-//            }catch (Exception e){
-//                if (Logger.r) {
-//                    Logger.ce(TAG, "wifi enabled, turn it off, failure ");
-//                }
-//            }
+
+            newCreateWaiting.compareAndSet(false,true);
+
+            mApStatusReceiver.init();
+
             ensureWifiDisabled(new Runnable() {
                 @Override
                 public void run() {
 
-                    mApStatusReceiver.init();
+                    newCreateWaiting.set(false);
 
                     if (Logger.r) {
                         Logger.c(TAG, "wifi disabled,changed the state is " + mApStatusReceiver.state);
@@ -186,10 +185,16 @@ public class BaseCreateApWorker implements ICreateApWorker {
             if (Logger.r) {
                 Logger.c(TAG, "wifi disabled,createButtonClicked " + ssid + ",ap state:"+mApStatusReceiver.state);
             }
+            newCreateWaiting.compareAndSet(false,true);
+
             ensureWifiApDisabled(new Runnable() {
                 @Override
                 public void run() {
+
+                    newCreateWaiting.set(false);
+
                     mApStatusReceiver.init();
+
                     if (Logger.r) {
                         Logger.c(TAG, "wifi disabled,changed the state is " + mApStatusReceiver.state);
                     }
@@ -205,7 +210,7 @@ public class BaseCreateApWorker implements ICreateApWorker {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (mApStatusReceiver.state != State.INIT && mApStatusReceiver.state != State.OFF_R && creating.get()){
+                while (mApStatusReceiver.state != State.INIT && mApStatusReceiver.state != State.OFF_R && creating.get() && newCreateWaiting.get()){
                     if (Logger.r) {
                         Logger.c(TAG, "wifi disabled,ap disabling,waiting for ap disabled " + ssid);
                     }
@@ -220,7 +225,7 @@ public class BaseCreateApWorker implements ICreateApWorker {
                     runnable.run();
                 }
             }
-        },"ensureWifiApDisabled-thread").start();
+        }).start();
     }
 
     private void ensureWifiDisabled(final Runnable callback){
@@ -254,7 +259,7 @@ public class BaseCreateApWorker implements ICreateApWorker {
                 }
 
             }
-        },"ensureWifiDisabled-thread").start();
+        }).start();
     }
 
     void setUpTimer(long timeout) {
@@ -389,24 +394,31 @@ public class BaseCreateApWorker implements ICreateApWorker {
         public void apDisabled(){
 
             if (Logger.r) {
-                Logger.c(TAG,"Ap disabled, state :" + state + " ,and creating is " + creating.get());
+                Logger.c(TAG,"Ap disabled, state :" + state + " ,and creating is " + creating.get() + ",new create waiting:"+newCreateWaiting.get());
             }
-            if(state == State.ON ){
-                cancelTimer();
-                state = State.OFF;
-                if(creating.get()){
-                    if(callback != null){
-                        callback.callback(CreateApEvent.offEvent(requestCode));
+            if(state == State.ON){
+                if(newCreateWaiting.get()){
+
+                    state = State.INIT;
+
+                }else {
+
+                    cancelTimer();
+                    state = State.OFF;
+                    if(creating.get()){
+                        if(callback != null){
+                            callback.callback(CreateApEvent.offEvent(requestCode));
+                        }
                     }
+                    state = State.INIT;
+
+                    creating.set(false);
+
+                    //2. 恢复Wifi状态
+                    restoreNetworkStatus();
+
+                    apStatusDisabled();
                 }
-                state = State.INIT;
-
-                creating.set(false);
-
-                //2. 恢复Wifi状态
-                restoreNetworkStatus();
-
-                apStatusDisabled();
             }else if(state == State.ON_R){
                 state = State.OFF_R;
                 //再次打开
@@ -438,6 +450,7 @@ public class BaseCreateApWorker implements ICreateApWorker {
         }
         if(TextUtils.isEmpty(ssid)){//这种情况是处理sdk中不需要修改热点名字，传入的ssid是空的。如果是这样，需要在这里给ssid赋值
             ssid = getSsid;
+            password = getWifiApManager().getWifiApPwd();
         }
         if (TextUtils.equals(getSsid, ssid) ||TextUtils.equals(getSsid, "\"" + ssid+"\"")){
             mApStatusReceiver.state = State.ON;
@@ -481,7 +494,7 @@ public class BaseCreateApWorker implements ICreateApWorker {
                 }
 
             }
-        },"fetchApIp-thread").start();
+        }).start();
 
 
     }

@@ -1,2 +1,0 @@
-cn.xender.tcore
-int string cn_xender_sdk_app_name 0x7f150001

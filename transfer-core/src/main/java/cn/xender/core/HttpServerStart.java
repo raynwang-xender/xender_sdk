@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.text.TextUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Locale;
 
 import cn.xender.core.server.DownloadMe;
@@ -63,8 +65,12 @@ public class HttpServerStart {
 
 
     public static String formaQrCodeStringtUrl(String ssid,String password){
-        if(!TextUtils.isEmpty(ssid))
-            return String.format(Locale.US, "http://www.xender.com/?%s&%s&%s&%d", DownloadMe.URL_PATTERN,ssid, password, Port.getWebPort() );
+        if(!TextUtils.isEmpty(ssid)) {
+            try {
+                return String.format(Locale.US,"http://www.xender.com/?%s", URLEncoder.encode(String.format(Locale.US, "%s&%s&%s&%d", DownloadMe.URL_PATTERN,ssid, password, Port.getWebPort()),"utf-8"));
+            } catch (UnsupportedEncodingException e) {
+            }
+        }
         return "";
     }
 }

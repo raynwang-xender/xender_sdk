@@ -107,6 +107,7 @@ public void set*(...);
 -keep public class cn.xender.core.ap.CoreCreateApCallback{*;}
 -keep public class cn.xender.core.server.utils.ActionProtocol{*;}
 -keep public class cn.xender.core.server.utils.ActionListener{*;}
+-keep public class cn.xender.core.server.utils.ActionListenerAdapter{*;}
 -keep public class cn.xender.core.ap.service.OAPService{*;}
 -keep public class cn.xender.core.server.service.HttpServerService{*;}
 -keep public class cn.xender.core.log.Logger{*;}

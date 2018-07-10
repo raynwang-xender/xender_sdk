@@ -67,7 +67,7 @@ public class HttpServerStart {
     public static String formaQrCodeStringtUrl(String ssid,String password){
         if(!TextUtils.isEmpty(ssid)) {
             try {
-                return String.format(Locale.US,"http://www.xender.com/?%s", URLEncoder.encode(String.format(Locale.US, "%s&%s&%s&%d", DownloadMe.URL_PATTERN,ssid, password, Port.getWebPort()),"utf-8"));
+                return String.format(Locale.US,"http://www.xender.com/?%s&%s&%s&%d", DownloadMe.URL_PATTERN,URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort());
             } catch (UnsupportedEncodingException e) {
             }
         }

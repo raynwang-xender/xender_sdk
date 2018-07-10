@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/tc_qr_code_iv"
+        android:layout_width="232dp"
+        android:layout_height="232dp"
+        android:layout_marginTop="105dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/tc_qr_bg"
+        android:scaleType="center"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/tc_common_margin"
+        android:text="@string/qr_code_des"
+        android:textColor="@color/tc_txt_color"
+        style="@style/tc_text_style_normal"
+        android:paddingLeft="@dimen/tc_common_margin"
+        android:paddingRight="@dimen/tc_common_margin"
+        android:textSize="18sp"/>
+
+</LinearLayout>

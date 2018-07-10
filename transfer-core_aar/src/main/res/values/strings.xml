@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">xender-transfer-sdk</string>
+
+
+    <string name="qr_code_des">使用Xender客户端扫描上方二维码即可获取该应用</string>
+    <string name="tc_creating_ap">正在创建..</string>
+    <string name="tc_transferring">传输中，请稍后..</string>
+    <string name="tc_transfer_success">恭喜，传输成功！</string>
+    <string name="tc_transfer_failure">传输失败，请重试！</string>
+    <string name="tc_quit_dlg_content">确认退出吗？</string>
+    <string name="tc_quit_dlg_cancel">取消</string>
+    <string name="tc_quit_dlg_quit">退出</string>
+
+    <string name="tc_nougat_open_ap_warn_title">Tips</string>
+    <string name="tc_nougat_open_ap_warn_content">Hotspot auto-enable not permitted on your device, please enable manually.</string>
+    <string name="tc_nougat_open_ap_warn_btn">Enable</string>
+    <string name="tc_dlg_exit">EXIT</string>
+</resources>

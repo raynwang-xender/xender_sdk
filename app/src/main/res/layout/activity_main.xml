@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/tc_toolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tc_common_margin"
+        android:layout_marginRight="@dimen/tc_common_margin"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/tc_btn_color"
+        android:textSize="30sp"
+        android:text="Xender SDK Demo"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/share_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="无流量发送给好友"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/btn_primary"
+        android:textColor="@color/tc_white"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tc_common_margin"
+        android:layout_marginRight="@dimen/tc_common_margin"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/tc_btn_color"
+        android:textSize="26sp"
+        android:text="这是一个游戏APP,已经集成Xender SDK!"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tc_common_margin"
+        android:layout_marginRight="@dimen/tc_common_margin"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/tc_btn_color"
+        android:textSize="26sp"
+        android:text="SDK大小：100K"
+        android:gravity="center"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tc_common_margin"
+        android:layout_marginRight="@dimen/tc_common_margin"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/tc_btn_color"
+        android:textSize="26sp"
+        android:text="一行代码接入"
+        android:gravity="center"/>
+
+
+</LinearLayout>

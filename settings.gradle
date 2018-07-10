@@ -1,0 +1,1 @@
+include ':app',':transfer-core',':transfer-core_aar'

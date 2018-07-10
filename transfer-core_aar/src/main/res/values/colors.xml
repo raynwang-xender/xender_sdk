@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F2B62B</color>
+    <color name="colorPrimaryDark">#B07B00</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="tc_white">#ffffff</color>
+    <color name="tc_transparent">#00000000</color>
+    <color name="tc_transparent_pressed">#4c000000</color>
+
+    <color name="tc_btn_color">#FF7200</color>
+    <color name="tc_bg_color">#FFE9B6</color>
+    <color name="tc_txt_color">#DE000000</color>
+    <color name="tc_txt_secondary">#8A000000</color>
+
+    <color name="tc_line_bg">#1F000000</color>
+</resources>

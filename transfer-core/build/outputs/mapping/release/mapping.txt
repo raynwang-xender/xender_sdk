@@ -1,0 +1,941 @@
+cn.xender.core.HttpServerStart -> cn.xender.core.a:
+    android.content.Context context -> a
+    android.os.Handler _handler -> b
+    cn.xender.core.server.service.HttpServerService httpServerService -> c
+    boolean binded -> d
+    android.content.ServiceConnection httpServerConnection -> e
+    void <init>(android.content.Context) -> <init>
+    void unbindHttpService() -> a
+    void bindHttpService() -> b
+    java.lang.String formaQrCodeStringtUrl(java.lang.String,java.lang.String) -> a
+    cn.xender.core.server.service.HttpServerService access$002(cn.xender.core.HttpServerStart,cn.xender.core.server.service.HttpServerService) -> a
+    android.os.Handler access$100(cn.xender.core.HttpServerStart) -> a
+    cn.xender.core.server.service.HttpServerService access$000(cn.xender.core.HttpServerStart) -> b
+cn.xender.core.HttpServerStart$1 -> cn.xender.core.b:
+    cn.xender.core.HttpServerStart this$0 -> a
+    void <init>(cn.xender.core.HttpServerStart) -> <init>
+    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+cn.xender.core.SDKSpf -> cn.xender.core.c:
+    android.content.SharedPreferences getSharedPreferences(android.content.Context) -> a
+    void putString(android.content.Context,java.lang.String,java.lang.String) -> a
+    void putBoolean(android.content.Context,java.lang.String,boolean) -> a
+    java.lang.String getString(android.content.Context,java.lang.String,java.lang.String) -> b
+    boolean getBoolean(android.content.Context,java.lang.String,boolean) -> b
+cn.xender.core.ap.AndroidCommonCreateApWorker -> cn.xender.core.ap.a:
+    void <init>(android.content.Context) -> <init>
+    void restoreNetworkStatus() -> a
+    void doOpenApOpt(java.lang.String,java.lang.String) -> a
+    void closeAp() -> b
+cn.xender.core.ap.AndroidCommonCreateApWorker$1 -> cn.xender.core.ap.b:
+    cn.xender.core.ap.AndroidCommonCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.AndroidCommonCreateApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.AndroidN_MR1CreateApWorker -> cn.xender.core.ap.c:
+    void <init>(android.content.Context) -> <init>
+    void restoreNetworkStatus() -> a
+    void setUpTimer(long) -> a
+    void apStatusEnabled() -> c
+    void handleNoIpQuestionAfterFetchApIp() -> d
+    void closeAp() -> b
+    void doOpenApOpt(java.lang.String,java.lang.String) -> a
+    boolean needManualOpenAp() -> r
+    void notifyRetryForAndroid71() -> s
+    boolean access$000(cn.xender.core.ap.AndroidN_MR1CreateApWorker) -> a
+cn.xender.core.ap.AndroidN_MR1CreateApWorker$1 -> cn.xender.core.ap.d:
+    cn.xender.core.ap.AndroidN_MR1CreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.AndroidN_MR1CreateApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.AndroidOCreateApWorker -> cn.xender.core.ap.e:
+    android.os.Messenger oapService -> j
+    android.content.ServiceConnection mApServiceConnection -> k
+    boolean isConnected -> l
+    android.os.Messenger messenger -> m
+    void closeAp() -> b
+    java.lang.String getApPassword() -> e
+    java.lang.String getApName() -> f
+    void <init>(android.content.Context) -> <init>
+    void doOpenApOpt(java.lang.String,java.lang.String) -> a
+    void notifyTimeout() -> g
+    void notifyFailed() -> h
+    void apStatusDisabled() -> i
+    void apStatusEnabled() -> c
+    void stopApServices() -> r
+    void startOpenApServices() -> s
+    void sendOpenApMessageForAndroidO() -> t
+    void sendGetApInfoMessageForAndroidO() -> u
+    void sendMessageForAndroidO(int) -> a
+    android.os.Messenger access$002(cn.xender.core.ap.AndroidOCreateApWorker,android.os.Messenger) -> a
+    boolean access$102(cn.xender.core.ap.AndroidOCreateApWorker,boolean) -> a
+    void access$200(cn.xender.core.ap.AndroidOCreateApWorker) -> a
+    void access$300(cn.xender.core.ap.AndroidOCreateApWorker) -> b
+cn.xender.core.ap.AndroidOCreateApWorker$1 -> cn.xender.core.ap.f:
+    cn.xender.core.ap.AndroidOCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.AndroidOCreateApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.AndroidOCreateApWorker$2 -> cn.xender.core.ap.g:
+    cn.xender.core.ap.AndroidOCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.AndroidOCreateApWorker) -> <init>
+    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+cn.xender.core.ap.AndroidOCreateApWorker$3 -> cn.xender.core.ap.h:
+    cn.xender.core.ap.AndroidOCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.AndroidOCreateApWorker,android.os.Looper) -> <init>
+    void handleMessage(android.os.Message) -> handleMessage
+cn.xender.core.ap.BaseCreateApWorker -> cn.xender.core.ap.BaseCreateApWorker:
+    android.os.Handler _handler -> a
+    cn.xender.core.ap.utils.WifiApManager apManager -> j
+    android.net.wifi.WifiManager wifiManager -> k
+    java.lang.String ssid -> b
+    java.lang.String password -> c
+    android.content.Context context -> d
+    cn.xender.core.ap.CoreCreateApCallback callback -> e
+    java.util.Timer timer -> l
+    boolean wifiInit -> m
+    java.util.concurrent.atomic.AtomicBoolean creating -> f
+    java.util.concurrent.atomic.AtomicBoolean apStatusReceiverRegistered -> n
+    cn.xender.core.ap.BaseCreateApWorker$ApStatusReceiver mApStatusReceiver -> g
+    int FETCH_APIP_TIMEOUT -> h
+    int requestCode -> i
+    void <init>(android.content.Context) -> <init>
+    boolean isApEnabled() -> j
+    void createAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> a
+    void retryCreateAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> b
+    int getCurrentRequestCode() -> k
+    void closeAp() -> b
+    void createFailed() -> l
+    java.lang.String getApPassword() -> e
+    java.lang.String getApName() -> f
+    android.net.wifi.WifiManager getWifiManager() -> m
+    cn.xender.core.ap.utils.WifiApManager getWifiApManager() -> n
+    void doReadyWorkForCreateApAndDoIt(java.lang.String,java.lang.String) -> b
+    void ensureWifiApDisabled(java.lang.Runnable) -> a
+    void ensureWifiDisabled(java.lang.Runnable) -> b
+    void setUpTimer(long) -> a
+    void doOpenApOpt(java.lang.String,java.lang.String) -> a
+    void doRetryCreateAp(java.lang.String,java.lang.String) -> c
+    void registerApStatusReceiver() -> r
+    void apStatusDisabled() -> i
+    void apStatusEnabled() -> c
+    void restoreNetworkStatus() -> a
+    void fetchApIp() -> o
+    void handleNoIpQuestionAfterFetchApIp() -> d
+    void notifyTimeout() -> g
+    void notifyFailed() -> h
+    void cancelTimer() -> p
+    void notifySuccessed(java.lang.String) -> a
+    java.lang.String getApIp() -> s
+    void getOldConfig() -> q
+    void access$000(cn.xender.core.ap.BaseCreateApWorker,java.lang.String,java.lang.String) -> a
+    java.lang.String access$100(cn.xender.core.ap.BaseCreateApWorker) -> a
+    void access$200(cn.xender.core.ap.BaseCreateApWorker,java.lang.String) -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.BaseCreateApWorker$1 -> cn.xender.core.ap.i:
+    java.lang.String val$ssid -> a
+    java.lang.String val$password -> b
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> c
+    void <init>(cn.xender.core.ap.BaseCreateApWorker,java.lang.String,java.lang.String) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$2 -> cn.xender.core.ap.j:
+    java.lang.String val$ssid -> a
+    java.lang.String val$password -> b
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> c
+    void <init>(cn.xender.core.ap.BaseCreateApWorker,java.lang.String,java.lang.String) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$3 -> cn.xender.core.ap.k:
+    java.lang.Runnable val$runnable -> a
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> b
+    void <init>(cn.xender.core.ap.BaseCreateApWorker,java.lang.Runnable) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$4 -> cn.xender.core.ap.l:
+    java.lang.Runnable val$callback -> a
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> b
+    void <init>(cn.xender.core.ap.BaseCreateApWorker,java.lang.Runnable) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$5 -> cn.xender.core.ap.m:
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.BaseCreateApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$6 -> cn.xender.core.ap.n:
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.BaseCreateApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.BaseCreateApWorker$7 -> cn.xender.core.ap.o:
+    int[] $SwitchMap$cn$xender$core$ap$utils$WIFI_AP_STATE -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.BaseCreateApWorker$ApStatusReceiver -> cn.xender.core.ap.BaseCreateApWorker$ApStatusReceiver:
+    cn.xender.core.ap.BaseCreateApWorker$State state -> a
+    cn.xender.core.ap.BaseCreateApWorker this$0 -> b
+    void <init>(cn.xender.core.ap.BaseCreateApWorker) -> <init>
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    void apEnabled() -> a
+    void retry() -> b
+    void apDisabled() -> c
+    void init() -> d
+    void tryTurnOffAp() -> e
+cn.xender.core.ap.BaseCreateApWorker$State -> cn.xender.core.ap.p:
+    cn.xender.core.ap.BaseCreateApWorker$State INIT -> a
+    cn.xender.core.ap.BaseCreateApWorker$State OFF -> b
+    cn.xender.core.ap.BaseCreateApWorker$State ON -> c
+    cn.xender.core.ap.BaseCreateApWorker$State OFF_R -> d
+    cn.xender.core.ap.BaseCreateApWorker$State ON_R -> e
+    cn.xender.core.ap.BaseCreateApWorker$State FAILURE -> f
+    cn.xender.core.ap.BaseCreateApWorker$State[] $VALUES -> g
+    cn.xender.core.ap.BaseCreateApWorker$State[] values() -> values
+    cn.xender.core.ap.BaseCreateApWorker$State valueOf(java.lang.String) -> valueOf
+    void <init>(java.lang.String,int) -> <init>
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.CoreApManager -> cn.xender.core.ap.CoreApManager:
+    cn.xender.core.ap.ScanApWorker scanApWorker -> scanApWorker
+    cn.xender.core.ap.JoinApWorker joinApWorker -> joinApWorker
+    cn.xender.core.ap.ICreateApWorker createApWorker -> createApWorker
+    android.content.Context applicationContext -> applicationContext
+    cn.xender.core.HttpServerStart httpServerStart -> httpServerStart
+    int DEFAULT_CREATE_TIMEOUT -> DEFAULT_CREATE_TIMEOUT
+    cn.xender.core.ap.CoreApManager instance -> instance
+    void <init>() -> <init>
+    cn.xender.core.ap.CoreApManager getInstance() -> getInstance
+    void initApplicationContext(android.content.Context) -> initApplicationContext
+    void setSSIDFilterForRestore(cn.xender.core.ap.SSIDFilter) -> setSSIDFilterForRestore
+    void createAp(int,cn.xender.core.ap.CoreCreateApCallback) -> createAp
+    void createAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> createAp
+    int getCreateRequestCode() -> getCreateRequestCode
+    void retryCreateAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> retryCreateAp
+    void shutdownAp() -> shutdownAp
+    boolean isApEnabled() -> isApEnabled
+    void createFailed() -> createFailed
+    java.lang.String getApName() -> getApName
+    java.lang.String getApPassword() -> getApPassword
+    void startScanAp(cn.xender.core.ap.SSIDFilter,cn.xender.core.ap.SSIDDecoder,long,cn.xender.core.ap.CoreScanApCallback,int) -> startScanAp
+    void stopScanAp() -> stopScanAp
+    void joinAp(cn.xender.core.ap.ScanResultItem,java.lang.String,java.lang.String,long,cn.xender.core.ap.CoreJoinApCallback) -> joinAp
+    void cancelDiscoveryBluetooth() -> cancelDiscoveryBluetooth
+    void checkContext() -> checkContext
+    cn.xender.core.ap.ICreateApWorker getCreateApWorker() -> getCreateApWorker
+    cn.xender.core.ap.ScanApWorker getScanApWorker() -> getScanApWorker
+    cn.xender.core.ap.JoinApWorker getJoinApWorker() -> getJoinApWorker
+    cn.xender.core.HttpServerStart getHttpServerStart() -> getHttpServerStart
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.CoreApManager$1 -> cn.xender.core.ap.q:
+    cn.xender.core.ap.CoreCreateApCallback val$callback -> a
+    cn.xender.core.ap.CoreApManager this$0 -> b
+    void <init>(cn.xender.core.ap.CoreApManager,cn.xender.core.ap.CoreCreateApCallback) -> <init>
+    void callback(cn.xender.core.ap.CreateApEvent) -> callback
+cn.xender.core.ap.CoreApManager$2 -> cn.xender.core.ap.r:
+    cn.xender.core.ap.CoreCreateApCallback val$callback -> a
+    cn.xender.core.ap.CoreApManager this$0 -> b
+    void <init>(cn.xender.core.ap.CoreApManager,cn.xender.core.ap.CoreCreateApCallback) -> <init>
+    void callback(cn.xender.core.ap.CreateApEvent) -> callback
+cn.xender.core.ap.CoreCreateApCallback -> cn.xender.core.ap.CoreCreateApCallback:
+    void callback(cn.xender.core.ap.CreateApEvent) -> callback
+cn.xender.core.ap.CoreJoinApCallback -> cn.xender.core.ap.s:
+    void callback(cn.xender.core.ap.JoinApEvent) -> a
+cn.xender.core.ap.CoreScanApCallback -> cn.xender.core.ap.t:
+    void callback(cn.xender.core.ap.ScanApEvent) -> a
+cn.xender.core.ap.CreateApEvent -> cn.xender.core.ap.CreateApEvent:
+    int CREATE_ERROR -> CREATE_ERROR
+    int OFF -> OFF
+    int SAVED_25_CONFIG -> SAVED_25_CONFIG
+    int AP_ENABLED_25 -> AP_ENABLED_25
+    int CREATE_OK_BUT_NO_IP_ON25 -> CREATE_OK_BUT_NO_IP_ON25
+    int CREATE_OK -> CREATE_OK
+    int type -> type
+    java.lang.String apIp -> apIp
+    java.lang.String ssid -> ssid
+    int requestCode -> requestCode
+    java.lang.String url -> url
+    java.lang.String password -> password
+    void <init>(int,int) -> <init>
+    void <init>(int,java.lang.String,java.lang.String,int,java.lang.String) -> <init>
+    void <init>(int,java.lang.String,int) -> <init>
+    cn.xender.core.ap.CreateApEvent errorEvent(int) -> errorEvent
+    cn.xender.core.ap.CreateApEvent okEvent(java.lang.String,java.lang.String,int,java.lang.String) -> okEvent
+    cn.xender.core.ap.CreateApEvent offEvent(int) -> offEvent
+    cn.xender.core.ap.CreateApEvent save25ConfigEvent(int) -> save25ConfigEvent
+    cn.xender.core.ap.CreateApEvent apEnabled25Event(int) -> apEnabled25Event
+    cn.xender.core.ap.CreateApEvent okButNoIpOn25(int) -> okButNoIpOn25
+    int getRequestCode() -> getRequestCode
+    java.lang.String getUrl() -> getUrl
+    boolean isOk() -> isOk
+    boolean isOff() -> isOff
+    boolean isError() -> isError
+    boolean isNeedUserManualOpen() -> isNeedUserManualOpen
+    boolean isManualOpenSuccess() -> isManualOpenSuccess
+    boolean isOpendButWeCannotUseAndNeedRetry() -> isOpendButWeCannotUseAndNeedRetry
+cn.xender.core.ap.ICreateApWorker -> cn.xender.core.ap.u:
+    boolean isApEnabled() -> j
+    void createAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> a
+    void retryCreateAp(java.lang.String,java.lang.String,long,int,cn.xender.core.ap.CoreCreateApCallback) -> b
+    int getCurrentRequestCode() -> k
+    void closeAp() -> b
+    void createFailed() -> l
+    java.lang.String getApPassword() -> e
+    java.lang.String getApName() -> f
+cn.xender.core.ap.JoinApEvent -> cn.xender.core.ap.v:
+    int type -> a
+    boolean isNearbyConnection -> b
+    boolean success -> c
+    boolean wrongPassword -> d
+    void <init>(boolean,boolean,int) -> <init>
+cn.xender.core.ap.JoinApWorker -> cn.xender.core.ap.JoinApWorker:
+    android.net.wifi.WifiManager wifiManager -> c
+    java.util.concurrent.atomic.AtomicBoolean connecting -> d
+    cn.xender.core.ap.CoreJoinApCallback callback -> e
+    int oldNetworkId -> f
+    android.content.Context context -> g
+    java.util.Timer timer -> h
+    boolean joined -> i
+    cn.xender.core.ap.JoinApWorker$NetWorkStatusReceiver netWorkStatusReceiver -> a
+    cn.xender.core.ap.JoinApWorker$SupplicantStateReceiver receiver -> b
+    void <init>(android.content.Context) -> <init>
+    void startJoin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,cn.xender.core.ap.CoreJoinApCallback) -> a
+    void cancelTimer() -> b
+    void startTimer(long) -> a
+    void registerNetworkReceiver() -> c
+    void registerSupplicantStateReceiver() -> d
+    void unregisterSupplicantStateReceiver() -> e
+    void access$000(cn.xender.core.ap.JoinApWorker) -> a
+    void access$100(cn.xender.core.ap.JoinApWorker) -> b
+    void access$200(cn.xender.core.ap.JoinApWorker) -> c
+    void access$300(cn.xender.core.ap.JoinApWorker,long) -> a
+    android.net.wifi.WifiManager access$400(cn.xender.core.ap.JoinApWorker) -> d
+    cn.xender.core.ap.CoreJoinApCallback access$500(cn.xender.core.ap.JoinApWorker) -> e
+    java.util.concurrent.atomic.AtomicBoolean access$600() -> a
+    boolean access$700(cn.xender.core.ap.JoinApWorker) -> f
+    boolean access$702(cn.xender.core.ap.JoinApWorker,boolean) -> a
+    android.content.Context access$800(cn.xender.core.ap.JoinApWorker) -> g
+    void access$900(cn.xender.core.ap.JoinApWorker) -> h
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.JoinApWorker$1 -> cn.xender.core.ap.w:
+    cn.xender.core.ap.JoinApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.JoinApWorker) -> <init>
+    void run() -> run
+cn.xender.core.ap.JoinApWorker$DoConnectWifi -> cn.xender.core.ap.x:
+    android.content.Context context -> a
+    java.lang.String ssid -> b
+    java.lang.String bssid -> c
+    java.lang.String password -> d
+    java.lang.String static_ip -> e
+    long timeout -> f
+    cn.xender.core.ap.JoinApWorker this$0 -> g
+    void <init>(cn.xender.core.ap.JoinApWorker,android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> <init>
+    void run() -> run
+    void ensureNetworkInStableState() -> a
+    void waitUntilNotConnectingOrDisconnecting(android.content.Context,android.net.NetworkInfo$State) -> a
+    android.net.NetworkInfo$State waitUntilDisconnected(android.content.Context,android.net.NetworkInfo$State) -> b
+cn.xender.core.ap.JoinApWorker$NetWorkStatusReceiver -> cn.xender.core.ap.JoinApWorker$NetWorkStatusReceiver:
+    java.lang.String ssidToConnected -> a
+    java.lang.String current_connect_ap -> b
+    long connectedTime -> c
+    cn.xender.core.ap.JoinApWorker this$0 -> d
+    void <init>(cn.xender.core.ap.JoinApWorker) -> <init>
+    void setSsidToConnected(java.lang.String) -> a
+    void reset() -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+cn.xender.core.ap.JoinApWorker$SupplicantStateReceiver -> cn.xender.core.ap.JoinApWorker$SupplicantStateReceiver:
+    int firstValue -> b
+    cn.xender.core.ap.JoinApWorker this$0 -> a
+    void <init>(cn.xender.core.ap.JoinApWorker) -> <init>
+    void initFirstValue() -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+cn.xender.core.ap.SSIDDecoder -> cn.xender.core.ap.y:
+    java.lang.String[] decode(java.lang.String) -> a
+cn.xender.core.ap.SSIDFilter -> cn.xender.core.ap.z:
+    boolean accept(java.lang.String) -> a
+cn.xender.core.ap.ScanApEvent -> cn.xender.core.ap.aa:
+    boolean hasAndroidOAp -> b
+    java.util.List aplist -> c
+    boolean scanStoped -> a
+    int requestCode -> d
+    void <init>(java.util.List,boolean,int) -> <init>
+    void <init>(boolean,int) -> <init>
+cn.xender.core.ap.ScanApWorker -> cn.xender.core.ap.ab:
+    cn.xender.core.ap.utils.WifiApManager wifiApManager -> a
+    android.net.wifi.WifiManager mWifiManager -> b
+    java.util.concurrent.atomic.AtomicBoolean scaning -> c
+    cn.xender.core.ap.CoreScanApCallback callback -> d
+    void <init>(android.content.Context) -> <init>
+    void startScan(cn.xender.core.ap.SSIDFilter,cn.xender.core.ap.SSIDDecoder,long,cn.xender.core.ap.CoreScanApCallback,int) -> a
+    void stopScan() -> a
+    java.util.concurrent.atomic.AtomicBoolean access$000() -> b
+    cn.xender.core.ap.CoreScanApCallback access$100(cn.xender.core.ap.ScanApWorker) -> a
+    android.net.wifi.WifiManager access$200(cn.xender.core.ap.ScanApWorker) -> b
+    cn.xender.core.ap.utils.WifiApManager access$300(cn.xender.core.ap.ScanApWorker) -> c
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.ScanApWorker$DoScan -> cn.xender.core.ap.ac:
+    cn.xender.core.ap.SSIDFilter SSIDFilter -> c
+    cn.xender.core.ap.SSIDDecoder SSIDDecoder -> d
+    int requestCode -> e
+    long timeout -> a
+    cn.xender.core.ap.ScanApWorker this$0 -> b
+    void <init>(cn.xender.core.ap.ScanApWorker,cn.xender.core.ap.SSIDFilter,cn.xender.core.ap.SSIDDecoder,long,int) -> <init>
+    void run() -> run
+    void ensureWifiState() -> a
+    boolean installListAndReturnHasAndroidOAp(java.util.List) -> a
+cn.xender.core.ap.ScanResultItem -> cn.xender.core.ap.ad:
+    boolean mClickable -> a
+    java.lang.String SSID -> b
+    java.lang.String ssid_nickname -> c
+    java.lang.String BSSID -> d
+    java.lang.String profix -> e
+    java.lang.String keyMgmt -> f
+    void <init>() -> <init>
+    void setKeyMgmt(java.lang.String) -> a
+    java.lang.String getSSID() -> a
+    void setSSID(java.lang.String) -> b
+    void setSsid_nickname(java.lang.String) -> c
+    java.lang.String getBSSID() -> b
+    void setBSSID(java.lang.String) -> d
+    void setProfix(java.lang.String) -> e
+cn.xender.core.ap.service.OAPService -> cn.xender.core.ap.service.OAPService:
+    int MSG_OPEN_AP -> MSG_OPEN_AP
+    int MSG_GET_AP_INFO -> MSG_GET_AP_INFO
+    java.lang.String ssid -> ssid
+    java.lang.String password -> password
+    boolean openFailed -> openFailed
+    android.os.Messenger mMessenger -> mMessenger
+    android.net.wifi.WifiManager$LocalOnlyHotspotReservation reservation -> reservation
+    android.net.wifi.WifiManager$LocalOnlyHotspotCallback callback -> callback
+    android.net.wifi.WifiManager wifiManager -> wifiManager
+    cn.xender.core.ap.utils.WifiApManager wifiApManager -> wifiApManager
+    void <init>() -> <init>
+    void replyToClientMessage(android.os.Message,android.os.Bundle) -> replyToClientMessage
+    android.net.wifi.WifiManager getWifiManager() -> getWifiManager
+    cn.xender.core.ap.utils.WifiApManager getWifiApManager() -> getWifiApManager
+    void onCreate() -> onCreate
+    android.os.IBinder onBind(android.content.Intent) -> onBind
+    boolean onUnbind(android.content.Intent) -> onUnbind
+    void onDestroy() -> onDestroy
+    android.net.wifi.WifiManager$LocalOnlyHotspotCallback access$000(cn.xender.core.ap.service.OAPService) -> access$000
+    void access$100(cn.xender.core.ap.service.OAPService,android.os.Message,android.os.Bundle) -> access$100
+    java.lang.String access$200(cn.xender.core.ap.service.OAPService) -> access$200
+    java.lang.String access$300(cn.xender.core.ap.service.OAPService) -> access$300
+    boolean access$400(cn.xender.core.ap.service.OAPService) -> access$400
+    android.net.wifi.WifiManager$LocalOnlyHotspotReservation access$602(cn.xender.core.ap.service.OAPService,android.net.wifi.WifiManager$LocalOnlyHotspotReservation) -> access$602
+    java.lang.String access$302(cn.xender.core.ap.service.OAPService,java.lang.String) -> access$302
+    java.lang.String access$202(cn.xender.core.ap.service.OAPService,java.lang.String) -> access$202
+    boolean access$402(cn.xender.core.ap.service.OAPService,boolean) -> access$402
+cn.xender.core.ap.service.OAPService$1 -> cn.xender.core.ap.service.a:
+    cn.xender.core.ap.service.OAPService this$0 -> a
+    void <init>(cn.xender.core.ap.service.OAPService) -> <init>
+    void onStarted(android.net.wifi.WifiManager$LocalOnlyHotspotReservation) -> onStarted
+    void onFailed(int) -> onFailed
+    void onStopped() -> onStopped
+cn.xender.core.ap.service.OAPService$IncomingHandler -> cn.xender.core.ap.service.b:
+    cn.xender.core.ap.service.OAPService this$0 -> a
+    void <init>(cn.xender.core.ap.service.OAPService) -> <init>
+    void handleMessage(android.os.Message) -> handleMessage
+    void <init>(cn.xender.core.ap.service.OAPService,cn.xender.core.ap.service.OAPService$1) -> <init>
+cn.xender.core.ap.utils.AndroidOApName -> cn.xender.core.ap.a.a:
+    boolean startWithAndroidOFix(java.lang.String) -> a
+cn.xender.core.ap.utils.BluetoothUtil -> cn.xender.core.ap.a.b:
+    void cancelDiscovery(android.content.Context) -> a
+    android.bluetooth.BluetoothManager getBluetoothManager(android.content.Context) -> b
+    android.bluetooth.BluetoothAdapter getMyBlueAdapter(android.content.Context) -> c
+cn.xender.core.ap.utils.ConnectWifiUtil -> cn.xender.core.ap.a.c:
+    android.net.ConnectivityManager$NetworkCallback networkCallback -> a
+    void <init>() -> <init>
+    boolean connect(android.content.Context,android.net.wifi.WifiManager,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+    boolean connectapWithStatic(android.content.Context,android.net.wifi.WifiManager,java.lang.String,java.lang.String,java.lang.String) -> a
+    android.net.wifi.WifiConfiguration removeNetworkIfFailedReturn(android.content.Context,android.net.wifi.WifiManager,java.lang.String) -> a
+    boolean connectAp(android.content.Context,android.net.wifi.WifiManager,android.net.wifi.WifiConfiguration,int,boolean) -> a
+    void connect(android.content.Context,android.net.wifi.WifiManager,android.net.wifi.WifiConfiguration,int) -> a
+    java.lang.Object createActionListenerProxy(android.content.Context,java.lang.Class) -> a
+    boolean connectapWithDhcp(android.content.Context,android.net.wifi.WifiManager,java.lang.String,java.lang.String) -> a
+    android.net.wifi.WifiConfiguration createWifiConfiguration(java.lang.String,java.lang.String) -> a
+    java.lang.Object getFieldValue(java.lang.Object,java.lang.String) -> a
+    java.lang.Object getDeclaredFieldValue(java.lang.Object,java.lang.String) -> b
+    void connectionSet(java.lang.String,android.content.Context,android.net.wifi.WifiConfiguration,java.lang.String) -> a
+    void setRoute(android.net.wifi.WifiConfiguration,java.lang.String) -> a
+    void setwifi(java.lang.String,android.net.wifi.WifiConfiguration) -> a
+    void setwifiOnVersion5(java.lang.String,android.net.wifi.WifiConfiguration,java.lang.String,java.lang.String) -> a
+    void setLinkAddress(android.net.wifi.WifiConfiguration,java.lang.String) -> b
+    void setLinkAddressOn5(java.lang.Object,java.lang.String) -> c
+    void setGateway(android.net.wifi.WifiConfiguration,java.lang.String) -> c
+    void setGatewayOn5(java.lang.Object,java.lang.String) -> d
+    void setDns(android.net.wifi.WifiConfiguration,java.lang.String) -> d
+    void setDnsServersOn5(java.lang.Object,java.lang.String) -> e
+    void bindToNetwork(android.content.Context) -> b
+    android.net.ConnectivityManager$NetworkCallback getNetworkCallback(android.content.Context) -> c
+    void access$000(android.content.Context) -> a
+cn.xender.core.ap.utils.ConnectWifiUtil$1 -> cn.xender.core.ap.a.d:
+    android.content.Context val$context -> a
+    void <init>(android.content.Context) -> <init>
+    java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+cn.xender.core.ap.utils.ConnectWifiUtil$2 -> cn.xender.core.ap.a.e:
+    android.content.Context val$context -> a
+    void <init>(android.content.Context) -> <init>
+    void onAvailable(android.net.Network) -> onAvailable
+cn.xender.core.ap.utils.FilterManager -> cn.xender.core.ap.a.f:
+    cn.xender.core.ap.SSIDFilter SSIDFilter -> a
+    void setSSIDFilter(cn.xender.core.ap.SSIDFilter) -> a
+    boolean acceptSSID(java.lang.String) -> a
+cn.xender.core.ap.utils.UserApConfigurationUtil -> cn.xender.core.ap.a.g:
+    android.net.wifi.WifiConfiguration oldWifiConfiguration -> a
+    void saveWifiApConfig(android.content.Context,android.net.wifi.WifiConfiguration) -> a
+    java.lang.String getNeedSaveStr(android.net.wifi.WifiConfiguration) -> a
+    void restoreSpecifiedApConfigSync(android.content.Context) -> a
+    void restoreSpecifiedApConfig(android.content.Context) -> b
+    android.net.wifi.WifiConfiguration getOldWifiConfiguration(android.content.Context) -> c
+    android.net.wifi.WifiConfiguration getSavedWifiConfiguration(android.content.Context) -> d
+    int getConfigurationAllowedKeyManagrment(android.net.wifi.WifiConfiguration) -> b
+    android.net.wifi.WifiConfiguration createMyWifiApConfiguration(java.lang.String,java.lang.String,int) -> a
+cn.xender.core.ap.utils.UserApConfigurationUtil$1 -> cn.xender.core.ap.a.h:
+    android.content.Context val$context -> a
+    void <init>(android.content.Context) -> <init>
+    void run() -> run
+cn.xender.core.ap.utils.WIFI_AP_STATE -> cn.xender.core.ap.a.i:
+    cn.xender.core.ap.utils.WIFI_AP_STATE WIFI_AP_STATE_DISABLING -> a
+    cn.xender.core.ap.utils.WIFI_AP_STATE WIFI_AP_STATE_DISABLED -> b
+    cn.xender.core.ap.utils.WIFI_AP_STATE WIFI_AP_STATE_ENABLING -> c
+    cn.xender.core.ap.utils.WIFI_AP_STATE WIFI_AP_STATE_ENABLED -> d
+    cn.xender.core.ap.utils.WIFI_AP_STATE WIFI_AP_STATE_FAILED -> e
+    cn.xender.core.ap.utils.WIFI_AP_STATE[] $VALUES -> f
+    cn.xender.core.ap.utils.WIFI_AP_STATE[] values() -> values
+    cn.xender.core.ap.utils.WIFI_AP_STATE valueOf(java.lang.String) -> valueOf
+    void <init>(java.lang.String,int) -> <init>
+    void <clinit>() -> <clinit>
+cn.xender.core.ap.utils.WifiAPUtil -> cn.xender.core.ap.a.j:
+    boolean isAP(android.content.Context) -> a
+    java.lang.String getWifiSSID(android.content.Context) -> b
+    java.lang.String getWifiBSSID(android.content.Context) -> c
+    android.net.wifi.WifiInfo getWifiInfo(android.content.Context) -> d
+    android.net.wifi.WifiManager getWifiManager(android.content.Context) -> e
+    int getNetWorkID(android.content.Context,android.net.wifi.WifiManager) -> a
+    boolean isWifiConnected(android.content.Context) -> f
+    java.lang.String getIpOnWifiAndAP(android.content.Context) -> g
+    java.lang.String getWifiIp(android.content.Context) -> h
+    java.lang.String getGroupLocalIp(android.content.Context) -> i
+    boolean isReservedAddr(java.net.InetAddress,android.content.Context) -> a
+    android.net.NetworkInfo getActiveNetworkInfo(android.content.Context) -> j
+    android.net.ConnectivityManager getConnectivityManager(android.content.Context) -> k
+    boolean hasKeyManagerment(java.lang.String) -> a
+    void getAllConfiguredNetworks(android.content.Context,java.util.List) -> a
+    boolean isWifiEnabled(android.net.wifi.WifiManager) -> a
+cn.xender.core.ap.utils.WifiAPUtil$1 -> cn.xender.core.ap.a.k:
+    android.content.Context val$context -> a
+    java.util.List val$nets -> b
+    void <init>(android.content.Context,java.util.List) -> <init>
+    void run() -> run
+cn.xender.core.ap.utils.WifiApFieldUtils -> cn.xender.core.ap.a.l:
+    java.lang.Object getFieldValue(java.lang.Object,java.lang.String) -> a
+    void setFieldValue(java.lang.Object,java.lang.String,java.lang.String) -> a
+    void setFieldValue(java.lang.Object,java.lang.String,int) -> a
+cn.xender.core.ap.utils.WifiApManager -> cn.xender.core.ap.a.m:
+    android.content.Context _context -> d
+    android.net.wifi.WifiManager mWifiManager -> e
+    java.lang.String CREATE_AP_NAME -> a
+    java.lang.String brand -> b
+    java.lang.String brand_base -> c
+    java.lang.Boolean mIsSupport -> f
+    boolean isHtc -> g
+    java.util.Map methodMap -> h
+    boolean isSupport() -> a
+    boolean isHtc() -> b
+    java.lang.String getSetWifiApConfigName() -> f
+    void <init>(android.content.Context,android.net.wifi.WifiManager) -> <init>
+    void init(android.content.Context) -> a
+    java.lang.String getWifiApSSID() -> c
+    boolean setWifiApEnabledForBelowAndroidN(java.lang.String,java.lang.String,boolean) -> a
+    boolean setWifiApEnabledForAndroidN_MR1(java.lang.String,java.lang.String,boolean,boolean) -> a
+    boolean setWifiApEnabledOnAndroidO(boolean,android.net.wifi.WifiManager$LocalOnlyHotspotCallback) -> a
+    android.net.wifi.WifiConfiguration createMyWifiApConfiguration(java.lang.String,java.lang.String) -> a
+    boolean setMyWifiApEnabled(android.net.wifi.WifiConfiguration,boolean) -> a
+    cn.xender.core.ap.utils.WIFI_AP_STATE getWifiApState() -> d
+    boolean isWifiApEnabled() -> e
+    android.net.wifi.WifiConfiguration getWifiApConfiguration(android.net.wifi.WifiManager) -> a
+    android.net.wifi.WifiConfiguration getHtcWifiApConfiguration(android.net.wifi.WifiConfiguration) -> a
+    boolean setWifiApConfiguration(android.net.wifi.WifiManager,android.net.wifi.WifiConfiguration) -> a
+    boolean setWifiApConfiguration(android.net.wifi.WifiConfiguration) -> b
+    void cancelLocalOnlyHotspotRequest() -> g
+    void <clinit>() -> <clinit>
+cn.xender.core.log.Logger -> cn.xender.core.log.Logger:
+    boolean r -> r
+    void <init>() -> <init>
+    void c(java.lang.String,java.lang.String) -> c
+    void ce(java.lang.String,java.lang.String) -> ce
+    void d(java.lang.String,java.lang.String) -> d
+    void i(java.lang.String,java.lang.String) -> i
+    void e(java.lang.String,java.lang.String) -> e
+    void d(java.lang.String,java.lang.String,java.lang.Throwable) -> d
+    void e(java.lang.String,java.lang.String,java.lang.Throwable) -> e
+    void <clinit>() -> <clinit>
+cn.xender.core.server.Base -> cn.xender.core.server.a:
+    android.content.Context androidContext -> a
+    void <init>(android.content.Context) -> <init>
+cn.xender.core.server.ClientManager -> cn.xender.core.server.b:
+    cn.xender.core.server.ClientManager instance -> b
+    java.util.LinkedHashMap others -> a
+    cn.xender.core.server.ClientManager getInstance() -> a
+    void <init>() -> <init>
+    void clientJoin(cn.xender.core.server.ConnectRequestData) -> a
+    void clientExit(cn.xender.core.server.ConnectRequestData) -> b
+    void clear() -> b
+    java.lang.String getMyClientsInGroupJson(android.content.Context) -> a
+    cn.xender.core.server.ConnectRequestData getClientByIp(java.lang.String) -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.server.ConnectRequestData -> cn.xender.core.server.c:
+    java.lang.String nickname -> a
+    java.lang.String imei -> b
+    java.lang.String ip -> c
+    java.lang.String device_type -> d
+    int port -> e
+    void <init>() -> <init>
+    int getPort() -> a
+    void setPort(int) -> a
+    void setNickname(java.lang.String) -> a
+    java.lang.String getImei() -> b
+    void setImei(java.lang.String) -> b
+    java.lang.String getIp() -> c
+    void setIp(java.lang.String) -> c
+    void setDevice_type(java.lang.String) -> d
+    java.lang.String toString() -> toString
+    org.json.JSONObject toJsonObj() -> d
+    cn.xender.core.server.ConnectRequestData getMyConnectRequestData(android.content.Context) -> a
+    java.lang.String getAndroidId(android.content.Context) -> b
+    cn.xender.core.server.ConnectRequestData fromJSON(java.lang.String) -> e
+cn.xender.core.server.DownloadMe -> cn.xender.core.server.d:
+    void <init>(android.content.Context) -> <init>
+    cn.xender.core.server.NanoHTTPD$Response doResponse(java.util.Map,cn.xender.core.server.NanoHTTPD$IHTTPSession,java.lang.String) -> a
+cn.xender.core.server.DownloadSharedFile -> cn.xender.core.server.e:
+    java.util.Random random -> b
+    void <init>(android.content.Context) -> <init>
+    cn.xender.core.server.NanoHTTPD$Response doResponse(java.util.Map,cn.xender.core.server.NanoHTTPD$IHTTPSession,java.lang.String) -> a
+    cn.xender.core.server.NanoHTTPD$Response createRangeOrFullResponse(java.util.Map,java.lang.String,java.lang.String) -> a
+    java.util.Map parseParams(cn.xender.core.server.NanoHTTPD$IHTTPSession) -> a
+    void parseRange(java.lang.String,long[]) -> a
+    cn.xender.core.server.NanoHTTPD$Response createFullResponse(java.io.File,java.lang.String) -> a
+    cn.xender.core.server.NanoHTTPD$Response createRangeResponse(java.io.File,long,long,java.lang.String) -> a
+    boolean isVersionMatchs(java.lang.String,java.lang.String) -> a
+    boolean isInvalidRange(java.io.File,long,long) -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.server.EmbbedWebServer -> cn.xender.core.server.f:
+    java.lang.String TAG -> a
+    java.util.Map MIME_TYPES -> b
+    android.content.Context mContext -> c
+    boolean quiet -> d
+    java.lang.String directUri -> e
+    java.lang.String token -> f
+    int port -> g
+    java.lang.String createNewDirectUrl() -> a
+    java.lang.String uriToUrl(java.lang.String) -> c
+    void <init>(android.content.Context,java.lang.String,int,java.lang.String) -> <init>
+    java.io.File getTempFile(android.content.Context,java.lang.String) -> a
+    java.io.File getExternalCacheDir(android.content.Context) -> a
+    void init() -> b
+    cn.xender.core.server.NanoHTTPD$Response serve(cn.xender.core.server.NanoHTTPD$IHTTPSession) -> a
+    cn.xender.core.server.NanoHTTPD$Response respondAllRequest(java.util.Map,cn.xender.core.server.NanoHTTPD$IHTTPSession,java.lang.String) -> a
+    cn.xender.core.server.NanoHTTPD$Response respondPhoneConnectRequest(java.util.Map,cn.xender.core.server.NanoHTTPD$IHTTPSession,java.lang.String) -> b
+    cn.xender.core.server.NanoHTTPD$Response getForbiddenResponse(java.lang.String) -> a
+    cn.xender.core.server.NanoHTTPD$Response createResponse(cn.xender.core.server.NanoHTTPD$Response$Status,java.lang.String,java.lang.String) -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.server.EmbbedWebServer$1 -> cn.xender.core.server.g:
+    void <init>() -> <init>
+cn.xender.core.server.EmbbedWebServer$2 -> cn.xender.core.server.h:
+    java.util.concurrent.ExecutorService executor -> a
+    cn.xender.core.server.EmbbedWebServer this$0 -> b
+    void <init>(cn.xender.core.server.EmbbedWebServer) -> <init>
+    void exec(java.lang.Runnable) -> a
+cn.xender.core.server.MyFileRangeResponse -> cn.xender.core.server.i:
+    java.io.File file -> c
+    long startFrom -> d
+    long endAt -> e
+    java.lang.String eTag -> f
+    android.content.Context androidContext -> g
+    void <init>(android.content.Context,cn.xender.core.server.NanoHTTPD$Response$IStatus,java.lang.String,java.io.File,long,long,java.lang.String) -> <init>
+    void send(java.io.OutputStream) -> a
+    void sendContentRangeHeader(java.io.PrintWriter,long,long,long) -> a
+    void sendETagHeader(java.io.PrintWriter) -> a
+    void sendAsFixedLength(java.io.OutputStream,long) -> a
+    void sendAsChunked(java.io.OutputStream,java.io.PrintWriter) -> a
+cn.xender.core.server.MyFileResponse -> cn.xender.core.server.j:
+    android.content.Context androidContext -> c
+    void <init>(android.content.Context,cn.xender.core.server.NanoHTTPD$Response$IStatus,java.lang.String,java.io.File) -> <init>
+    void send(java.io.OutputStream) -> a
+    void sendAsFixedLength(java.io.OutputStream,int) -> a
+    void sendAsChunked(java.io.OutputStream,java.io.PrintWriter) -> a
+cn.xender.core.server.MyPushbackInputStream -> cn.xender.core.server.k:
+    void <init>(java.io.InputStream,int) -> <init>
+    int read(byte[],int,int) -> read
+    java.io.IOException streamClosed() -> a
+    void checkOffsetAndCount(int,int,int) -> a
+cn.xender.core.server.NanoHTTPD -> cn.xender.core.server.l:
+    java.lang.String hostname -> a
+    int myPort -> b
+    java.net.ServerSocket myServerSocket -> c
+    java.util.Set openConnections -> d
+    java.lang.Thread myThread -> e
+    cn.xender.core.server.NanoHTTPD$AsyncRunner asyncRunner -> f
+    cn.xender.core.server.NanoHTTPD$TempFileManagerFactory tempFileManagerFactory -> g
+    void <init>(java.lang.String,int,java.lang.String) -> <init>
+    void safeClose(java.io.Closeable) -> a
+    void safeClose(java.net.Socket) -> d
+    void safeClose(java.net.ServerSocket) -> a
+    void start() -> c
+    void stop() -> d
+    void registerConnection(java.net.Socket) -> a
+    void unRegisterConnection(java.net.Socket) -> b
+    void closeAllConnections() -> e
+    boolean wasStarted() -> f
+    boolean isAlive() -> g
+    cn.xender.core.server.NanoHTTPD$Response serve() -> h
+    cn.xender.core.server.NanoHTTPD$Response serve(cn.xender.core.server.NanoHTTPD$IHTTPSession) -> a
+    java.lang.String decodePercent(java.lang.String) -> b
+    void setAsyncRunner(cn.xender.core.server.NanoHTTPD$AsyncRunner) -> a
+    void setTempFileManagerFactory(cn.xender.core.server.NanoHTTPD$TempFileManagerFactory) -> a
+    java.net.ServerSocket access$000(cn.xender.core.server.NanoHTTPD) -> a
+    cn.xender.core.server.NanoHTTPD$TempFileManagerFactory access$100(cn.xender.core.server.NanoHTTPD) -> b
+    void access$200(java.net.Socket) -> c
+    cn.xender.core.server.NanoHTTPD$AsyncRunner access$300(cn.xender.core.server.NanoHTTPD) -> c
+cn.xender.core.server.NanoHTTPD$1 -> cn.xender.core.server.m:
+    cn.xender.core.server.NanoHTTPD this$0 -> a
+    void <init>(cn.xender.core.server.NanoHTTPD) -> <init>
+    void run() -> run
+cn.xender.core.server.NanoHTTPD$1$1 -> cn.xender.core.server.n:
+    java.net.Socket val$finalAccept -> a
+    java.io.InputStream val$inputStream -> b
+    cn.xender.core.server.NanoHTTPD$1 this$1 -> c
+    void <init>(cn.xender.core.server.NanoHTTPD$1,java.net.Socket,java.io.InputStream) -> <init>
+    void run() -> run
+cn.xender.core.server.NanoHTTPD$AsyncRunner -> cn.xender.core.server.o:
+    void exec(java.lang.Runnable) -> a
+cn.xender.core.server.NanoHTTPD$Cookie -> cn.xender.core.server.p:
+    java.lang.String n -> a
+    java.lang.String v -> b
+    java.lang.String e -> c
+    java.lang.String getHTTPHeader() -> a
+cn.xender.core.server.NanoHTTPD$CookieHandler -> cn.xender.core.server.q:
+    java.util.HashMap cookies -> b
+    java.util.ArrayList queue -> c
+    cn.xender.core.server.NanoHTTPD this$0 -> a
+    void <init>(cn.xender.core.server.NanoHTTPD,java.util.Map) -> <init>
+    java.util.Iterator iterator() -> iterator
+    void unloadQueue(cn.xender.core.server.NanoHTTPD$Response) -> a
+cn.xender.core.server.NanoHTTPD$DefaultAsyncRunner -> cn.xender.core.server.r:
+    long requestCount -> a
+    void <init>() -> <init>
+    void exec(java.lang.Runnable) -> a
+cn.xender.core.server.NanoHTTPD$DefaultTempFile -> cn.xender.core.server.s:
+    java.io.File file -> a
+    java.io.OutputStream fstream -> b
+    void <init>(java.lang.String) -> <init>
+    void delete() -> a
+    java.lang.String getName() -> b
+cn.xender.core.server.NanoHTTPD$DefaultTempFileManager -> cn.xender.core.server.t:
+    java.lang.String tmpdir -> a
+    java.util.List tempFiles -> b
+    void <init>(java.lang.String) -> <init>
+    cn.xender.core.server.NanoHTTPD$TempFile createTempFile() -> a
+    void clear() -> b
+cn.xender.core.server.NanoHTTPD$DefaultTempFileManagerFactory -> cn.xender.core.server.u:
+    java.lang.String tmpFilePath -> a
+    cn.xender.core.server.NanoHTTPD this$0 -> b
+    void <init>(cn.xender.core.server.NanoHTTPD,java.lang.String) -> <init>
+    cn.xender.core.server.NanoHTTPD$TempFileManager create() -> a
+cn.xender.core.server.NanoHTTPD$HTTPSession -> cn.xender.core.server.v:
+    cn.xender.core.server.NanoHTTPD$TempFileManager tempFileManager -> b
+    java.io.OutputStream outputStream -> c
+    java.io.PushbackInputStream inputStream -> d
+    int splitbyte -> e
+    int rlen -> f
+    java.lang.String uri -> g
+    cn.xender.core.server.NanoHTTPD$Method method -> h
+    java.util.Map parms -> i
+    java.util.Map headers -> j
+    cn.xender.core.server.NanoHTTPD$CookieHandler cookies -> k
+    java.lang.String queryParameterString -> l
+    cn.xender.core.server.NanoHTTPD this$0 -> a
+    void <init>(cn.xender.core.server.NanoHTTPD,cn.xender.core.server.NanoHTTPD$TempFileManager,java.io.InputStream,java.io.OutputStream,java.net.InetAddress) -> <init>
+    void execute() -> a
+    void parseBody(java.util.Map) -> a
+    void decodeHeader(java.io.BufferedReader,java.util.Map,java.util.Map,java.util.Map) -> a
+    void decodeMultipartData(java.lang.String,java.nio.ByteBuffer,java.io.BufferedReader,java.util.Map,java.util.Map) -> a
+    int findHeaderEnd(byte[],int) -> a
+    int[] getBoundaryPositions(java.nio.ByteBuffer,byte[]) -> a
+    java.lang.String saveTmpFile(java.nio.ByteBuffer,int,int) -> a
+    java.io.RandomAccessFile getTmpBucket() -> g
+    int stripMultipartHeaders(java.nio.ByteBuffer,int) -> a
+    void decodeParms(java.lang.String,java.util.Map) -> a
+    java.util.Map getParms() -> b
+    java.lang.String getQueryParameterString() -> c
+    java.util.Map getHeaders() -> d
+    java.lang.String getUri() -> e
+    cn.xender.core.server.NanoHTTPD$Method getMethod() -> f
+cn.xender.core.server.NanoHTTPD$IHTTPSession -> cn.xender.core.server.w:
+    java.util.Map getParms() -> b
+    java.util.Map getHeaders() -> d
+    java.lang.String getUri() -> e
+    java.lang.String getQueryParameterString() -> c
+    cn.xender.core.server.NanoHTTPD$Method getMethod() -> f
+    void parseBody(java.util.Map) -> a
+cn.xender.core.server.NanoHTTPD$Method -> cn.xender.core.server.x:
+    cn.xender.core.server.NanoHTTPD$Method GET -> a
+    cn.xender.core.server.NanoHTTPD$Method PUT -> b
+    cn.xender.core.server.NanoHTTPD$Method POST -> c
+    cn.xender.core.server.NanoHTTPD$Method DELETE -> d
+    cn.xender.core.server.NanoHTTPD$Method HEAD -> e
+    cn.xender.core.server.NanoHTTPD$Method OPTIONS -> f
+    cn.xender.core.server.NanoHTTPD$Method[] $VALUES -> g
+    cn.xender.core.server.NanoHTTPD$Method[] values() -> values
+    cn.xender.core.server.NanoHTTPD$Method valueOf(java.lang.String) -> valueOf
+    void <init>(java.lang.String,int) -> <init>
+    cn.xender.core.server.NanoHTTPD$Method lookup(java.lang.String) -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.server.NanoHTTPD$Response -> cn.xender.core.server.y:
+    cn.xender.core.server.NanoHTTPD$Response$IStatus status -> c
+    java.lang.String mimeType -> d
+    java.io.InputStream data -> a
+    java.util.Map header -> b
+    cn.xender.core.server.NanoHTTPD$Method requestMethod -> e
+    boolean chunkedTransfer -> f
+    void <init>(java.lang.String) -> <init>
+    void <init>(cn.xender.core.server.NanoHTTPD$Response$IStatus,java.lang.String,java.io.InputStream) -> <init>
+    void <init>(cn.xender.core.server.NanoHTTPD$Response$IStatus,java.lang.String,java.lang.String) -> <init>
+    void addHeader(java.lang.String,java.lang.String) -> a
+    void send(java.io.OutputStream) -> a
+    void sendContentLengthHeaderIfNotAlreadyPresent(java.io.PrintWriter,java.util.Map,long) -> a
+    void sendConnectionHeaderIfNotAlreadyPresent(java.io.PrintWriter,java.util.Map) -> a
+    boolean headerAlreadySent(java.util.Map,java.lang.String) -> a
+    void sendAsChunked(java.io.OutputStream,java.io.PrintWriter) -> a
+    void sendAsFixedLength(java.io.OutputStream,int) -> a
+    cn.xender.core.server.NanoHTTPD$Response$IStatus getStatus() -> a
+    java.io.InputStream getData() -> b
+    java.lang.String getMimeType() -> c
+    void setRequestMethod(cn.xender.core.server.NanoHTTPD$Method) -> a
+    cn.xender.core.server.NanoHTTPD$Method getRequestMethod() -> d
+    boolean isChunkedTransfer() -> e
+cn.xender.core.server.NanoHTTPD$Response$IStatus -> cn.xender.core.server.z:
+    java.lang.String getDescription() -> a
+cn.xender.core.server.NanoHTTPD$Response$Status -> cn.xender.core.server.aa:
+    cn.xender.core.server.NanoHTTPD$Response$Status SWITCH_PROTOCOL -> a
+    cn.xender.core.server.NanoHTTPD$Response$Status OK -> b
+    cn.xender.core.server.NanoHTTPD$Response$Status CREATED -> c
+    cn.xender.core.server.NanoHTTPD$Response$Status ACCEPTED -> d
+    cn.xender.core.server.NanoHTTPD$Response$Status NO_CONTENT -> e
+    cn.xender.core.server.NanoHTTPD$Response$Status PARTIAL_CONTENT -> f
+    cn.xender.core.server.NanoHTTPD$Response$Status REDIRECT -> g
+    cn.xender.core.server.NanoHTTPD$Response$Status NOT_MODIFIED -> h
+    cn.xender.core.server.NanoHTTPD$Response$Status BAD_REQUEST -> i
+    cn.xender.core.server.NanoHTTPD$Response$Status UNAUTHORIZED -> j
+    cn.xender.core.server.NanoHTTPD$Response$Status FORBIDDEN -> k
+    cn.xender.core.server.NanoHTTPD$Response$Status NOT_FOUND -> l
+    cn.xender.core.server.NanoHTTPD$Response$Status METHOD_NOT_ALLOWED -> m
+    cn.xender.core.server.NanoHTTPD$Response$Status RANGE_NOT_SATISFIABLE -> n
+    cn.xender.core.server.NanoHTTPD$Response$Status INTERNAL_ERROR -> o
+    int requestStatus -> p
+    java.lang.String description -> q
+    cn.xender.core.server.NanoHTTPD$Response$Status[] $VALUES -> r
+    cn.xender.core.server.NanoHTTPD$Response$Status[] values() -> values
+    cn.xender.core.server.NanoHTTPD$Response$Status valueOf(java.lang.String) -> valueOf
+    void <init>(java.lang.String,int,int,java.lang.String) -> <init>
+    java.lang.String getDescription() -> a
+    void <clinit>() -> <clinit>
+cn.xender.core.server.NanoHTTPD$ResponseException -> cn.xender.core.server.ab:
+    cn.xender.core.server.NanoHTTPD$Response$Status status -> a
+    void <init>(cn.xender.core.server.NanoHTTPD$Response$Status,java.lang.String) -> <init>
+    void <init>(cn.xender.core.server.NanoHTTPD$Response$Status,java.lang.String,java.lang.Exception) -> <init>
+    cn.xender.core.server.NanoHTTPD$Response$Status getStatus() -> a
+cn.xender.core.server.NanoHTTPD$TempFile -> cn.xender.core.server.ac:
+    void delete() -> a
+    java.lang.String getName() -> b
+cn.xender.core.server.NanoHTTPD$TempFileManager -> cn.xender.core.server.ad:
+    cn.xender.core.server.NanoHTTPD$TempFile createTempFile() -> a
+    void clear() -> b
+cn.xender.core.server.NanoHTTPD$TempFileManagerFactory -> cn.xender.core.server.ae:
+    cn.xender.core.server.NanoHTTPD$TempFileManager create() -> a
+cn.xender.core.server.NetWorker -> cn.xender.core.server.af:
+    java.lang.String getServerDatabyPost(java.lang.String,java.lang.String) -> a
+    java.lang.String post(java.lang.String) -> a
+    java.lang.String post(java.lang.String,boolean) -> a
+    byte[] readStream(java.io.InputStream) -> a
+cn.xender.core.server.WaitingClientIPOnAP -> cn.xender.core.server.ag:
+    void <init>(android.content.Context) -> <init>
+    cn.xender.core.server.NanoHTTPD$Response doResponse(java.util.Map,cn.xender.core.server.NanoHTTPD$IHTTPSession,java.lang.String) -> a
+    void parseBodyWhenPost(cn.xender.core.server.NanoHTTPD$IHTTPSession) -> a
+    java.lang.String setClientInfoToClient(java.lang.String,java.lang.String) -> a
+    java.lang.String waitingAllIPOnWifi(java.lang.String,int,java.lang.String) -> b
+    java.lang.String urlencode(java.lang.String) -> a
+    void sendMyApkInfoToClient(cn.xender.core.server.ConnectRequestData) -> a
+    void sendFileInfo(java.lang.String,int,java.lang.String) -> a
+cn.xender.core.server.WaitingClientIPOnAP$1 -> cn.xender.core.server.ah:
+    cn.xender.core.server.ConnectRequestData val$client -> a
+    cn.xender.core.server.WaitingClientIPOnAP this$0 -> b
+    void <init>(cn.xender.core.server.WaitingClientIPOnAP,cn.xender.core.server.ConnectRequestData) -> <init>
+    void run() -> run
+cn.xender.core.server.service.HttpServerService -> cn.xender.core.server.service.HttpServerService:
+    java.lang.String TAG -> TAG
+    cn.xender.core.server.EmbbedWebServer server -> server
+    android.os.IBinder binder -> binder
+    void <init>() -> <init>
+    int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+    void initState() -> initState
+    android.os.IBinder onBind(android.content.Intent) -> onBind
+    void onCreate() -> onCreate
+    void onDestroy() -> onDestroy
+    void onLowMemory() -> onLowMemory
+    void onTrimMemory(int) -> onTrimMemory
+    cn.xender.core.server.EmbbedWebServer getServer() -> getServer
+    void startServer() -> startServer
+    void stopServer() -> stopServer
+cn.xender.core.server.service.HttpServerService$LocalBinder -> cn.xender.core.server.service.a:
+    cn.xender.core.server.service.HttpServerService this$0 -> a
+    void <init>(cn.xender.core.server.service.HttpServerService) -> <init>
+    cn.xender.core.server.service.HttpServerService getService(android.os.Handler) -> a
+cn.xender.core.server.utils.ActionListener -> cn.xender.core.server.utils.ActionListener:
+    void someoneOnline() -> someoneOnline
+    void someoneOffline() -> someoneOffline
+    void transferSuccess() -> transferSuccess
+    void transferFailure() -> transferFailure
+cn.xender.core.server.utils.ActionProtocol -> cn.xender.core.server.utils.ActionProtocol:
+    java.lang.String FRIENDS_ONLINE_INFO_ABOUT_ACTION -> FRIENDS_ONLINE_INFO_ABOUT_ACTION
+    java.lang.String FRIENDS_OFFLINE_INFO_ABOUT_ACTION -> FRIENDS_OFFLINE_INFO_ABOUT_ACTION
+    java.lang.String TRANSFER_SUCCESS_ACTION -> TRANSFER_SUCCESS_ACTION
+    java.lang.String TRANSFER_FAILURE_ACTION -> TRANSFER_FAILURE_ACTION
+    cn.xender.core.server.utils.ActionListener listener -> listener
+    android.content.BroadcastReceiver receiver -> receiver
+    void <init>() -> <init>
+    void sendOnlineAction(android.content.Context) -> sendOnlineAction
+    void sendOfflineAction(android.content.Context) -> sendOfflineAction
+    void sendTransferSuccessAction(android.content.Context) -> sendTransferSuccessAction
+    void sendTransferFailureAction(android.content.Context) -> sendTransferFailureAction
+    void setActionListener(cn.xender.core.server.utils.ActionListener) -> setActionListener
+    void register(android.app.Activity) -> register
+    void unregister(android.app.Activity) -> unregister
+    void initReceiver() -> initReceiver
+    cn.xender.core.server.utils.ActionListener access$000(cn.xender.core.server.utils.ActionProtocol) -> access$000
+cn.xender.core.server.utils.ActionProtocol$1 -> cn.xender.core.server.utils.ActionProtocol$1:
+    cn.xender.core.server.utils.ActionProtocol this$0 -> a
+    void <init>(cn.xender.core.server.utils.ActionProtocol) -> <init>
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+cn.xender.core.server.utils.Encoder -> cn.xender.core.server.utils.a:
+    java.lang.String encodeUri(java.lang.String) -> a
+cn.xender.core.server.utils.Port -> cn.xender.core.server.utils.b:
+    int WEB_PORT -> a
+    void setWebPort(int) -> a
+    int getWebPort() -> a
+    void setToDefault() -> b
+    void <clinit>() -> <clinit>
+cn.xender.core.server.utils.ShareMessage -> cn.xender.core.server.utils.c:
+    java.lang.String category -> a
+    java.lang.String file_path -> b
+    java.lang.String res_name -> c
+    long file_size -> d
+    java.lang.String ip_addr -> e
+    java.lang.String spirit_name -> f
+    java.lang.String imei -> g
+    java.lang.String package_name -> h
+    int version -> i
+    long create_time -> j
+    java.lang.String brand -> k
+    java.lang.String model -> l
+    java.lang.String taskid -> m
+    void <init>() -> <init>
+    org.json.JSONObject toJsonObject() -> a
+    java.lang.String createMyAppInfo(android.content.Context) -> a
+    cn.xender.core.server.utils.ShareMessage create(android.content.Context) -> b
+cn.xender.tcore.R -> cn.xender.tcore.R:
+    void <init>() -> <init>
+cn.xender.tcore.R$string -> cn.xender.tcore.R$string:
+    int cn_xender_sdk_app_name -> a
+    void <init>() -> <init>
+    void <clinit>() -> <clinit>

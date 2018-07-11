@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
 
+import cn.xender.core.ap.utils.WifiAPUtil;
 import cn.xender.core.server.DownloadMe;
 import cn.xender.core.server.service.HttpServerService;
 import cn.xender.core.server.utils.Port;
@@ -64,10 +65,10 @@ public class HttpServerStart {
     }
 
 
-    public static String formaQrCodeStringtUrl(String ssid,String password){
+    public static String formaQrCodeStringtUrl(String ssid,String password,String ip){
         if(!TextUtils.isEmpty(ssid)) {
             try {
-                return String.format(Locale.US,"http://www.xender.com/?%s&%s&%s&%d", DownloadMe.URL_PATTERN,URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort());
+                return String.format(Locale.US,"http://www.xender.com/s?%s|%s|%s|%d|%s","1",URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort(), WifiAPUtil.getSegmentByIp(ip));
             } catch (UnsupportedEncodingException e) {
             }
         }

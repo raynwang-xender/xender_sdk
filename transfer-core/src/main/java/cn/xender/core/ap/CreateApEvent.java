@@ -45,7 +45,7 @@ public class CreateApEvent {
         this.requestCode = requestCode;
         this.password = password;
 
-        this.url = HttpServerStart.formaQrCodeStringtUrl(ssid,password);
+        this.url = HttpServerStart.formaQrCodeStringtUrl(ssid,password,apIp);
 
     }
 

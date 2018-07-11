@@ -35,6 +35,17 @@ public class WifiAPUtil {
 
     }
 
+
+    public static String getSegmentByIp(String ip){
+
+        String[] part = ip.split("\\.");
+        if (part.length == 4) {
+            return part[2];
+        }
+        return "";
+
+    }
+
     public static boolean isAP(Context context) {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         try {

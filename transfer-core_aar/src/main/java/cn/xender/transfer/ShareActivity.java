@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -37,7 +38,11 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
         setContentView(R.layout.tc_share_activity);
 
-        setToolbar(R.id.toolbar,R.string.app_name);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            setToolbar(R.id.toolbar,R.string.app_name);
+        }else{
+            setToolbarLow(R.id.toolbar_title,R.string.app_name,R.id.home_back);
+        }
 
 
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);

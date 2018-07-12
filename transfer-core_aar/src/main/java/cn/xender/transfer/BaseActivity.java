@@ -1,10 +1,17 @@
 package cn.xender.transfer;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 
 /**
@@ -12,8 +19,7 @@ import android.view.MenuItem;
  *
  * @author wang 通过基类的形式，降低N个Activity的埋点成本
  */
-public abstract class BaseActivity extends AppCompatActivity {
-    private Toolbar mToolbarView;
+public abstract class BaseActivity extends Activity {
 
 
     @Override
@@ -24,16 +30,33 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setToolbar(int viewId, int titleId) {
-        mToolbarView = (Toolbar) findViewById(viewId);
-        setSupportActionBar(mToolbarView);
-        ActionBar actionBar = getSupportActionBar();
+        Toolbar mToolbarView = (Toolbar) findViewById(viewId);
+        setActionBar(mToolbarView);
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             setTitle(titleId);
+            setTitleColor(Color.WHITE);
             actionBar.setHomeAsUpIndicator(R.drawable.tc_ic_actionbar_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
+    }
+
+    public void setToolbarLow(int titleViewId, int titleId,int titleHomeId) {
+        TextView toolbar_title = (TextView) findViewById(titleViewId);
+        toolbar_title.setText(titleId);
+
+        findViewById(titleHomeId).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTitleHomeClick();
+            }
+        });
+
+
     }
 
 

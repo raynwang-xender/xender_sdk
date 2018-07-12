@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/tc_actionbar_height"
-    android:minHeight="@dimen/tc_actionbar_height"
-    app:titleTextAppearance="@style/toolbar_text_style_bold"
-    app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-    app:selectableItemBackground="@drawable/tc_icon_click"
-    android:background="@color/colorPrimary" />
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:id="@+id/home_back"
+        android:layout_width="@dimen/tc_actionbar_height"
+        android:layout_height="@dimen/tc_actionbar_height"
+        android:background="@drawable/tc_icon_click"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tc_ic_actionbar_back"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/toolbar_text_style_bold"
+        android:textSize="16sp"
+        android:textColor="@color/tc_white"
+        />
+
+</LinearLayout>

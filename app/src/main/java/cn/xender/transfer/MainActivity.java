@@ -1,5 +1,6 @@
 package cn.xender.transfer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,7 @@ import android.view.View;
 
 import cn.xender.transfertest.R;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

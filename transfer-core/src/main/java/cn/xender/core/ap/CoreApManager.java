@@ -46,17 +46,7 @@ public class CoreApManager implements ICoreApManager {
 
         cancelDiscoveryBluetooth();
 
-        getCreateApWorker().createAp(ssid, password, timeout, requestCode, new CoreCreateApCallback() {
-            @Override
-            public void callback(CreateApEvent result) {
-
-                if(callback != null){
-                    callback.callback(result);
-                }
-
-
-            }
-        });
+        getCreateApWorker().createAp(ssid, password, timeout, requestCode, callback);
 
         getHttpServerStart().bindHttpService();
 
@@ -76,16 +66,7 @@ public class CoreApManager implements ICoreApManager {
 
         checkContext();
 
-        getCreateApWorker().retryCreateAp(ssid,password, timeout,requestCode,new CoreCreateApCallback() {
-            @Override
-            public void callback(CreateApEvent result) {
-
-                if(callback != null){
-                    callback.callback(result);
-                }
-
-            }
-        });
+        getCreateApWorker().retryCreateAp(ssid,password, timeout,requestCode,callback);
 
     }
 

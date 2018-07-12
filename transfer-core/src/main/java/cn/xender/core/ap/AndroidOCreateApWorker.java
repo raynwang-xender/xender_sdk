@@ -20,6 +20,7 @@ import cn.xender.core.log.Logger;
  */
 public class AndroidOCreateApWorker extends BaseCreateApWorker {
 
+    private Handler _handler = new Handler(Looper.getMainLooper());
 
     @Override
     public void closeAp() {

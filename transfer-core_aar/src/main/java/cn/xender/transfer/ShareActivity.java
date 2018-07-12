@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import cn.xender.core.ap.CoreApManager;
 import cn.xender.core.ap.CoreCreateApCallback;
 import cn.xender.core.ap.CreateApEvent;
+import cn.xender.core.log.Logger;
 import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.transfer.permission.PermissionUtil;
@@ -69,9 +71,15 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
             CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
                 @Override
-                public void callback(CreateApEvent result) {
+                public void callback(final CreateApEvent result) {
 
-                    handleCreateResult(result,true);
+                    _handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleCreateResult(result,true);
+                        }
+                    });
+
                 }
             });
         }
@@ -102,8 +110,14 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
                 CoreApManager.getInstance().retryCreateAp("", "", 30000, 12, new CoreCreateApCallback() {
                     @Override
-                    public void callback(CreateApEvent result) {
-                        handleCreateResult(result,false);
+                    public void callback(final CreateApEvent result) {
+                        _handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                handleCreateResult(result,false);
+                            }
+                        });
+
                     }
                 });
             }else{

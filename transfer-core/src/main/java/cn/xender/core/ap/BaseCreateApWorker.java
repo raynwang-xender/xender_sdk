@@ -26,8 +26,6 @@ import cn.xender.core.log.Logger;
 public class BaseCreateApWorker implements ICreateApWorker {
 
 
-    Handler _handler = new Handler();
-
     private WifiApManager apManager;
     private WifiManager wifiManager;
     protected String ssid;
@@ -91,10 +89,12 @@ public class BaseCreateApWorker implements ICreateApWorker {
     @Override
     public void retryCreateAp(String ssid, String password, long timeout, int requestCode, CoreCreateApCallback callback) {
 
+        this.callback = callback;
+
         if(!creating.compareAndSet(false, true)){
             return;
         }
-        this.callback = callback;
+
         this.requestCode =requestCode;
         setUpTimer(timeout);
         doRetryCreateAp(ssid, password);

@@ -5,13 +5,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.design.widget.BottomSheetDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.xender.transfer.R;
 
 
 public class PermissionUtil {
@@ -19,7 +26,36 @@ public class PermissionUtil {
     public static final int CREATE_AP_WRITE_SETTING_PERMISSIONS = 2;
     public static final int ACCESS_COARSE_LOCATION_PERMISSIONS = 7;
     public static final int ACCESS_GPS_LOCATION_PERMISSIONS = 8;
+    public static final int ALL_NEED_PERMISSIONS = 9;
 
+
+    public static boolean checkAllNeededPermission(Activity activity){
+        if(!hasPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            return false;
+        }
+        if(!checkCreateApPermission(activity)){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkCreateApPermission(Activity activity){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            if (!PermissionUtil.hasPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                return false;
+            }else if (!PermissionUtil.getLocationEnabled(activity)) {
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            if (!PermissionUtil.writeSettingPermission(activity)) {
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
 
     public static boolean requestAllNeededPermission(Activity activity){
 
@@ -126,6 +162,46 @@ public class PermissionUtil {
         } catch (Exception ignored) {
         }
         return gps_enabled || network_enabled;
+    }
+
+    public static void showPermissionDlg(final Activity mContext, final int requestCode, final View.OnClickListener cancelClick, int contentStrId){
+        final BottomSheetDialog dialog = new BottomSheetDialog(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.write_settings_permission,null);
+        dialog.setContentView(view);
+        dialog.setCancelable(false);
+
+        TextView write_settings_permission_title_tv = view.findViewById(R.id.write_settings_permission_title_tv);
+        write_settings_permission_title_tv.setText(contentStrId);
+
+        TextView negative_btn = view.findViewById(R.id.negative_btn);
+        negative_btn.setText("取消");
+        negative_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cancelClick != null){
+                    cancelClick.onClick(v);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        TextView positive_btn = view.findViewById(R.id.positive_btn);
+        /**
+         * Rayn
+         * 绿色。。。。。。。。。。。。。。。。。。。。。。。。。。。
+         */
+        positive_btn.setTextColor(Color.GREEN);
+        positive_btn.setText("设置");
+        positive_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+                requestAllNeededPermission(mContext);
+            }
+        });
+
+        dialog.show();
     }
 
 

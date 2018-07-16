@@ -28,16 +28,13 @@ android {
             signingConfig signingConfigs.xender
         }
     }
-
-
-
 }
 
-//repositories {
-//    flatDir {
-//        dirs 'libs'   // aar目录
-//    }
-//}
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

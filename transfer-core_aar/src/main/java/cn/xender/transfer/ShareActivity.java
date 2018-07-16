@@ -34,6 +34,8 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
     private ActionProtocol protocol;
 
+    private boolean dialogOut = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,30 +64,58 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     }
 
 
-
-
+    /**
+     * Rayn
+     * 检查权限+开启热点
+     * 检查失败弹出dialog
+     */
     private void createAp(){
-
-
-        if(PermissionUtil.requestAllNeededPermission(this)){
-
+        if(PermissionUtil.checkAllNeededPermission(this)){
             CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
                 @Override
-                public void callback(final CreateApEvent result) {
-
-                    _handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            handleCreateResult(result,true);
-                        }
-                    });
-
+                public void callback(CreateApEvent result) {
+                    handleCreateResult(result,true);
                 }
             });
+        }else{
+            /**
+             * Rayn
+             * dialogOut开关，只弹一次
+             */
+            if (!dialogOut) {
+                dialogOut = true;
+                PermissionUtil.showPermissionDlg(this, PermissionUtil.ALL_NEED_PERMISSIONS, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                }, R.string.tc_need_permission_contect_frends);
+            }else {
+                PermissionUtil.requestAllNeededPermission(this);
+            }
         }
-
-
     }
+
+
+    /**
+     * Rayn
+     * 请求权限+开启热点
+     */
+//    private void createAp(){
+//        if(PermissionUtil.requestAllNeededPermission(this)){
+//            CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
+//                @Override
+//                public void callback(final CreateApEvent result) {
+//                    _handler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            handleCreateResult(result,true);
+//                        }
+//                    });
+//                }
+//            });
+//        }
+//    }
 
     private void handleCreateResult(CreateApEvent result,boolean retryIfNeed) {
 

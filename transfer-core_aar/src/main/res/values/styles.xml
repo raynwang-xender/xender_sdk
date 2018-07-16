@@ -29,4 +29,14 @@
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
     </style>
 
+    <style name="text_style_bold" >
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="capital_bold_text_style" >
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps" tools:ignore="NewApi">true</item>
+    </style>
+
 </resources>

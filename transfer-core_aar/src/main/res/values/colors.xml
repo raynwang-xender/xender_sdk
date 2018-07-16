@@ -13,4 +13,7 @@
     <color name="tc_txt_secondary">#8A000000</color>
 
     <color name="tc_line_bg">#1F000000</color>
+
+    <color name="cx_listitem_pressed_bg">#ffebebeb</color>
+    <color name="cx_transparent">#00ffffff</color>
 </resources>

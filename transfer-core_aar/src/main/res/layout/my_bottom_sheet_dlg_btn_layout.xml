@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/cx_line_frame_bg"
+    >
+    <TextView
+        android:id="@+id/negative_btn"
+        style="@style/capital_bold_text_style"
+        android:layout_width="0dp"
+        android:layout_weight="1.0"
+        android:layout_height="52dp"
+        android:textColor="#8A000000"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/cx_selector_list_item"
+        android:textSize="14dp"
+        android:text="退出"/>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#1F000000"
+        android:tag="line"/>
+    <TextView
+        android:id="@+id/positive_btn"
+        style="@style/capital_bold_text_style"
+        android:layout_width="0dp"
+        android:layout_weight="1.0"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/cx_selector_list_item"
+        android:textSize="14dp"
+        android:text="设置"/>
+</LinearLayout>

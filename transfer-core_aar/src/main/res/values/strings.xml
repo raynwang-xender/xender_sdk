@@ -15,4 +15,6 @@
     <string name="tc_nougat_open_ap_warn_content">Hotspot auto-enable not permitted on your device, please enable manually.</string>
     <string name="tc_nougat_open_ap_warn_btn">Enable</string>
     <string name="tc_dlg_exit">EXIT</string>
+    
+    <string name="tc_need_permission_contect_frends">需要一些权限，连接身边好友</string>
 </resources>

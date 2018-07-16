@@ -84,12 +84,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
              */
             if (!dialogOut) {
                 dialogOut = true;
-                PermissionUtil.showPermissionDlg(this, PermissionUtil.ALL_NEED_PERMISSIONS, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }, R.string.tc_need_permission_contect_frends);
+                PermissionUtil.showPermissionDlg(this);
             }else {
                 PermissionUtil.requestAllNeededPermission(this);
             }

@@ -2,6 +2,8 @@ package cn.xender.transfer.permission;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,9 +12,12 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.design.widget.BottomSheetDialog;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -164,46 +169,37 @@ public class PermissionUtil {
         return gps_enabled || network_enabled;
     }
 
-    public static void showPermissionDlg(final Activity mContext, final int requestCode, final View.OnClickListener cancelClick, int contentStrId){
-        final BottomSheetDialog dialog = new BottomSheetDialog(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.write_settings_permission,null);
-        dialog.setContentView(view);
-        dialog.setCancelable(false);
+    public static void showPermissionDlg(final Activity mContext){
 
-        TextView write_settings_permission_title_tv = view.findViewById(R.id.write_settings_permission_title_tv);
-        write_settings_permission_title_tv.setText(contentStrId);
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.write_settings_permission);
 
-        TextView negative_btn = view.findViewById(R.id.negative_btn);
-        negative_btn.setText("取消");
-        negative_btn.setOnClickListener(new View.OnClickListener() {
+        //设置点击Dialog外部任意区域关闭Dialog
+        dialog.setCanceledOnTouchOutside(false);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(params);
+        dialog.show();
+
+        dialog.findViewById(R.id.negative_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(cancelClick != null){
-                    cancelClick.onClick(v);
-                }
-                dialog.dismiss();
+                mContext.finish();
             }
         });
 
-        TextView positive_btn = view.findViewById(R.id.positive_btn);
-        /**
-         * Rayn
-         * 绿色。。。。。。。。。。。。。。。。。。。。。。。。。。。
-         */
-        positive_btn.setTextColor(Color.GREEN);
-        positive_btn.setText("设置");
-        positive_btn.setOnClickListener(new View.OnClickListener() {
+        dialog.findViewById(R.id.positive_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dialog.dismiss();
                 requestAllNeededPermission(mContext);
             }
         });
 
-        dialog.show();
     }
-
-
-
 }

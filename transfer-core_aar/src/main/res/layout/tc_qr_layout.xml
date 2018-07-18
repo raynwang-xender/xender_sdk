@@ -9,12 +9,10 @@
         android:id="@+id/tc_qr_code_iv"
         android:layout_width="232dp"
         android:layout_height="232dp"
-        android:layout_marginTop="105dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/tc_qr_bg"
-        android:scaleType="center"/>
-
-
+        android:scaleType="center"
+        android:layout_marginTop="40dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,5 +24,6 @@
         android:paddingLeft="@dimen/tc_common_margin"
         android:paddingRight="@dimen/tc_common_margin"
         android:textSize="18sp"/>
+
 
 </LinearLayout>

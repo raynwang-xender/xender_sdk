@@ -24,18 +24,6 @@ public class WifiAPUtil {
     public static final String TAG = "wifiAP";
 
 
-    public static String getApIpByLocalIp(String localIp) {
-        String ip = "";
-
-        String[] part = localIp.split("\\.");
-        if (part.length == 4) {
-            ip = part[0] + "." + part[1] + "." + part[2] + "." + "1";
-        }
-        return ip;
-
-    }
-
-
     public static String getSegmentByIp(String ip){
 
         String[] part = ip.split("\\.");
@@ -76,23 +64,7 @@ public class WifiAPUtil {
 
     }
 
-    // 得到wifi下的ssID
-    public static String getWifiBSSID(Context context) {
-        WifiInfo info = getWifiInfo(context);
-        if (info != null) {
-            return info.getBSSID();
-        }
-        return "";
 
-    }
-
-    public static WifiInfo getWifiInfo(Context context){
-        try {
-            return getWifiManager(context).getConnectionInfo();
-        }catch (Exception e){
-        }
-        return null;
-    }
 
     public static WifiManager getWifiManager(Context context){
         try {
@@ -103,65 +75,12 @@ public class WifiAPUtil {
         return null;
     }
 
-    // 得到wifi下的NetWorkID
-    public static int getNetWorkID(Context context, WifiManager manager) {
-        if (isWifiConnected(context)) {
-            WifiInfo info = manager.getConnectionInfo();
-            if(info != null){
-                return info.getNetworkId();
-            }
-        }
-        return -1;
-    }
-
-    public static boolean isWifiConnected(Context context) {
-        try {
-
-            ConnectivityManager connectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);// 获取系统的连接服务
-            NetworkInfo activeNetInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-//		if(Logger.r) Logger.i(TAG, "activeNetInfo="+activeNetInfo+"-----NetworkInfo isConnected=" + activeNetInfo.isConnected());
-            return activeNetInfo != null && activeNetInfo.isConnected();
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    public static boolean isMobileDataConnected(Context context) {
-        try {
-
-            ConnectivityManager connectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);// 获取系统的连接服务
-            NetworkInfo activeNetInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            return activeNetInfo != null && activeNetInfo.isConnected();
-        }catch (Exception e){
-
-        }
-        return false;
-    }
-
 
     public static String getIpOnWifiAndAP(Context context) {
         if (isAP(context)) {
             return getGroupLocalIp(context);
         }
 
-//        boolean wificonnected = isWifiConnected(context);
-//        if (!wificonnected) {
-//            try {
-//                Thread.sleep(100);
-//                wificonnected = isWifiConnected(context);
-//            } catch (InterruptedException e1) {
-//                e1.printStackTrace();
-//                return "";
-//            }
-//        }
-//
-//        if (!wificonnected) {
-//            return "";
-//        }
         String ssid = getWifiSSID(context);
         if (TextUtils.isEmpty(ssid)){
             return "";
@@ -255,21 +174,6 @@ public class WifiAPUtil {
     }
 
 
-    public static boolean isNetAvailable(Context context) {
-        NetworkInfo activeNetInfo = getActiveNetworkInfo(context);
-
-        if (activeNetInfo == null) {
-            return false;
-        }
-
-        if (activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI && activeNetInfo.isConnected()) {
-            return true;
-        } else if (activeNetInfo.getType() == ConnectivityManager.TYPE_MOBILE && activeNetInfo.isConnected()) {
-            return true;
-        }
-        return false;
-
-    }
 
     public static NetworkInfo getActiveNetworkInfo(Context context){
         try {
@@ -284,102 +188,6 @@ public class WifiAPUtil {
 
     public static ConnectivityManager getConnectivityManager(Context context){
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    }
-
-
-    public static boolean hasKeyManagerment(String capabilities) {
-        if (TextUtils.isEmpty(capabilities)) return false;
-        if (capabilities.toLowerCase().contains("wpa-psk") || capabilities.toLowerCase().contains("wpa2-psk")) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public static String getMacAddress()
-    {
-
-        try {
-            Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
-            byte[] b;
-
-            while (en.hasMoreElements()) {
-                NetworkInterface intf = en.nextElement();
-
-                if(intf == null){
-                    continue;
-                }
-                if(!TextUtils.equals("wlan0",intf.getName())){
-                    continue;
-                }
-
-                b = intf.getHardwareAddress();
-
-                if(b == null){
-                    continue;
-                }
-                StringBuffer buffer = new StringBuffer();
-                for (int i = 0; i < b.length; i++)
-                {
-                    if (i > 0)
-                    {
-                        buffer.append(':');
-                    }
-                    String str = Integer.toHexString(b[i] & 0xFF);
-                    buffer.append(str.length() == 1 ? 0 + str : str);
-                }
-                String strMacAddr = buffer.toString();
-
-                if(Logger.r) Logger.d(TAG,"mac addr:"+strMacAddr + " name:"+intf.getDisplayName());
-                return strMacAddr;
-            }
-        } catch (Exception ex) {
-            if(Logger.r) Logger.e(TAG, ex.toString());
-        }
-        return "";
-
-    }
-
-
-    public static void getAllConfiguredNetworks(final Context context, final List<WifiConfiguration> nets) throws Exception {
-
-        if( Looper.getMainLooper().getThread().getId() == Thread.currentThread().getId()){ //这个方法不能在主线程运行
-            throw new Exception("xender WifiApUtil getConfiguredNetworks cannot in the main thread");
-        }
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    WifiManager wifiManager = getWifiManager(context);
-
-                    if (wifiManager != null) {
-                        if (Logger.r) {
-                            Logger.c("ConnectWifiUtil", "system getConfiguredNetworks start");
-                        }
-                        List<WifiConfiguration> lists = wifiManager.getConfiguredNetworks();
-
-                        if (Logger.r) {
-                            Logger.c("ConnectWifiUtil", "system getConfiguredNetworks end");
-                        }
-                        if(lists != null){
-                            nets.addAll(lists);
-                        }
-
-                    }
-                }catch (Exception e){
-                }
-            }
-        },"getAllConfiguredNetworks-thread");
-
-        thread.start();
-        try {
-            //等这个线程3秒，如果没结果，也不再继续
-            thread.join(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static boolean isWifiEnabled(WifiManager manager){

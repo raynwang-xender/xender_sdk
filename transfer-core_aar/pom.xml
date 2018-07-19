@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pom的模板文件，包含内容节点的定义 -->
+<project xmlns="http://maven.apache.org/POM/3.5.3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 模板版本 -->
+    <modelVersion>4.0.0</modelVersion>
+    ...
+    ...
+    ...
+</project>

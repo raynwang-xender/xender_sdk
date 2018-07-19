@@ -226,10 +226,6 @@ public class EmbbedWebServer extends NanoHTTPD {
                 uri = uri.substring(0, uri.indexOf('?'));
             }
 
-            if (uri.equals("/"+DownloadMe.URL_PATTERN)) {
-                return new DownloadMe(mContext).doResponse(headers, session, uri);
-            }
-
             if(uri.equals(WaitingClientIPOnAP.URL_PATTERN)){
                 return new WaitingClientIPOnAP(mContext).doResponse(headers,session,uri);
             }

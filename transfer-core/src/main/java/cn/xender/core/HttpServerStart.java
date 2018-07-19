@@ -13,7 +13,6 @@ import java.net.URLEncoder;
 import java.util.Locale;
 
 import cn.xender.core.ap.utils.WifiAPUtil;
-import cn.xender.core.server.DownloadMe;
 import cn.xender.core.server.service.HttpServerService;
 import cn.xender.core.server.utils.Port;
 

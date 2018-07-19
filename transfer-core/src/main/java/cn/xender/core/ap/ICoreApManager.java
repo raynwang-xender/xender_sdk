@@ -23,11 +23,5 @@ public interface ICoreApManager {
 
     String getApPassword();
 
-    void startScanAp(SSIDFilter f, SSIDDecoder decoder, long timeout, CoreScanApCallback callback, int requestCode);
-
-    void stopScanAp();
-
-    void joinAp(ScanResultItem item, String password, String static_ip, long timeout, CoreJoinApCallback callback);
-
 
 }

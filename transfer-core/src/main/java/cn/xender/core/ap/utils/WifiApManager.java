@@ -296,27 +296,6 @@ public class WifiApManager {
 	
 
 
-	public boolean isWifiConnected() {
-		try {
-			NetworkInfo activeNetInfo = WifiAPUtil.getActiveNetworkInfo(_context);// 获取网络的连接情况
-
-			if (activeNetInfo == null) {
-				return false;
-			}
-
-			if (activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-				return true;
-			} else if (activeNetInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-				return false;
-			}
-		}catch (Exception e){
-		}
-		return false;
-
-	}
-	
-	
-
 	/**
 	 * Start AccessPoint mode with the specified configuration. If the radio is
 	 * already running in AP mode, update the new configuration Note that

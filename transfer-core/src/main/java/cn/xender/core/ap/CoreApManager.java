@@ -4,13 +4,10 @@ import android.content.Context;
 import android.os.Build;
 
 import cn.xender.core.HttpServerStart;
-import cn.xender.core.ap.utils.BluetoothUtil;
 import cn.xender.core.ap.utils.FilterManager;
 
 public class CoreApManager implements ICoreApManager {
 
-    private ScanApWorker scanApWorker;
-    private JoinApWorker joinApWorker;
     private ICreateApWorker createApWorker;
     private Context applicationContext;
     private HttpServerStart httpServerStart;
@@ -43,8 +40,6 @@ public class CoreApManager implements ICoreApManager {
     public void createAp(String ssid, String password, long timeout, int requestCode, final CoreCreateApCallback callback) {
 
         checkContext();
-
-        cancelDiscoveryBluetooth();
 
         getCreateApWorker().createAp(ssid, password, timeout, requestCode, callback);
 
@@ -110,37 +105,7 @@ public class CoreApManager implements ICoreApManager {
         return getCreateApWorker().getApPassword();
     }
 
-    @Override
-    public void startScanAp(SSIDFilter f, SSIDDecoder decoder, long timeout, CoreScanApCallback callback,int requestCode) {
 
-        checkContext();
-
-        getScanApWorker().startScan(f,decoder,timeout,callback,requestCode);
-    }
-
-    @Override
-    public void stopScanAp() {
-
-        checkContext();
-
-        getScanApWorker().stopScan();
-    }
-
-    @Override
-    public void joinAp(ScanResultItem item, String password, String static_ip, long timeout, CoreJoinApCallback callback) {
-
-        checkContext();
-
-        if(item != null){
-            getJoinApWorker().startJoin(item.getSSID(),item.getBSSID(),password,static_ip,timeout,callback);
-        }
-    }
-
-
-    private void cancelDiscoveryBluetooth(){
-
-        BluetoothUtil.cancelDiscovery(applicationContext);
-    }
 
 
     private void checkContext(){
@@ -163,25 +128,6 @@ public class CoreApManager implements ICoreApManager {
         }
 
         return createApWorker;
-    }
-
-    private ScanApWorker getScanApWorker() {
-
-        if(scanApWorker==null){
-            scanApWorker = new ScanApWorker(applicationContext);
-        }
-
-        return scanApWorker;
-    }
-
-
-    private JoinApWorker getJoinApWorker() {
-
-        if(joinApWorker == null){
-            joinApWorker = new JoinApWorker(applicationContext);
-        }
-
-        return joinApWorker;
     }
 
     private HttpServerStart getHttpServerStart(){

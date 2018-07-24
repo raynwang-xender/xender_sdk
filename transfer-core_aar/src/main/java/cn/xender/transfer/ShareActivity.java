@@ -5,13 +5,16 @@ import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -518,9 +521,73 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * Rayn
+     * requestCode
+     * 每个数字代表一种权限 1是storage 7是location
+     *
+     * grantResult
+     * PackageManager.PERMISSION_GRANTED 是0
+     * PackageManager.PERMISSION_DENIED 是-1
+     *
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (null == permissions || permissions.length == 0) return;
+
+        for (int i = 0; i < grantResults.length; ++i) {
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                //在用户已经拒绝授权的情况下，如果shouldShowRequestPermissionRationale返回false则
+                // 可以推断出用户选择了“不在提示”选项，在这种情况下需要引导用户至设置页手动授权
+                if (requestCode == 1){
+                    if (!shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
+                        System.out.println("---Rayn lalala");
+//                        finish();
+                    }
+                }
+                if (requestCode == 7) {
+                    //选择了Don't ask again
+                    if (!shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
+
+//                    //解释原因，并且引导用户至设置页手动授权
+                    new AlertDialog.Builder(this)
+                            .setMessage("【用户选择了不在提示按钮，或者系统默认不在提示（如MIUI）。" +
+                                    "引导用户到应用设置页去手动授权,注意提示用户具体需要哪些权限】\r\n" +
+                                    "获取相关权限失败:xxxxxx,将导致部分功能无法正常使用，需要到设置页面手动授权")
+                            .setPositiveButton("去授权", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //引导用户至设置页手动授权
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //引导用户手动授权，权限请求失败
+                                }
+                            }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            //引导用户手动授权，权限请求失败
+                        }
+                    }).show();
+
+                    PermissionUtil.showSettingPermissionDlg(this);
+
+
+
+//                        finish();
+                    }
+                }
+                break;
+            }
+        }
+
+
         switch (requestCode) {
             case PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS:
             case PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS:

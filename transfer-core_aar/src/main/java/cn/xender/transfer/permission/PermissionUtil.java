@@ -169,7 +169,45 @@ public class PermissionUtil {
         return gps_enabled || network_enabled;
     }
 
+    /**
+     * Rayn
+     * 是否允许权限dialog
+     */
     public static void showPermissionDlg(final Activity mContext){
+
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.write_settings_permission);
+
+        //设置点击Dialog外部任意区域关闭Dialog
+        dialog.setCanceledOnTouchOutside(false);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(params);
+        dialog.show();
+
+        dialog.findViewById(R.id.negative_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.finish();
+            }
+        });
+
+        dialog.findViewById(R.id.positive_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                requestAllNeededPermission(mContext);
+            }
+        });
+
+    }
+
+    public static void showSettingPermissionDlg(final Activity mContext){
 
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.write_settings_permission);

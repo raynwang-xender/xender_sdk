@@ -5,9 +5,6 @@
     android:orientation="vertical"
     android:background="@color/tc_bg_color"
     >
-    <!--android:background="@color/tc_bg_color"-->
-
-    <!--android:background="@drawable/game_background"-->
 
     <include layout="@layout/tc_toolbar"/>
 
@@ -26,7 +23,6 @@
 
         </LinearLayout>
 
-        <!---->
         <LinearLayout
             android:id="@+id/create_ap_tips_layout"
             android:layout_width="match_parent"
@@ -45,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/x_ic_help_right"
-                android:textColor="#FFFF22FF"
+                android:textColor="@color/permission_dlg_title"
                 android:text="对方没有Xender？"
                 android:gravity="center"
                 android:visibility="invisible"/>

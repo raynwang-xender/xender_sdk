@@ -25,7 +25,6 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

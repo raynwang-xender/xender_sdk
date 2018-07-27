@@ -37,7 +37,6 @@ import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.transfer.permission.PermissionUtil;
 import cn.xender.transfer.views.ConnectionView;
-import cn.xender.transfer.views.MyAnimImageView;
 import cn.xender.transfer.views.NougatOpenApDlg;
 
 import static android.view.View.VISIBLE;
@@ -363,68 +362,11 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         tc_waiting_view.startRippleAnimation();
     }
 
-
-
-
     private void showTransferSuccessLayout(){
-        showRocketAnimation();
-    }
-
-    private  MyAnimImageView iv_rocket;
-
-    private void showRocketAnimation() {
-
-        View rocket_layout = LayoutInflater.from(this).inflate(R.layout.rocket_layout,null);
-
-        iv_rocket = rocket_layout.findViewById(R.id.iv_rocket);
-
-        MyAnimImageView.loadAnimation(iv_rocket, new MyAnimImageView.OnFrameAnimationListener() {
-            @Override
-            public void onStart() {
-            }
-            @Override
-            public void onEnd() {
-                /**
-                 * Rayn
-                 * 火箭动画结束后，向上移动
-                 */
-                showMoveAnimation();
-            }
-        });
-
-        tc_content_container.removeAllViews();
-        tc_content_container.addView(rocket_layout);
-    }
-
-    private void showMoveAnimation() {
-        TranslateAnimation ta = new TranslateAnimation(0,0,0,-1000);
-        ta.setDuration(600);
-        ta.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                /**
-                 * Rayn
-                 * 动画全部结束，才显示完成页面
-                 */
-                addResultLayout();
-                TextView tc_result_des_tv = findViewById(R.id.tc_result_des_tv);
-                tc_result_des_tv.setText(R.string.tc_transfer_success);
-                ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        iv_rocket.startAnimation(ta);
-
-
+        addResultLayout();
+        TextView tc_result_des_tv = findViewById(R.id.tc_result_des_tv);
+        tc_result_des_tv.setText(R.string.tc_transfer_success);
+        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
     }
 
     private void showTransferFailureLayout(){

@@ -16,4 +16,7 @@
 
     <color name="cx_listitem_pressed_bg">#ffebebeb</color>
     <color name="cx_transparent">#00ffffff</color>
+    <color name="permission_dlg_title">#333333</color>
+    <color name="permission_dlg_content">#666666</color>
+    <color name="permission_dlg_button">#333333</color>
 </resources>

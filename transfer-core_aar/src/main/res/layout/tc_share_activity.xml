@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/tc_bg_color">
+    android:background="@color/tc_bg_color"
+    >
+    <!--android:background="@color/tc_bg_color"-->
+
+    <!--android:background="@drawable/game_background"-->
 
     <include layout="@layout/tc_toolbar"/>
 
@@ -22,6 +26,7 @@
 
         </LinearLayout>
 
+        <!---->
         <LinearLayout
             android:id="@+id/create_ap_tips_layout"
             android:layout_width="match_parent"

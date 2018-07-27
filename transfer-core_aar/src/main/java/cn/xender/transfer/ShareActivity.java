@@ -28,6 +28,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.security.Permission;
+
 import cn.xender.core.ap.CoreApManager;
 import cn.xender.core.ap.CoreCreateApCallback;
 import cn.xender.core.ap.CreateApEvent;
@@ -88,6 +90,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
      * 检查失败弹出dialog
      */
     private void createAp(){
+        System.out.println("---Rayn createAp");
         if(PermissionUtil.checkAllNeededPermission(this)){
             CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
                 @Override
@@ -108,26 +111,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             }
         }
     }
-
-    /**
-     * Rayn
-     * 请求权限+开启热点
-     */
-//    private void createAp(){
-//        if(PermissionUtil.requestAllNeededPermission(this)){
-//            CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
-//                @Override
-//                public void callback(final CreateApEvent result) {
-//                    _handler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            handleCreateResult(result,true);
-//                        }
-//                    });
-//                }
-//            });
-//        }
-//    }
 
     private void handleCreateResult(CreateApEvent result,boolean retryIfNeed) {
 
@@ -515,6 +498,8 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             case PermissionUtil.ACCESS_GPS_LOCATION_PERMISSIONS:
                 createAp();
                 break;
+            case PermissionUtil.BACK_FROM_SETTING_PERMISSION://从系统设置回来
+                createAp();
             default:
                 break;
         }
@@ -525,7 +510,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
      * Rayn
      * requestCode
      * 每个数字代表一种权限 1是storage 7是location
-     *
      * grantResult
      * PackageManager.PERMISSION_GRANTED 是0
      * PackageManager.PERMISSION_DENIED 是-1
@@ -535,69 +519,34 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (null == permissions || permissions.length == 0) return;
 
-        for (int i = 0; i < grantResults.length; ++i) {
-            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                //在用户已经拒绝授权的情况下，如果shouldShowRequestPermissionRationale返回false则
-                // 可以推断出用户选择了“不在提示”选项，在这种情况下需要引导用户至设置页手动授权
-                if (requestCode == 1){
-                    if (!shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
-                        System.out.println("---Rayn lalala");
-//                        finish();
-                    }
-                }
-                if (requestCode == 7) {
-                    //选择了Don't ask again
-                    if (!shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
-
-//                    //解释原因，并且引导用户至设置页手动授权
-                    new AlertDialog.Builder(this)
-                            .setMessage("【用户选择了不在提示按钮，或者系统默认不在提示（如MIUI）。" +
-                                    "引导用户到应用设置页去手动授权,注意提示用户具体需要哪些权限】\r\n" +
-                                    "获取相关权限失败:xxxxxx,将导致部分功能无法正常使用，需要到设置页面手动授权")
-                            .setPositiveButton("去授权", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //引导用户至设置页手动授权
-                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
-                                    intent.setData(uri);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //引导用户手动授权，权限请求失败
-                                }
-                            }).setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-                            //引导用户手动授权，权限请求失败
-                        }
-                    }).show();
-
+        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            //在用户已经拒绝授权的情况下，如果shouldShowRequestPermissionRationale返回false则
+            //可以推断出用户选择了“不在提示”选项，在这种情况下需要引导用户至设置页手动授权
+            if (requestCode == PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS) {
+                //选择了Don't ask again
+                if (!shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
                     PermissionUtil.showSettingPermissionDlg(this);
-
-
-
-//                        finish();
-                    }
+                } else {
+                    createAp();
                 }
-                break;
+            }
+
+            if (requestCode == PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS) {
+                if (!shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
+                    PermissionUtil.showSettingPermissionDlg(this);
+                } else {
+                    createAp();
+                }
+            }
+        } else {//PERMISSION_GRANTED
+            switch (requestCode) {
+                case PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS:
+                case PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS:
+                    createAp();
+                    break;
+                default:
+                    break;
             }
         }
-
-
-        switch (requestCode) {
-            case PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS:
-            case PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS:
-                createAp();
-                break;
-
-            default:
-                break;
-        }
     }
-
-
 }

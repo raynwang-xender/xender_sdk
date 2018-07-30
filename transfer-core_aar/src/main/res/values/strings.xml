@@ -3,7 +3,7 @@
 
 
     <string name="qr_code_des">邀请好友，打开Xender【-】扫描二维码\n即刻获得该应用</string>
-    <string name="tc_creating_ap">正在创建..</string>
+    <string name="tc_creating_ap">正在创建...</string>
     <string name="tc_transferring">传输中，请稍后..</string>
     <string name="tc_transfer_success">恭喜，传输成功！</string>
     <string name="tc_transfer_failure">传输失败，请重试！</string>

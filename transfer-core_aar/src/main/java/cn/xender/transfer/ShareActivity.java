@@ -43,14 +43,10 @@ import static android.view.View.VISIBLE;
 public class ShareActivity extends BaseActivity implements ActionListener {
 
     private LinearLayout tc_content_container;
-    private TextView android_o_tips;
 
     private ActionProtocol protocol;
 
     private boolean dialogOut = false;
-    private LinearLayout android_o_tips_layout;
-    private RelativeLayout create_ap_layout;
-    private LinearLayout create_ap_tips_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +61,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
 
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);
-        android_o_tips_layout = findViewById(R.id.android_o_tips_layout);
-        create_ap_layout = findViewById(R.id.create_ap_layout);
-        android_o_tips = findViewById(R.id.android_o_tips);
-        create_ap_tips_layout = findViewById(R.id.create_ap_tips_layout);
         showCreatingLayout();
 
         CoreApManager.getInstance().initApplicationContext(getApplicationContext());
@@ -232,122 +224,25 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         View tc_qr_layout = LayoutInflater.from(this).inflate(R.layout.tc_qr_layout,null);
         tc_content_container.removeAllViews();
 
-        showNoXenderAnimIn(android_o_tips);
-        android_o_tips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(android_o_tips_layout.getVisibility() == VISIBLE &&android_o_tips_layout.getScaleX() == 1.0f){
-                    //进去
-                    androidOTipsAnimOut();
-                }else{
-                    //出来
-                    androidOTipsAnimIn();
-                }
-            }
-        });
-
         tc_content_container.addView(tc_qr_layout);
         ((ImageView)findViewById(R.id.tc_qr_code_iv)).setImageBitmap(QrCodeCreateWorker.getQrBitmap());
 
     }
 
-    private void showNoXenderAnimIn(View view){
-        view.setVisibility(VISIBLE);
-        float translationX = view.getWidth();
-        Animator animIn = ObjectAnimator.ofFloat(view, "translationX", translationX, 0);
-        animIn.setDuration(600);
-        animIn.start();
-    }
-
     ScaleAnimation dismissScaleAnimation;
     ScaleAnimation showScaleAnimation;
 
-    private void androidOTipsAnimOut(){
-        if(dismissScaleAnimation != null && !dismissScaleAnimation.hasEnded()){
-            return;
-        }
-        if (showScaleAnimation != null) {
-            showScaleAnimation.cancel();
-        }
-        float pivotXValue = (android_o_tips.getLeft() + android_o_tips.getWidth()/2)/(float)PhonePxConversion.getScreenWidth(this);
-        //减去other_phone_dialog的top是因为此时动画只对other_phone_dialog为全屏的时候生效
-        float pivotYValue = (android_o_tips.getTop()+android_o_tips.getHeight()/2 - android_o_tips_layout.getTop())/(float)create_ap_layout.getHeight();
 
-        dismissScaleAnimation = new ScaleAnimation(1.0f, 0, 1.0f, 0, Animation.RELATIVE_TO_PARENT, pivotXValue, Animation.RELATIVE_TO_PARENT, pivotYValue);
-        dismissScaleAnimation.setDuration(200);
-        android_o_tips_layout.startAnimation(dismissScaleAnimation);
-        dismissScaleAnimation.setInterpolator(new AccelerateInterpolator());
-        dismissScaleAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                android_o_tips_layout.setVisibility(View.INVISIBLE);
-                create_ap_tips_layout.setBackgroundColor(Color.TRANSPARENT);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-    }
-
-    private void androidOTipsAnimIn() {
-        if(android_o_tips_layout.getScaleX()<1.0f){
-            return;
-        }
-        if (dismissScaleAnimation != null) {
-            dismissScaleAnimation.cancel();
-        }
-        float pivotXValue = (android_o_tips.getLeft() + android_o_tips.getWidth()/2)/(float)PhonePxConversion.getScreenWidth(this);
-        //减去other_phone_dialog的top是因为此时动画只对other_phone_dialog为全屏的时候生效
-        float pivotYValue = (android_o_tips.getTop()+android_o_tips.getHeight()/2 - android_o_tips_layout.getTop())/(float)create_ap_layout.getHeight();
-        android_o_tips_layout.setVisibility(VISIBLE);
-        showScaleAnimation = new ScaleAnimation(0, 1.0f, 0, 1.0f, Animation.RELATIVE_TO_PARENT, pivotXValue, Animation.RELATIVE_TO_PARENT, pivotYValue);
-        showScaleAnimation.setDuration(200);
-        showScaleAnimation.setInterpolator(new AccelerateInterpolator());
-
-        android_o_tips_layout.startAnimation(showScaleAnimation);
-
-        showScaleAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                create_ap_tips_layout.setBackgroundColor(getResources().getColor(R.color.tc_txt_color));
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
 
 
     private void showCreatingLayout(){
 
         addWaitingLayout();
 
-//        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
-//        tc_waiting_des_tv.setText(R.string.tc_creating_ap);
-
-//        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
-
-//        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_wifi);
-//        tc_waiting_view.startRippleAnimation();
     }
 
 
     private void showTransferingLayout(){
-
-        android_o_tips.setVisibility(View.INVISIBLE);
 
         addWaitingLayout();
 

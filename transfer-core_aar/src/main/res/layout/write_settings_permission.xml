@@ -32,33 +32,9 @@
         android:lineSpacingMultiplier="1.1"
         />
 
-    <ImageView
-        android:id="@+id/location_flag_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/write_settings_permission_title_tv"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/permission_dlg"/>
-
-    <ImageView
-        android:id="@+id/finger_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignRight="@id/location_flag_iv"
-        android:layout_alignEnd="@id/location_flag_iv"
-        android:layout_alignTop="@id/location_flag_iv"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="65dp"
-        android:src="@drawable/tc_ic_actionbar_back"
-        android:visibility="invisible"/>
-
-
 
     <include layout="@layout/my_bottom_sheet_dlg_btn_layout"
-        android:layout_below="@id/finger_iv"
+        android:layout_below="@id/write_settings_permission_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

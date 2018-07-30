@@ -34,7 +34,8 @@ public abstract class BaseActivity extends Activity {
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             setTitle(titleId);
-            setTitleColor(Color.WHITE);
+//            setTitleColor(Color.WHITE);
+            setTitleColor(Color.BLACK);
             actionBar.setHomeAsUpIndicator(R.drawable.tc_ic_actionbar_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);

@@ -36,7 +36,6 @@ import cn.xender.core.ap.CreateApEvent;
 import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.transfer.permission.PermissionUtil;
-import cn.xender.transfer.views.ConnectionView;
 import cn.xender.transfer.views.NougatOpenApDlg;
 
 import static android.view.View.VISIBLE;
@@ -81,7 +80,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         protocol.register(this);
 
     }
-
 
     /**
      * Rayn
@@ -337,13 +335,13 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
         addWaitingLayout();
 
-        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
-        tc_waiting_des_tv.setText(R.string.tc_creating_ap);
+//        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
+//        tc_waiting_des_tv.setText(R.string.tc_creating_ap);
 
-        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
+//        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
 
-        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_wifi);
-        tc_waiting_view.startRippleAnimation();
+//        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_wifi);
+//        tc_waiting_view.startRippleAnimation();
     }
 
 
@@ -356,28 +354,25 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transferring);
 
-        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
+//        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
 
-        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_transfer);
-        tc_waiting_view.startRippleAnimation();
+//        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_transfer);
+//        tc_waiting_view.startRippleAnimation();
     }
 
     private void showTransferSuccessLayout(){
-        addResultLayout();
-        TextView tc_result_des_tv = findViewById(R.id.tc_result_des_tv);
-        tc_result_des_tv.setText(R.string.tc_transfer_success);
-        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
+        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
+        tc_waiting_des_tv.setText(R.string.tc_transfer_success);
+//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
     }
 
     private void showTransferFailureLayout(){
 
-        addResultLayout();
-
-        TextView tc_result_des_tv = findViewById(R.id.tc_result_des_tv);
-        tc_result_des_tv.setText(R.string.tc_transfer_failure);
+        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
+        tc_waiting_des_tv.setText(R.string.tc_transfer_failure);
 
 
-        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_defeated);
+//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_defeated);
     }
 
 
@@ -388,17 +383,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         tc_content_container.removeAllViews();
 
         tc_content_container.addView(tc_waiting_layout);
-
-    }
-
-
-    private void addResultLayout(){
-
-        View tc_result_layout = LayoutInflater.from(this).inflate(R.layout.tc_result_layout,null);
-
-        tc_content_container.removeAllViews();
-
-        tc_content_container.addView(tc_result_layout);
 
     }
 

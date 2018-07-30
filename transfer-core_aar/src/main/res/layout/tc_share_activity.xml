@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/tc_bg_color"
+    android:background="#cccccc"
     >
 
     <include layout="@layout/tc_toolbar"/>
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="150dp"
             android:orientation="vertical">
 
         </LinearLayout>
@@ -47,7 +47,6 @@
                 android:visibility="invisible"/>
 
         </LinearLayout>
-
 
     </RelativeLayout>
 </LinearLayout>

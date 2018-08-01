@@ -83,8 +83,18 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         if(PermissionUtil.checkAllNeededPermission(this)){
             CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
                 @Override
-                public void callback(CreateApEvent result) {
-                    handleCreateResult(result,true);
+                public void callback(final CreateApEvent result) {
+                    /**
+                     * Rayn
+                     * callback出来的是子线程，而handleCreateResult里面（7.1会让手动开启热点）
+                     * 会创建dialog，所以要用handler post到主线程去跑
+                     */
+                    _handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleCreateResult(result,true);
+                        }
+                    });
                 }
             });
         }else{

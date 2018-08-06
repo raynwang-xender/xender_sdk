@@ -79,7 +79,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
      * 检查失败弹出dialog
      */
     private void createAp(){
-        System.out.println("---Rayn createAp");
         if(PermissionUtil.checkAllNeededPermission(this)){
             CoreApManager.getInstance().createAp("", "", 30000, 12, new CoreCreateApCallback() {
                 @Override

@@ -35,7 +35,6 @@ public class PermissionUtil {
 
 
     public static boolean checkAllNeededPermission(Activity activity){
-        System.out.println("---Rayn checkAllNeedPermission");
         if(!hasPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
             return false;
         }
@@ -46,7 +45,6 @@ public class PermissionUtil {
     }
 
     public static boolean checkCreateApPermission(Activity activity){
-        System.out.println("---Rayn checkCreateApPermission");
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             if (!PermissionUtil.hasPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 return false;
@@ -142,7 +140,6 @@ public class PermissionUtil {
 
     private static boolean hasPermission(Context activity, String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            System.out.println("---Rayn hasPermission"+permission);
             return activity.checkSelfPermission(permission) != PackageManager.PERMISSION_DENIED;
         }
         return true;
@@ -160,7 +157,6 @@ public class PermissionUtil {
 
 
     private static boolean getLocationEnabled(Activity activity) {
-        System.out.println("---Rayn getLocationEnabled");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }

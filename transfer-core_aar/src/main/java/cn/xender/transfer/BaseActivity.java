@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -20,14 +21,11 @@ import android.widget.Toolbar;
  */
 public abstract class BaseActivity extends Activity {
 
-
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
-
-
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setToolbar(int viewId, int titleId) {
@@ -36,7 +34,8 @@ public abstract class BaseActivity extends Activity {
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             setTitle(titleId);
-            setTitleColor(Color.WHITE);
+//            setTitleColor(Color.WHITE);
+            setTitleColor(Color.BLACK);
             actionBar.setHomeAsUpIndicator(R.drawable.tc_ic_actionbar_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
@@ -53,8 +52,6 @@ public abstract class BaseActivity extends Activity {
                 onTitleHomeClick();
             }
         });
-
-
     }
 
 

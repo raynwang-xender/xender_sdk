@@ -4,15 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <cn.xender.transfer.views.ConnectionView
-        android:id="@+id/tc_waiting_view"
-        android:layout_width="232dp"
-        android:layout_height="232dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="121dp"
-        />
-
     <TextView
         android:id="@+id/tc_waiting_des_tv"
         android:layout_width="match_parent"

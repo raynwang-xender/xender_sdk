@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import cn.xender.core.server.utils.ActionListenerAdapter;
+import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.transfertest.R;
 
 public class MainActivity extends Activity {
@@ -25,5 +27,7 @@ public class MainActivity extends Activity {
             }
         });
 
+
     }
 }
+

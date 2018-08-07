@@ -86,8 +86,10 @@ public class NougatOpenApDlg {
         try {
             Intent intent1 = new Intent(Intent.ACTION_MAIN);
             intent1.addCategory(Intent.CATEGORY_LAUNCHER);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intent1.addCategory(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent1.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//            intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent1.setComponent(new ComponentName(context.getPackageName(),classNameNeedGo));
             context.startActivity(intent1);
         }catch (Exception e){

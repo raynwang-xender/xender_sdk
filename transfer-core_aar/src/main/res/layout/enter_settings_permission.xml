@@ -21,9 +21,9 @@
         android:id="@+id/write_settings_permission_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="需要一些权限，连接身边好友"
+        android:text="部分功能无法正常使用，需要到设置页面手动开启存储和位置权限"
         android:textColor="@color/permission_dlg_content"
-        android:textSize="16dp"
+        android:textSize="14dp"
         style="@style/text_style_bold"
         android:layout_margin="16dp"
         android:gravity="center"
@@ -32,8 +32,8 @@
         android:lineSpacingMultiplier="1.1"
         />
 
-
-    <include layout="@layout/my_bottom_sheet_dlg_btn_layout"
+    <include
+        layout="@layout/my_bottom_sheet_dlg_btn_layout"
         android:layout_below="@id/write_settings_permission_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

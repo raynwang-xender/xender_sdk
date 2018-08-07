@@ -31,7 +31,7 @@ public class PermissionUtil {
     public static final int CREATE_AP_WRITE_SETTING_PERMISSIONS = 2;
     public static final int ACCESS_COARSE_LOCATION_PERMISSIONS = 7;
     public static final int ACCESS_GPS_LOCATION_PERMISSIONS = 8;
-    public static final int ALL_NEED_PERMISSIONS = 9;
+    public static final int BACK_FROM_SETTING_PERMISSION = 9;
 
 
     public static boolean checkAllNeededPermission(Activity activity){
@@ -63,18 +63,24 @@ public class PermissionUtil {
     }
 
     public static boolean requestAllNeededPermission(Activity activity){
-
+//        aaa(activity);
         if(!readExternalStorage(activity)){
             return false;
         }
-
         if(!requestCreateApPermission(activity)){
             return false;
         }
-
         return true;
-
     }
+
+//    private void aaa(Activity activity){
+//        System.out.println("---Rayn checkAllPermission");
+//        if (!activity.shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")
+//                || !activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
+//            System.out.println("---Rayn lalala");
+//            PermissionUtil.showSettingPermissionDlg(this);
+//        }
+//    }
 
 
     private static boolean requestCreateApPermission(Activity activity){
@@ -176,7 +182,9 @@ public class PermissionUtil {
     public static void showPermissionDlg(final Activity mContext){
 
         final Dialog dialog = new Dialog(mContext);
+//        View view = LayoutInflater.from(mContext).inflate(R.layout.write_settings_permission,null);
         dialog.setContentView(R.layout.write_settings_permission);
+//        dialog.setContentView(view);
 
         //设置点击Dialog外部任意区域关闭Dialog
         dialog.setCanceledOnTouchOutside(false);
@@ -188,6 +196,7 @@ public class PermissionUtil {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(params);
+
         dialog.show();
 
         dialog.findViewById(R.id.negative_btn).setOnClickListener(new View.OnClickListener() {
@@ -204,13 +213,12 @@ public class PermissionUtil {
                 requestAllNeededPermission(mContext);
             }
         });
-
     }
 
     public static void showSettingPermissionDlg(final Activity mContext){
 
         final Dialog dialog = new Dialog(mContext);
-        dialog.setContentView(R.layout.write_settings_permission);
+        dialog.setContentView(R.layout.enter_settings_permission);
 
         //设置点击Dialog外部任意区域关闭Dialog
         dialog.setCanceledOnTouchOutside(false);
@@ -235,7 +243,10 @@ public class PermissionUtil {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                requestAllNeededPermission(mContext);
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", mContext.getPackageName(), null);
+                intent.setData(uri);
+                mContext.startActivityForResult(intent, PermissionUtil.BACK_FROM_SETTING_PERMISSION);
             }
         });
 

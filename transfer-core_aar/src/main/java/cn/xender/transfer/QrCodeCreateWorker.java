@@ -13,21 +13,19 @@ import android.media.ThumbnailUtils;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.google.zxing.qrcode.encoder.Encoder;
-import com.google.zxing.qrcode.encoder.QRCode;
 
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
 import cn.xender.core.log.Logger;
+import cn.xender.transfer.zxing.BarcodeFormat;
+import cn.xender.transfer.zxing.BitMatrix;
+import cn.xender.transfer.zxing.EncodeHintType;
+import cn.xender.transfer.zxing.ErrorCorrectionLevel;
+import cn.xender.transfer.zxing.MultiFormatWriter;
+import cn.xender.transfer.zxing.QRCodeWriter;
+import cn.xender.transfer.zxing.WriterException;
 
 public class QrCodeCreateWorker {
 

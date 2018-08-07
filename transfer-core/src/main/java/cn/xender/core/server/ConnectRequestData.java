@@ -21,6 +21,9 @@ public class ConnectRequestData {
     private String ip;
     private String device_type;
 
+    private String init_chn;
+    private String curt_chn;
+
     public int getPort() {
         return port;
     }
@@ -64,6 +67,24 @@ public class ConnectRequestData {
         this.device_type = device_type;
     }
 
+    public String getInit_chn() {
+        return init_chn;
+    }
+
+    public void setInit_chn(String init_chn) {
+        this.init_chn = init_chn;
+    }
+
+    public String getCurt_chn() {
+        return curt_chn;
+    }
+
+    public void setCurt_chn(String curt_chn) {
+        this.curt_chn = curt_chn;
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -87,6 +108,8 @@ public class ConnectRequestData {
             object.put("ip",ip);
             object.put("device_type",device_type);
             object.put("port",port);
+            object.put("init_chn",init_chn);
+            object.put("curt_chn",curt_chn);
 
             return object;
         }catch (Exception e){
@@ -104,6 +127,8 @@ public class ConnectRequestData {
         data.setIp(WifiAPUtil.getIpOnWifiAndAP(context));
         data.setDevice_type("android");
         data.setPort(Port.getWebPort());
+        data.setCurt_chn(ClientManager.TRANSFER_SDK_CHANNEL);
+        data.setInit_chn(ClientManager.TRANSFER_SDK_CHANNEL);
         return data;
 
     }
@@ -125,6 +150,8 @@ public class ConnectRequestData {
             item.setImei(object.getString("imei"));
             item.setDevice_type(object.getString("device_type"));
             item.setPort(object.getInt("port"));
+            item.setCurt_chn(object.getString("curt_chn"));
+            item.setInit_chn(object.getString("init_chn"));
         }catch (Exception e){
 
         }

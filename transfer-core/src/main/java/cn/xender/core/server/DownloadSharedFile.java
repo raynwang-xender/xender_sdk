@@ -54,11 +54,11 @@ public class DownloadSharedFile extends Base {
 			ActionProtocol.sendTransferFailureAction(androidContext);
 			return new Response(NOT_FOUND,"text/plain","no file found");
 		}
-		return createRangeOrFullResponse(headers,filePathName,taskid);
+		return createRangeOrFullResponse(headers,filePathName,taskid,remote_ip);
 
 	}
 
-	private NanoHTTPD.Response createRangeOrFullResponse(Map<String, String> headers, String filePath, String taskid) throws IOException {
+	private NanoHTTPD.Response createRangeOrFullResponse(Map<String, String> headers, String filePath, String taskid,String remote_ip) throws IOException {
         //1. 是否续传
         //1.1 带ranger header
         //1.2 版本匹配
@@ -89,9 +89,9 @@ public class DownloadSharedFile extends Base {
 			Logger.d(TAG, "if-none-match:" + clientSideVersion) ;
 		}
         if(range != null && isVersionMatchs(clientSideVersion, serverSideVersion)){
-            return createRangeResponse(file, startFrom, endAt, serverSideVersion);
+            return createRangeResponse(file, startFrom, endAt, serverSideVersion,remote_ip);
         }else{
-            return createFullResponse(file,serverSideVersion);
+            return createFullResponse(file,serverSideVersion,remote_ip);
         }
     }
 
@@ -133,10 +133,10 @@ public class DownloadSharedFile extends Base {
         }
     }
 
-	private NanoHTTPD.Response createFullResponse(File file, String serverSideVersion) throws IOException {
+	private NanoHTTPD.Response createFullResponse(File file, String serverSideVersion,String remote_ip) throws IOException {
 		NanoHTTPD.Response response;
 
-		response = new MyFileResponse(androidContext,Status.OK, CONTENT_TYPE_STREAM_APP, file);
+		response = new MyFileResponse(androidContext,Status.OK, CONTENT_TYPE_STREAM_APP, file,remote_ip);
 
 		response.addHeader("Content-Disposition", "attachment;filename=\"" + Encoder.encodeUri(file.getName()) + "\"");
 		response.addHeader("Content-Length", String.valueOf(file.length()));
@@ -144,8 +144,8 @@ public class DownloadSharedFile extends Base {
 		return response;
 	}
 
-	private NanoHTTPD.Response createRangeResponse(File file, long startFrom, long endAt, String serverSideVersion) throws IOException {
-		return new MyFileRangeResponse(androidContext,Response.Status.PARTIAL_CONTENT,CONTENT_TYPE_STREAM_APP,file,startFrom,endAt,serverSideVersion);
+	private NanoHTTPD.Response createRangeResponse(File file, long startFrom, long endAt, String serverSideVersion,String remote_ip) throws IOException {
+		return new MyFileRangeResponse(androidContext,Response.Status.PARTIAL_CONTENT,CONTENT_TYPE_STREAM_APP,file,startFrom,endAt,serverSideVersion,remote_ip);
 	}
 
 	private boolean isVersionMatchs(String clientSideVersion, String serverSideVersion) {

@@ -15,6 +15,8 @@ import cn.xender.core.log.Logger;
  */
 public class ClientManager {
 
+    public static final String TRANSFER_SDK_CHANNEL = "toutiao_hello_20180807";
+
     private static ClientManager instance = new ClientManager();
 
     LinkedHashMap<String, ConnectRequestData> others = new LinkedHashMap<>();

@@ -40,15 +40,18 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
 
     private Context androidContext;
 
+    private String remote_ip;
+
     /**
      * Basic constructor.
      */
-    public MyFileRangeResponse(Context context,IStatus status, String mimeType, File file, long startFrom, long endAt,String serverSideVersion) throws IOException {
+    public MyFileRangeResponse(Context context,IStatus status, String mimeType, File file, long startFrom, long endAt,String serverSideVersion,String remote_ip) throws IOException {
         super(status, mimeType, new BufferedInputStream(new FileInputStream(file)));
         this.file = file;
         this.startFrom = startFrom;
         this.endAt = endAt;
         this.eTag = serverSideVersion;
+        this.remote_ip = remote_ip;
 
         this.androidContext = context;
 
@@ -173,7 +176,7 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
             }
 
 
-            ActionProtocol.sendTransferSuccessAction(androidContext);
+            ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
         }
     }
 
@@ -201,7 +204,7 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
         }
         outputStream.write(String.format("0\r\n\r\n").getBytes());
 
-        ActionProtocol.sendTransferSuccessAction(androidContext);
+        ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
     }
 
 }

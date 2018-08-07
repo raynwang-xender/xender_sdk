@@ -6,7 +6,7 @@ public interface ActionListener{
 
     void someoneOffline();
 
-    void transferSuccess();
+    void transferSuccess(String android_id,String channel);
 
     void transferFailure();
 }

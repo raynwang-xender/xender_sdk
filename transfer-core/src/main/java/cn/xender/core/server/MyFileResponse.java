@@ -27,12 +27,15 @@ public class MyFileResponse extends NanoHTTPD.Response {
 
     private Context androidContext;
 
+    private String remote_ip;
+
     /**
      * Basic constructor.
      */
-    public MyFileResponse(Context context, IStatus status, String mimeType, File file) throws IOException{
+    public MyFileResponse(Context context, IStatus status, String mimeType, File file,String remote_ip) throws IOException{
         super(status,mimeType,new BufferedInputStream(new FileInputStream(file)));
         this.androidContext = context;
+        this.remote_ip = remote_ip;
     }
 
 
@@ -99,7 +102,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
                 outputStream.write(buff, 0, count);
             }
 
-            ActionProtocol.sendTransferSuccessAction(androidContext);
+            ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
         }
     }
 
@@ -128,7 +131,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
         }
         outputStream.write(String.format("0\r\n\r\n").getBytes());
 
-        ActionProtocol.sendTransferSuccessAction(androidContext);
+        ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
     }
 
 }

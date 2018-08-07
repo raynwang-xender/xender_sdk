@@ -8,6 +8,9 @@ import android.content.IntentFilter;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import cn.xender.core.server.ClientManager;
+import cn.xender.core.server.ConnectRequestData;
+
 
 public class ActionProtocol {
 
@@ -31,9 +34,10 @@ public class ActionProtocol {
 
     }
 
-    public static void sendTransferSuccessAction(Context context){
+    public static void sendTransferSuccessAction(Context context,String remote_ip){
 
         Intent intent = new Intent(TRANSFER_SUCCESS_ACTION);
+        intent.putExtra("ip",remote_ip);
         context.sendBroadcast(intent);
 
     }
@@ -114,7 +118,10 @@ public class ActionProtocol {
                         }
                     }else if(TextUtils.equals(intent.getAction(),TRANSFER_SUCCESS_ACTION)){
                         if(listener != null){
-                            listener.transferSuccess();
+
+                            ConnectRequestData data = ClientManager.getInstance().getClientByIp(intent.getStringExtra("ip"));
+
+                            listener.transferSuccess(data == null?"":data.getImei(),ClientManager.TRANSFER_SDK_CHANNEL);
                         }
                     }else if(TextUtils.equals(intent.getAction(),TRANSFER_FAILURE_ACTION)){
                         if(listener != null){

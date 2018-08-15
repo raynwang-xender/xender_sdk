@@ -5,11 +5,14 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import cn.xender.core.ap.utils.WifiAPUtil;
@@ -187,6 +190,15 @@ public class ShareMessage {
 
         }
 
+        List<ShareMessage> files = createNeedShareFilesInfo(context);
+
+        if(files != null && !files.isEmpty()){
+            for(ShareMessage item:files){
+
+                array.put(item.toJsonObject());
+            }
+        }
+
         return array.toString();
 
     }
@@ -222,6 +234,56 @@ public class ShareMessage {
         }
 
         return null;
+    }
+
+    private static List<ShareMessage> createNeedShareFilesInfo(Context context){
+
+        if(NeedSharedFiles.getNeedShared() == null || NeedSharedFiles.getNeedShared().length == 0){
+            return null;
+        }
+
+        List<ShareMessage> list = new ArrayList<>();
+
+        try {
+            String[] files = NeedSharedFiles.getNeedShared();
+
+            String cate = NeedSharedFiles.getCate();
+
+            for(int i = 0; i < files.length;i++){
+
+                String filepath = files[i];
+
+                //
+                if(TextUtils.isEmpty(filepath) ){
+                    continue;
+                }
+
+                File needShared = new File(filepath);
+
+                if(!needShared.exists()){
+                    continue;
+                }
+
+                ShareMessage msg = new ShareMessage();
+                msg.taskid = UUID.randomUUID().toString().replace("-", "");
+                msg.res_name = needShared.getName();
+                msg.category = cate;
+                msg.imei = ConnectRequestData.getAndroidId(context);
+                msg.brand = Build.BRAND;
+                msg.model = Build.MODEL;
+                msg.file_path = needShared.getAbsolutePath();
+                msg.file_size = needShared.length();
+                msg.create_time = needShared.lastModified();
+                msg.ip_addr = WifiAPUtil.getIpOnWifiAndAP(context);
+                msg.spirit_name = Build.MODEL; //在这里是固定的
+
+                list.add(msg);
+            }
+        }catch (Exception e){
+
+        }
+
+        return list;
     }
 
 }

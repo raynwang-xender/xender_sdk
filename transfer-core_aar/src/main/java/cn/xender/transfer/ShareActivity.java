@@ -1,34 +1,23 @@
 package cn.xender.transfer;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.security.Permission;
 
 import cn.xender.core.ap.CoreApManager;
 import cn.xender.core.ap.CoreCreateApCallback;
@@ -37,8 +26,6 @@ import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.transfer.permission.PermissionUtil;
 import cn.xender.transfer.views.NougatOpenApDlg;
-
-import static android.view.View.VISIBLE;
 
 public class ShareActivity extends BaseActivity implements ActionListener {
 

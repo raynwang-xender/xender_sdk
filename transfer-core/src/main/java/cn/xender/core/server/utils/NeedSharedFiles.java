@@ -28,7 +28,6 @@ public class NeedSharedFiles {
 
     public static String getCate() {
         checkCate();
-
         return cate;
     }
 

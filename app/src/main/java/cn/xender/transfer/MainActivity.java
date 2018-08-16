@@ -3,11 +3,13 @@ package cn.xender.transfer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.xender.core.server.utils.ActionListenerAdapter;
 import cn.xender.core.server.utils.ActionProtocol;
+import cn.xender.core.server.utils.NeedSharedFiles;
 import cn.xender.transfertest.R;
 
 public class MainActivity extends Activity {
@@ -22,8 +24,14 @@ public class MainActivity extends Activity {
         findViewById(R.id.share_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent = new Intent(MainActivity.this,ShareActivity.class);
+                intent.putExtra("array",new String[]{Environment.getExternalStorageDirectory() + "/aaa.png"});
+                intent.putExtra("cate", NeedSharedFiles.CATE_IMAGE);
                 startActivity(intent);
+
+
             }
         });
 

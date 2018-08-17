@@ -56,7 +56,9 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         System.out.println("---Rayn "+cate);
         System.out.println("---Rayn "+arrays);
 
-        NeedSharedFiles.setNeedShared(arrays,cate);
+        if (!TextUtils.isEmpty(cate) && arrays != null) {
+            NeedSharedFiles.setNeedShared(arrays, cate);
+        }
 
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);
         showCreatingLayout();

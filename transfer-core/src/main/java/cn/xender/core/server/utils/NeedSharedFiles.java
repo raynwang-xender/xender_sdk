@@ -10,7 +10,29 @@ public class NeedSharedFiles {
 
     private static boolean shareMyApk = true;
 
+    /**
+     * 多次 appendNewFile 之前先调用一下
+     *
+     * 例如：
+     *
+     * NeedSharedFiles.confirmStart();
+     *
+     * NeedSharedFiles.appendNewFile("path1", FileItem.CATE_APP);
+     *
+     * NeedSharedFiles.appendNewFile("path2", FileItem.CATE_APP);
+     *
+     * */
+    public static void confirmStart(){
 
+        needShared = null;
+
+        shareMyApk = true;
+    }
+
+    /**
+     * @param filepath 文件全路径
+     * @param cate 文件类型，必须为 FileItem.CATE_APP ,CATE_AUDIO, CATE_VIDEO,CATE_IMAGE ,CATE_OTHER中的一个
+     * */
     public static void appendNewFile(String filepath,String cate){
         if(needShared == null){
             needShared = new ArrayList<>();
@@ -49,10 +71,7 @@ public class NeedSharedFiles {
 
         private String cate;
 
-        /**
-         * @param path 文件全路径
-         * @param cate 文件类型，必须为 CATE_APP ,CATE_AUDIO, CATE_VIDEO,CATE_IMAGE ,CATE_OTHER中的一个
-         * */
+
         public FileItem(String path, String cate) {
             this.path = path;
             this.cate = cate;
@@ -84,4 +103,5 @@ public class NeedSharedFiles {
             return path;
         }
     }
+
 }

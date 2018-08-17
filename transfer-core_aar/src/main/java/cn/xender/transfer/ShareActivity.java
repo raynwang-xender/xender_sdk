@@ -303,13 +303,18 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     }
 
     @Override
-    public void transferSuccess(String android_id, String channel) {
+    public void transferSuccess(String android_id, String channel,String filePath) {
         showTransferSuccessLayout();
     }
 
     @Override
-    public void transferFailure() {
+    public void transferFailure(String filePath) {
         showTransferFailureLayout();
+    }
+
+    @Override
+    public void transferAll(String android_id, String channel) {
+
     }
 
     @Override

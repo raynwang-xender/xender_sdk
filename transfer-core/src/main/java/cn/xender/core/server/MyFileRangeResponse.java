@@ -19,6 +19,7 @@ import java.util.TimeZone;
 
 import cn.xender.core.log.Logger;
 import cn.xender.core.server.utils.ActionProtocol;
+import cn.xender.core.server.utils.TaskCountCalcultor;
 
 /**
  * HTTP response. Return one of these from serve().
@@ -136,7 +137,7 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
         } catch (Exception ioe) {
             if(Logger.r) Logger.e("send_file","send range file error",ioe);
 
-            ActionProtocol.sendTransferFailureAction(androidContext);
+            TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,file.getAbsolutePath(),false);
         }finally {
         }
 
@@ -176,7 +177,8 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
             }
 
 
-            ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
+            TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,file.getAbsolutePath(),true);
+
         }
     }
 
@@ -204,7 +206,7 @@ public class MyFileRangeResponse extends NanoHTTPD.Response {
         }
         outputStream.write(String.format("0\r\n\r\n").getBytes());
 
-        ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
+        TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,file.getAbsolutePath(),true);
     }
 
 }

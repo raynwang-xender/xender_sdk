@@ -18,6 +18,7 @@ public class ActionProtocol {
     private static final String FRIENDS_OFFLINE_INFO_ABOUT_ACTION = "FRIENDS_OFFLINE_INFO_ABOUT_ACTION";
     private static final String TRANSFER_SUCCESS_ACTION = "TRANSFER_SUCCESS_ACTION";
     private static final String TRANSFER_FAILURE_ACTION = "TRANSFER_FAILURE_ACTION";
+    private static final String TRANSFERRED_ALL_ACTION = "TRANSFERRED_ALL_ACTION";
 
     public static void sendOnlineAction(Context context){
 
@@ -34,17 +35,27 @@ public class ActionProtocol {
 
     }
 
-    public static void sendTransferSuccessAction(Context context,String remote_ip){
+    public static void sendTransferredAllAction(Context context,String remote_ip){
 
-        Intent intent = new Intent(TRANSFER_SUCCESS_ACTION);
+        Intent intent = new Intent(TRANSFERRED_ALL_ACTION);
         intent.putExtra("ip",remote_ip);
         context.sendBroadcast(intent);
 
     }
 
+    public static void sendTransferOneFileSuccessAction(Context context,String remote_ip,String filepath){
 
-    public static void sendTransferFailureAction(Context context){
+        Intent intent = new Intent(TRANSFER_SUCCESS_ACTION);
+        intent.putExtra("ip",remote_ip);
+        intent.putExtra("filepath",filepath);
+        context.sendBroadcast(intent);
+
+    }
+
+
+    public static void sendTransferOneFileFailureAction(Context context,String filepath){
         Intent intent = new Intent(TRANSFER_FAILURE_ACTION);
+        intent.putExtra("filepath",filepath);
         context.sendBroadcast(intent);
     }
 
@@ -63,6 +74,7 @@ public class ActionProtocol {
         filter.addAction(FRIENDS_OFFLINE_INFO_ABOUT_ACTION);
         filter.addAction(TRANSFER_SUCCESS_ACTION);
         filter.addAction(TRANSFER_FAILURE_ACTION);
+        filter.addAction(TRANSFERRED_ALL_ACTION);
 
         initReceiver();
 
@@ -121,11 +133,17 @@ public class ActionProtocol {
 
                             ConnectRequestData data = ClientManager.getInstance().getClientByIp(intent.getStringExtra("ip"));
 
-                            listener.transferSuccess(data == null?"":data.getImei(),ClientManager.TRANSFER_SDK_CHANNEL);
+                            listener.transferSuccess(data == null?"":data.getImei(),ClientManager.TRANSFER_SDK_CHANNEL,intent.getStringExtra("filepath"));
                         }
                     }else if(TextUtils.equals(intent.getAction(),TRANSFER_FAILURE_ACTION)){
                         if(listener != null){
-                            listener.transferFailure();
+                            listener.transferFailure(intent.getStringExtra("filepath"));
+                        }
+                    }else if(TextUtils.equals(intent.getAction(),TRANSFERRED_ALL_ACTION)){
+                        if(listener != null){
+                            ConnectRequestData data = ClientManager.getInstance().getClientByIp(intent.getStringExtra("ip"));
+
+                            listener.transferAll(data == null?"":data.getImei(),ClientManager.TRANSFER_SDK_CHANNEL);
                         }
                     }
 

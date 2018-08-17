@@ -15,6 +15,7 @@ import cn.xender.core.log.Logger;
 import cn.xender.core.server.NanoHTTPD.IHTTPSession;
 import cn.xender.core.server.NanoHTTPD.Response;
 import cn.xender.core.server.NanoHTTPD.Response.Status;
+import cn.xender.core.server.utils.TaskCountCalcultor;
 
 import static cn.xender.core.server.NanoHTTPD.Response.Status.NOT_FOUND;
 
@@ -51,7 +52,7 @@ public class DownloadSharedFile extends Base {
 		}
 
 		if(! new File(filePathName).exists()){
-			ActionProtocol.sendTransferFailureAction(androidContext);
+			TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,filePathName,false);
 			return new Response(NOT_FOUND,"text/plain","no file found");
 		}
 		return createRangeOrFullResponse(headers,filePathName,taskid,remote_ip);
@@ -77,7 +78,7 @@ public class DownloadSharedFile extends Base {
         long endAt = startAndEnd[1];
 
         if(range != null && isInvalidRange(file, startFrom, endAt)){
-			ActionProtocol.sendTransferFailureAction(androidContext);
+			TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,filePath,false);
             return new Response(NanoHTTPD.Response.Status.RANGE_NOT_SATISFIABLE, NanoHTTPD.MIME_PLAINTEXT, "");
         }
 

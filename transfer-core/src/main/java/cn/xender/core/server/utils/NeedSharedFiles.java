@@ -10,6 +10,8 @@ public class NeedSharedFiles {
 
     private static boolean shareMyApk = true;
 
+
+
     /**
      * 多次 appendNewFile 之前先调用一下
      *
@@ -27,6 +29,8 @@ public class NeedSharedFiles {
         needShared = null;
 
         shareMyApk = true;
+
+        TaskCountCalcultor.init();
     }
 
     /**

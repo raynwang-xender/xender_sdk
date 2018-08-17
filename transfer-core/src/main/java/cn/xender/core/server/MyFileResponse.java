@@ -17,6 +17,7 @@ import java.util.TimeZone;
 
 import cn.xender.core.log.Logger;
 import cn.xender.core.server.utils.ActionProtocol;
+import cn.xender.core.server.utils.TaskCountCalcultor;
 
 /**
  * HTTP response. Return one of these from serve().
@@ -29,6 +30,8 @@ public class MyFileResponse extends NanoHTTPD.Response {
 
     private String remote_ip;
 
+    private String filepath;
+
     /**
      * Basic constructor.
      */
@@ -36,6 +39,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
         super(status,mimeType,new BufferedInputStream(new FileInputStream(file)));
         this.androidContext = context;
         this.remote_ip = remote_ip;
+        this.filepath = file.getAbsolutePath();
     }
 
 
@@ -85,8 +89,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
 
         } catch (Exception ioe) {
             if(Logger.r) Logger.e("send_file","send file error",ioe);
-
-            ActionProtocol.sendTransferFailureAction(androidContext);
+            TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,filepath,false);
         }finally {
         }
     }
@@ -102,7 +105,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
                 outputStream.write(buff, 0, count);
             }
 
-            ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
+            TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,filepath,true);
         }
     }
 
@@ -131,7 +134,7 @@ public class MyFileResponse extends NanoHTTPD.Response {
         }
         outputStream.write(String.format("0\r\n\r\n").getBytes());
 
-        ActionProtocol.sendTransferSuccessAction(androidContext,remote_ip);
+        TaskCountCalcultor.transferredOneFile(androidContext,remote_ip,filepath,true);
     }
 
 }

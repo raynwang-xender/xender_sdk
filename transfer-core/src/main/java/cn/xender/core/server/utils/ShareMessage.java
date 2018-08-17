@@ -191,6 +191,8 @@ public class ShareMessage {
 
                 array.put(message.toJsonObject());
 
+                TaskCountCalcultor.appendOneTask(message.file_path);
+
             }
         }
 
@@ -200,6 +202,8 @@ public class ShareMessage {
             for(ShareMessage item:files){
 
                 array.put(item.toJsonObject());
+
+                TaskCountCalcultor.appendOneTask(item.file_path);
             }
         }
 
@@ -219,7 +223,7 @@ public class ShareMessage {
             ShareMessage msg = new ShareMessage();
             msg.taskid = UUID.randomUUID().toString().replace("-", "");
             msg.res_name =applicationInfo.loadLabel(packageManager).toString() + ".apk";
-            msg.category = "app";
+            msg.category = NeedSharedFiles.FileItem.CATE_APP;
             msg.imei = ConnectRequestData.getAndroidId(context);
             msg.brand = Build.BRAND;
             msg.model = Build.MODEL;

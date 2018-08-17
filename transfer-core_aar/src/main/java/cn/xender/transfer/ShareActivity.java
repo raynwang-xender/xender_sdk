@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -24,8 +25,10 @@ import cn.xender.core.ap.CoreCreateApCallback;
 import cn.xender.core.ap.CreateApEvent;
 import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
+import cn.xender.core.server.utils.NeedSharedFiles;
 import cn.xender.transfer.permission.PermissionUtil;
 import cn.xender.transfer.views.NougatOpenApDlg;
+
 
 public class ShareActivity extends BaseActivity implements ActionListener {
 
@@ -47,6 +50,16 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         }
 
 
+        Intent intent = getIntent();
+        String cate = intent.getStringExtra("cate");
+        String[] arrays = intent.getStringArrayExtra("array");
+        System.out.println("---Rayn "+cate);
+        System.out.println("---Rayn "+arrays);
+
+        if (!TextUtils.isEmpty(cate) && arrays != null) {
+            NeedSharedFiles.setNeedShared(arrays, cate);
+        }
+
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);
         showCreatingLayout();
 
@@ -57,6 +70,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         protocol = new ActionProtocol();
         protocol.setActionListener(this);
         protocol.register(this);
+
 
     }
 

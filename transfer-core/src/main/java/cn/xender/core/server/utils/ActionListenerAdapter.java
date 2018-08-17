@@ -13,7 +13,7 @@ public abstract class ActionListenerAdapter implements ActionListener{
     }
 
     @Override
-    public void transferSuccess() {
+    public void transferSuccess(String android_id,String channel) {
 
     }
 

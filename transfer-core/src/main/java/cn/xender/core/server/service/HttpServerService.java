@@ -130,7 +130,7 @@ public class HttpServerService extends Service {
 
             getServer().createNewDirectUrl();
 
-            Toast.makeText(HttpServerService.this,"server started",Toast.LENGTH_LONG).show();
+//            Toast.makeText(HttpServerService.this,"server started",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -142,7 +142,7 @@ public class HttpServerService extends Service {
                 server.stop();
             if (Logger.r) Logger.i(TAG, "web server stopped");
             server = null;
-            Toast.makeText(HttpServerService.this,"server stopped",Toast.LENGTH_LONG).show();
+//            Toast.makeText(HttpServerService.this,"server stopped",Toast.LENGTH_LONG).show();
         } finally {
             if (Logger.r) Logger.i(TAG, "Finally stopped ");
         }

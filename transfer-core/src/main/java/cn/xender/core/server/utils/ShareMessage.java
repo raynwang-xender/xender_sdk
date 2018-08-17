@@ -179,15 +179,19 @@ public class ShareMessage {
 
     public static String createMyAppInfo(Context context){
 
-        ShareMessage message = ShareMessage.create(context);
 
 
         JSONArray array = new JSONArray();
 
-        if(message != null){
+        if(NeedSharedFiles.isShareMyApk()){
 
-            array.put(message.toJsonObject());
+            ShareMessage message = ShareMessage.create(context);
 
+            if(message != null){
+
+                array.put(message.toJsonObject());
+
+            }
         }
 
         List<ShareMessage> files = createNeedShareFilesInfo(context);
@@ -238,20 +242,19 @@ public class ShareMessage {
 
     private static List<ShareMessage> createNeedShareFilesInfo(Context context){
 
-        if(NeedSharedFiles.getNeedShared() == null || NeedSharedFiles.getNeedShared().length == 0){
+        if(NeedSharedFiles.getNeedShared() == null || NeedSharedFiles.getNeedShared().isEmpty()){
             return null;
         }
 
         List<ShareMessage> list = new ArrayList<>();
 
         try {
-            String[] files = NeedSharedFiles.getNeedShared();
+            List<NeedSharedFiles.FileItem> files = NeedSharedFiles.getNeedShared();
 
-            String cate = NeedSharedFiles.getCate();
 
-            for(int i = 0; i < files.length;i++){
+            for(NeedSharedFiles.FileItem item : files){
 
-                String filepath = files[i];
+                String filepath = item.getPath();
 
                 //
                 if(TextUtils.isEmpty(filepath) ){
@@ -267,7 +270,7 @@ public class ShareMessage {
                 ShareMessage msg = new ShareMessage();
                 msg.taskid = UUID.randomUUID().toString().replace("-", "");
                 msg.res_name = needShared.getName();
-                msg.category = cate;
+                msg.category = item.getCate();
                 msg.imei = ConnectRequestData.getAndroidId(context);
                 msg.brand = Build.BRAND;
                 msg.model = Build.MODEL;

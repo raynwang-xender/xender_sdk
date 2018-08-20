@@ -49,17 +49,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             setToolbarLow(R.id.toolbar_title,R.string.app_name,R.id.home_back);
         }
 
-
-        Intent intent = getIntent();
-        String cate = intent.getStringExtra("cate");
-        String[] arrays = intent.getStringArrayExtra("array");
-        System.out.println("---Rayn "+cate);
-        System.out.println("---Rayn "+arrays);
-
-//        if (!TextUtils.isEmpty(cate) && arrays != null) {
-//            NeedSharedFiles.setNeedShared(arrays, cate);
-//        }
-
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);
         showCreatingLayout();
 

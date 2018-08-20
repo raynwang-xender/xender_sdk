@@ -184,13 +184,13 @@ public class PermissionUtil {
 
         new AlertDialog.Builder(mContext)
                 .setMessage("需要一些权限，连接身边好友")
-                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                .setPositiveButton("允许", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         requestAllNeededPermission(mContext);
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("退出", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mContext.finish();
@@ -200,38 +200,23 @@ public class PermissionUtil {
 
     public static void showSettingPermissionDlg(final Activity mContext){
 
-        final Dialog dialog = new Dialog(mContext);
-        dialog.setContentView(R.layout.enter_settings_permission);
-
-        //设置点击Dialog外部任意区域关闭Dialog
-        dialog.setCanceledOnTouchOutside(false);
-
-        Window window = dialog.getWindow();
-        window.setGravity(Gravity.BOTTOM);
-
-        WindowManager.LayoutParams params = dialog.getWindow().getAttributes(); //获取对话框当前的参数值
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(params);
-        dialog.show();
-
-        dialog.findViewById(R.id.negative_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.finish();
-            }
-        });
-
-        dialog.findViewById(R.id.positive_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", mContext.getPackageName(), null);
-                intent.setData(uri);
-                mContext.startActivityForResult(intent, PermissionUtil.BACK_FROM_SETTING_PERMISSION);
-            }
-        });
+        new AlertDialog.Builder(mContext)
+                .setMessage("需要到设置页面手动开启存储和位置权限")
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", mContext.getPackageName(), null);
+                        intent.setData(uri);
+                        mContext.startActivityForResult(intent, PermissionUtil.BACK_FROM_SETTING_PERMISSION);
+                    }
+                })
+                .setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mContext.finish();
+                    }
+                }).show();
 
     }
 }

@@ -92,7 +92,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
              * dialogOut开关，只弹一次
              */
             if (!dialogOut) {
-                dialogOut = true;
+                dialogOut = true;//弹出之后，就变成true，下次不弹
                 PermissionUtil.showPermissionDlg(this);
             }else {
                 PermissionUtil.requestAllNeededPermission(this);
@@ -227,12 +227,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
     }
 
-    ScaleAnimation dismissScaleAnimation;
-    ScaleAnimation showScaleAnimation;
-
-
-
-
     private void showCreatingLayout(){
 
         addWaitingLayout();
@@ -247,16 +241,11 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transferring);
 
-//        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
-
-//        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_transfer);
-//        tc_waiting_view.startRippleAnimation();
     }
 
     private void showTransferSuccessLayout(){
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transfer_success);
-//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
     }
 
     private void showTransferFailureLayout(){
@@ -264,8 +253,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transfer_failure);
 
-
-//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_defeated);
     }
 
 
@@ -309,20 +296,26 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS:
+                System.out.println("---Rayn READ_EXTERNAL_STORAGE_PERMISSIONS");
                 createAp();
                 break;
-            case PermissionUtil.CREATE_AP_WRITE_SETTING_PERMISSIONS:
+            case PermissionUtil.CREATE_AP_WRITE_SETTING_PERMISSIONS://从allow modify settings回来
+                System.out.println("---Rayn CREATE_AP_WRITE_SETTING_PERMISSIONS");
+                dialogOut = false;//如果没有允许，让dialog再弹出
                 createAp();
                 break;
             case PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS:
+                System.out.println("---Rayn ACCESS_GPS_LOCATION_PERMISSIONS");
                 if (resultCode == RESULT_OK) {
                     createAp();
                 }
                 break;
             case PermissionUtil.ACCESS_GPS_LOCATION_PERMISSIONS:
+                System.out.println("---Rayn ACCESS_GPS_LOCATION_PERMISSIONS");
                 createAp();
                 break;
             case PermissionUtil.BACK_FROM_SETTING_PERMISSION://从系统设置回来
+                System.out.println("---Rayn BACK_FROM_SETTING_PERMISSION");
                 createAp();
             default:
                 break;
@@ -337,7 +330,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
      * grantResult
      * PackageManager.PERMISSION_GRANTED 是0
      * PackageManager.PERMISSION_DENIED 是-1
-     *
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -348,7 +340,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             //可以推断出用户选择了“不在提示”选项，在这种情况下需要引导用户至设置页手动授权
             if (requestCode == PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS) {
                 //选择了Don't ask again
-                if (!shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
                     PermissionUtil.showSettingPermissionDlg(this);
                 } else {
                     createAp();
@@ -356,7 +348,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             }
 
             if (requestCode == PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS) {
-                if (!shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
                     PermissionUtil.showSettingPermissionDlg(this);
                 } else {
                     createAp();

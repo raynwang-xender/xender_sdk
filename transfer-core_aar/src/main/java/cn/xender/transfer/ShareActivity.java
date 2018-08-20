@@ -205,7 +205,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     private void showQuitDlg(){
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.tc_nougat_open_ap_warn_title)
                 .setMessage(R.string.tc_quit_dlg_content)
                 .setPositiveButton(R.string.tc_quit_dlg_quit, new DialogInterface.OnClickListener() {
                     @Override

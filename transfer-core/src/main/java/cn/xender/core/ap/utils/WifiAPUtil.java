@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Looper;
 import android.text.TextUtils;
 
@@ -149,8 +150,7 @@ public class WifiAPUtil {
                 return "";
             }
 
-            return (ip & 0xFF) + "." + ((ip >> 8) & 0xFF) + "."
-                    + ((ip >> 16) & 0xFF) + "." + ((ip >> 24) & 0xFF);
+            return long2Ip(ip);
         } catch (Exception e) {
             if(Logger.r) Logger.ce(TAG, "IP SocketException (getLocalIPAddress) " + e.toString());
             // return ("xxx.xxx.xxx.xxx");
@@ -193,8 +193,15 @@ public class WifiAPUtil {
 
         if (TextUtils.isEmpty(host)) return false;
 
-        if (host.startsWith("192.168.") && host.endsWith(".1")) {
-            return true;
+        if(Build.VERSION.SDK_INT <= 27){
+
+            if (host.startsWith("192.168.") && host.endsWith(".1")) {
+                return true;
+            }
+        }else{
+            if (host.startsWith("192.168.")) {//从9.0开始热点的ip地址不再是固定的192.168.43.1
+                return true;
+            }
         }
 
         return false;

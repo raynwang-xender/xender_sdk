@@ -26,7 +26,6 @@ public class NougatOpenApDlg {
         if(dialog==null){
             dialog = new AlertDialog.Builder(mActivity)
                     .setCancelable(false)
-                    .setTitle(R.string.tc_nougat_open_ap_warn_title)
                     .setMessage(R.string.tc_nougat_open_ap_warn_content)
                     .setPositiveButton(R.string.tc_nougat_open_ap_warn_btn, new DialogInterface.OnClickListener() {
                         @Override

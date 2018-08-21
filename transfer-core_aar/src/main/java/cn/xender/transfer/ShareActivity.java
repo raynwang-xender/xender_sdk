@@ -101,23 +101,23 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     }
 
     private void handleCreateResult(CreateApEvent result,boolean retryIfNeed) {
-
+        //CREATE_OK = 6
         if(result.isOk() && !TextUtils.isEmpty(result.getUrl())){
 
             int qrSize = PhonePxConversion.dip2px(ShareActivity.this,200);
 
             new QrCodeCreateWorker().startWork(ShareActivity.this,_handler,result.getUrl(),qrSize,qrSize, Color.WHITE,true);
 
-        }else if(result.isNeedUserManualOpen()){
+        }else if(result.isNeedUserManualOpen()){//SAVED_25_CONFIG = 3
 
-            showManualOpenDialog();
+            showManualOpenDialog();//显示7.1的dlg
 
-        }else if(result.isManualOpenSuccess()){
+        }else if(result.isManualOpenSuccess()){//AP_ENABLED_25 = 4
 
-            dismissManualOpenDialog();
-
+            dismissManualOpenDialog();//关掉7.1的dlg
+            //回到ShareActivity
             NougatOpenApDlg.goBack(ShareActivity.this,ShareActivity.class.getName());
-        }else if(result.isOpendButWeCannotUseAndNeedRetry()){
+        }else if(result.isOpendButWeCannotUseAndNeedRetry()){//CREATE_OK_BUT_NO_IP_ON25 = 5
 
             if(retryIfNeed){
 
@@ -130,7 +130,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
                                 handleCreateResult(result,false);
                             }
                         });
-
                     }
                 });
             }else{

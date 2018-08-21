@@ -11,10 +11,9 @@
     <string name="tc_quit_dlg_cancel">取消</string>
     <string name="tc_quit_dlg_quit">退出</string>
 
-    <string name="tc_nougat_open_ap_warn_title">Tips</string>
-    <string name="tc_nougat_open_ap_warn_content">Hotspot auto-enable not permitted on your device, please enable manually.</string>
-    <string name="tc_nougat_open_ap_warn_btn">Enable</string>
-    <string name="tc_dlg_exit">EXIT</string>
+    <string name="tc_nougat_open_ap_warn_content">7.1需手动开启热点</string>
+    <string name="tc_nougat_open_ap_warn_btn">允许</string>
+    <string name="tc_dlg_exit">退出</string>
     
     <string name="tc_need_permission_contect_frends">需要一些权限，连接身边好友</string>
 </resources>

@@ -34,6 +34,33 @@ public class WifiAPUtil {
 
     }
 
+    public static void main(String[] args){
+        long longip = ip2Long("192.168.43.12");
+        System.out.println(longip);
+        System.out.println(long2Ip(longip));
+    }
+
+
+    public static long ip2Long(String strIp){
+        long[] ip = new long[4];
+        String[] part = strIp.split("\\.");
+
+        if(part.length == 4){
+            //将每个.之间的字符串转换成整型
+            ip[0] = Long.parseLong(part[0]);
+            ip[1] = Long.parseLong(part[1]);
+            ip[2] = Long.parseLong(part[2]);
+            ip[3] = Long.parseLong(part[3]);
+        }
+
+        return (ip[3] << 24) + (ip[2] << 16) + (ip[1] << 8) + ip[0];
+    }
+
+    public static String long2Ip(long longip){
+        return (longip & 0xFF) + "." + ((longip >> 8) & 0xFF) + "."
+                + ((longip >> 16) & 0xFF) + "." + ((longip >> 24) & 0xFF);
+    }
+
     public static boolean isAP(Context context) {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         try {

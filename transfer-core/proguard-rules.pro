@@ -112,6 +112,7 @@ public void set*(...);
 -keep public class cn.xender.core.server.service.HttpServerService{*;}
 -keep public class cn.xender.core.log.Logger{*;}
 -keep public class cn.xender.core.server.utils.NeedSharedFiles{*;}
+-keep public class cn.xender.core.server.utils.NeedSharedFiles$*{*;}
 
 
 

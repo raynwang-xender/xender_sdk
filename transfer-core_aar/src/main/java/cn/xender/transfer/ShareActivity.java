@@ -49,17 +49,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             setToolbarLow(R.id.toolbar_title,R.string.app_name,R.id.home_back);
         }
 
-
-        Intent intent = getIntent();
-        String cate = intent.getStringExtra("cate");
-        String[] arrays = intent.getStringArrayExtra("array");
-        System.out.println("---Rayn "+cate);
-        System.out.println("---Rayn "+arrays);
-
-//        if (!TextUtils.isEmpty(cate) && arrays != null) {
-//            NeedSharedFiles.setNeedShared(arrays, cate);
-//        }
-
         tc_content_container = (LinearLayout) findViewById(R.id.tc_content_container);
         showCreatingLayout();
 
@@ -103,7 +92,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
              * dialogOut开关，只弹一次
              */
             if (!dialogOut) {
-                dialogOut = true;
+                dialogOut = true;//弹出之后，就变成true，下次不弹
                 PermissionUtil.showPermissionDlg(this);
             }else {
                 PermissionUtil.requestAllNeededPermission(this);
@@ -112,23 +101,23 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     }
 
     private void handleCreateResult(CreateApEvent result,boolean retryIfNeed) {
-
+        //CREATE_OK = 6
         if(result.isOk() && !TextUtils.isEmpty(result.getUrl())){
 
             int qrSize = PhonePxConversion.dip2px(ShareActivity.this,200);
 
             new QrCodeCreateWorker().startWork(ShareActivity.this,_handler,result.getUrl(),qrSize,qrSize, Color.WHITE,true);
 
-        }else if(result.isNeedUserManualOpen()){
+        }else if(result.isNeedUserManualOpen()){//SAVED_25_CONFIG = 3
 
-            showManualOpenDialog();
+            showManualOpenDialog();//显示7.1的dlg
 
-        }else if(result.isManualOpenSuccess()){
+        }else if(result.isManualOpenSuccess()){//AP_ENABLED_25 = 4
 
-            dismissManualOpenDialog();
-
+            dismissManualOpenDialog();//关掉7.1的dlg
+            //回到ShareActivity
             NougatOpenApDlg.goBack(ShareActivity.this,ShareActivity.class.getName());
-        }else if(result.isOpendButWeCannotUseAndNeedRetry()){
+        }else if(result.isOpendButWeCannotUseAndNeedRetry()){//CREATE_OK_BUT_NO_IP_ON25 = 5
 
             if(retryIfNeed){
 
@@ -141,7 +130,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
                                 handleCreateResult(result,false);
                             }
                         });
-
                     }
                 });
             }else{
@@ -216,7 +204,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     private void showQuitDlg(){
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.tc_nougat_open_ap_warn_title)
                 .setMessage(R.string.tc_quit_dlg_content)
                 .setPositiveButton(R.string.tc_quit_dlg_quit, new DialogInterface.OnClickListener() {
                     @Override
@@ -239,12 +226,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
     }
 
-    ScaleAnimation dismissScaleAnimation;
-    ScaleAnimation showScaleAnimation;
-
-
-
-
     private void showCreatingLayout(){
 
         addWaitingLayout();
@@ -259,16 +240,11 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transferring);
 
-//        ConnectionView tc_waiting_view = (ConnectionView)findViewById(R.id.tc_waiting_view);
-
-//        tc_waiting_view.drawCenterImage(R.drawable.tc_ic_transfer);
-//        tc_waiting_view.startRippleAnimation();
     }
 
     private void showTransferSuccessLayout(){
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transfer_success);
-//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_succeed);
     }
 
     private void showTransferFailureLayout(){
@@ -276,8 +252,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
         tc_waiting_des_tv.setText(R.string.tc_transfer_failure);
 
-
-//        ((ImageView)findViewById(R.id.tc_result_iv)).setImageResource(R.drawable.tc_ic_defeated);
     }
 
 
@@ -321,20 +295,26 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS:
+                System.out.println("---Rayn READ_EXTERNAL_STORAGE_PERMISSIONS");
                 createAp();
                 break;
-            case PermissionUtil.CREATE_AP_WRITE_SETTING_PERMISSIONS:
+            case PermissionUtil.CREATE_AP_WRITE_SETTING_PERMISSIONS://从allow modify settings回来
+                System.out.println("---Rayn CREATE_AP_WRITE_SETTING_PERMISSIONS");
+                dialogOut = false;//如果没有允许，让dialog再弹出
                 createAp();
                 break;
             case PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS:
+                System.out.println("---Rayn ACCESS_GPS_LOCATION_PERMISSIONS");
                 if (resultCode == RESULT_OK) {
                     createAp();
                 }
                 break;
             case PermissionUtil.ACCESS_GPS_LOCATION_PERMISSIONS:
+                System.out.println("---Rayn ACCESS_GPS_LOCATION_PERMISSIONS");
                 createAp();
                 break;
             case PermissionUtil.BACK_FROM_SETTING_PERMISSION://从系统设置回来
+                System.out.println("---Rayn BACK_FROM_SETTING_PERMISSION");
                 createAp();
             default:
                 break;
@@ -349,7 +329,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
      * grantResult
      * PackageManager.PERMISSION_GRANTED 是0
      * PackageManager.PERMISSION_DENIED 是-1
-     *
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -360,7 +339,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             //可以推断出用户选择了“不在提示”选项，在这种情况下需要引导用户至设置页手动授权
             if (requestCode == PermissionUtil.READ_EXTERNAL_STORAGE_PERMISSIONS) {
                 //选择了Don't ask again
-                if (!shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !shouldShowRequestPermissionRationale("android.permission.READ_EXTERNAL_STORAGE")) {
                     PermissionUtil.showSettingPermissionDlg(this);
                 } else {
                     createAp();
@@ -368,7 +347,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
             }
 
             if (requestCode == PermissionUtil.ACCESS_COARSE_LOCATION_PERMISSIONS) {
-                if (!shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION")) {
                     PermissionUtil.showSettingPermissionDlg(this);
                 } else {
                     createAp();

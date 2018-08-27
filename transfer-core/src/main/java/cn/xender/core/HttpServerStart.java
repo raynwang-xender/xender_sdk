@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.text.TextUtils;
@@ -67,7 +68,11 @@ public class HttpServerStart {
     public static String formaQrCodeStringtUrl(String ssid,String password,String ip){
         if(!TextUtils.isEmpty(ssid)) {
             try {
-                return String.format(Locale.US,"http://www.xender.com/s?%s|%s|%s|%d|%s|%s","1",URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort(), WifiAPUtil.getSegmentByIp(ip),WifiAPUtil.ip2Long(ip));
+                if(Build.VERSION.SDK_INT >=28){
+                    return String.format(Locale.US,"http://www.xender.com/s?%s|%s|%s|%d|%s|%s","1",URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort(), WifiAPUtil.getSegmentByIp(ip),WifiAPUtil.ip2Long(ip));
+                }else{
+                    return String.format(Locale.US,"http://www.xender.com/s?%s|%s|%s|%d|%s","1",URLEncoder.encode(ssid,"utf-8"), URLEncoder.encode(password,"utf-8"), Port.getWebPort(), WifiAPUtil.getSegmentByIp(ip));
+                }
             } catch (UnsupportedEncodingException e) {
             }
         }

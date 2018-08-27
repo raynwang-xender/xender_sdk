@@ -81,6 +81,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
                     _handler.post(new Runnable() {
                         @Override
                         public void run() {
+                            System.out.println("---Rayn result："+result);
                             handleCreateResult(result,true);
                         }
                     });

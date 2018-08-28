@@ -28,13 +28,16 @@ android {
             signingConfig signingConfigs.xender
         }
     }
+
+
+
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'   // aar目录
-    }
-}
+//repositories {
+//    flatDir {
+//        dirs 'libs'   // aar目录
+//    }
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -49,5 +52,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.nineoldandroids:library:2.4.0'
 }

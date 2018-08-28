@@ -39,7 +39,7 @@ public class QrCodeCreateWorker {
         if(cache == null){
 
             BitmapCache.BitmapCacheParams params = new BitmapCache.BitmapCacheParams();
-            params.memCacheSize = 1024*2;//2M
+            params.memCacheSize = 1024*5;//2M
 
             cache = new BitmapCache(params);
         }

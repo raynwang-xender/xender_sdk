@@ -2,7 +2,7 @@
     <string name="app_name">xender-transfer-sdk</string>
 
 
-    <string name="qr_code_des">邀请好友，打开Xender【-】扫描二维码\n即刻获得该应用</string>
+    <string name="qr_code_des">Open Xender【】scan the QR code</string>
     <string name="tc_creating_ap">正在创建...</string>
     <string name="tc_transferring">传输中，请稍后..</string>
     <string name="tc_transfer_success">恭喜，传输成功！</string>
@@ -16,4 +16,6 @@
     <string name="tc_dlg_exit">退出</string>
     
     <string name="tc_need_permission_contect_frends">需要一些权限，连接身边好友</string>
+    <string name="vidmix_title">Send File</string>
+
 </resources>

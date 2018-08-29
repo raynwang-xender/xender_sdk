@@ -7,5 +7,4 @@
     android:minHeight="@dimen/tc_actionbar_height"
     android:titleTextAppearance="@style/toolbar_text_style_bold"
     android:popupTheme="@android:style/Theme.Material.Light.DarkActionBar"
-    android:selectableItemBackground="@drawable/tc_icon_click"
-    android:background="#cccccc" />
+    android:selectableItemBackground="@drawable/tc_icon_click" />

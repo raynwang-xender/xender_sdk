@@ -7,24 +7,25 @@
 
     <ImageView
         android:id="@+id/tc_qr_code_iv"
-        android:layout_width="232dp"
-        android:layout_height="232dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/tc_qr_bg"
         android:scaleType="center"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="45dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/tc_common_margin"
+        android:layout_marginTop="12dp"
         android:text="@string/qr_code_des"
-        android:textColor="@color/tc_txt_color"
+        android:textColor="#8C9BAD"
         style="@style/tc_text_style_normal"
         android:paddingLeft="@dimen/tc_common_margin"
         android:paddingRight="@dimen/tc_common_margin"
-        android:textSize="15sp"
-        android:lineSpacingExtra="10dp"/>
+        android:textSize="14sp"
+        android:lineSpacingExtra="10dp"
+        />
 
 
 </LinearLayout>

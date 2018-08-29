@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#cccccc"
     >
 
     <include layout="@layout/tc_toolbar"/>
@@ -11,15 +10,121 @@
     <RelativeLayout
         android:id="@+id/create_ap_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#1c1f25">
 
         <LinearLayout
             android:id="@+id/tc_content_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginBottom="150dp"
             android:orientation="vertical">
+
+        </LinearLayout>
+
+        <!--vidmix底部整体-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="#2b2e36"
+            android:layout_margin="20dp">
+
+            <!--上半部-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_toLeftOf="@+id/vidmix_to_xender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vidmix"
+                    android:layout_marginRight="24dp"/>
+
+                <ImageView
+                    android:id="@+id/vidmix_to_xender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vidmix_to_xender"
+                    android:layout_centerInParent="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/xender"
+                    android:layout_toRightOf="@+id/vidmix_to_xender"
+                    android:layout_marginLeft="24dp"/>
+
+            </RelativeLayout>
+
+            <!--下半部 水平方向-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginBottom="20dp">
+
+                <!--电影图片-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vidmix" />
+
+                <!--图片右侧 垂直方向-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp">
+
+                    <!--电影名-->
+                    <TextView
+                        android:id="@+id/tv_moviename"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="filenamefilenamefilenameaaaaaaaaaaaaaaaaa"
+                        android:textColor="#DCDEE1"
+                        android:textSize="13sp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100.0Mb"
+                            android:textColor="#8C9BAD"
+                            android:textSize="10sp" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true">
+
+                            <TextView
+                                android:id="@+id/tv_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Connecting.."
+                                android:textColor="#0F94F5"
+                                android:textSize="10sp"/>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

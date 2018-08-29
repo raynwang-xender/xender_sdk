@@ -7,8 +7,6 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <!--android:background="@color/colorPrimary"-->
-
     <LinearLayout
         android:id="@+id/home_back"
         android:layout_width="@dimen/tc_actionbar_height"
@@ -30,8 +28,7 @@
         android:layout_height="wrap_content"
         style="@style/toolbar_text_style_bold"
         android:textSize="16sp"
+        android:textColor="@color/tc_white"
         />
-
-    <!--android:textColor="@color/tc_white"-->
 
 </LinearLayout>

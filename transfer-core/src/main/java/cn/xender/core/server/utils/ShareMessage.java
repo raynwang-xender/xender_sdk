@@ -177,13 +177,13 @@ public class ShareMessage {
     }
 
 
-    public static String createMyAppInfo(Context context){
+    public static String createMyAppInfo(Context context,boolean friendHasInstalledMe){
 
 
 
         JSONArray array = new JSONArray();
 
-        if(NeedSharedFiles.isShareMyApk()){
+        if(NeedSharedFiles.isShareMyApk() && !friendHasInstalledMe){
 
             ShareMessage message = ShareMessage.create(context);
 

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import cn.xender.core.HttpServerStart;
 import cn.xender.core.log.Logger;
 import cn.xender.core.server.utils.ActionProtocol;
 import cn.xender.core.server.utils.ShareMessage;
@@ -159,7 +160,10 @@ public class WaitingClientIPOnAP extends Base {
 
 				try {
 
-					String info = ShareMessage.createMyAppInfo(androidContext);
+					//先验证一下对方有没有安装我的app
+					boolean friendHasInstalledMe = HttpServerStart.friendHasInstalled(client.getIp(),client.getPort(),androidContext.getPackageName());
+
+					String info = ShareMessage.createMyAppInfo(androidContext,friendHasInstalledMe);
 
 
 					if (Logger.r) {

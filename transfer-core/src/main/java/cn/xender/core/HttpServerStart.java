@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 import java.util.Locale;
 
 import cn.xender.core.ap.utils.WifiAPUtil;
+import cn.xender.core.server.NetWorker;
 import cn.xender.core.server.service.HttpServerService;
 import cn.xender.core.server.utils.Port;
 
@@ -77,5 +78,19 @@ public class HttpServerStart {
             }
         }
         return "";
+    }
+
+
+    public static boolean friendHasInstalled(String ip,int port ,String package_name){
+
+        String url = friendHasInstalledUrl(ip,port,package_name);
+
+        String result = NetWorker.post(url);
+
+        return TextUtils.equals("1",result);
+    }
+
+    private static String friendHasInstalledUrl(String ip,int port,String pkg_name){
+        return String.format(Locale.US,"http://%s:%d//waiter/installed?pkg=%s",ip,port,pkg_name);
     }
 }

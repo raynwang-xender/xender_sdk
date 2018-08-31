@@ -91,6 +91,6 @@ public class HttpServerStart {
     }
 
     private static String friendHasInstalledUrl(String ip,int port,String pkg_name){
-        return String.format(Locale.US,"http://%s:%d//waiter/installed?pkg=%s",ip,port,pkg_name);
+        return String.format(Locale.US,"http://%s:%d/waiter/installed?pkg=%s",ip,port,pkg_name);
     }
 }

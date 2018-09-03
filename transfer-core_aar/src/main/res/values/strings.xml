@@ -1,21 +1,5 @@
 <resources>
     <string name="app_name">xender-transfer-sdk</string>
 
-
     <string name="qr_code_des">Open Xender【】scan the QR code</string>
-    <string name="tc_creating_ap">正在创建...</string>
-    <string name="tc_transferring">传输中，请稍后..</string>
-    <string name="tc_transfer_success">恭喜，传输成功！</string>
-    <string name="tc_transfer_failure">传输失败，请重试！</string>
-    <string name="tc_quit_dlg_content">确认退出吗？</string>
-    <string name="tc_quit_dlg_cancel">取消</string>
-    <string name="tc_quit_dlg_quit">退出</string>
-
-    <string name="tc_nougat_open_ap_warn_content">7.1需手动开启热点</string>
-    <string name="tc_nougat_open_ap_warn_btn">允许</string>
-    <string name="tc_dlg_exit">退出</string>
-    
-    <string name="tc_need_permission_contect_frends">需要一些权限，连接身边好友</string>
-    <string name="vidmix_title">Send File</string>
-
 </resources>

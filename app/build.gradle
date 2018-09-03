@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "cn.xender.transfertest"
+        applicationId "cn.xender.transfer"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 3
+        versionCode 4
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -29,15 +29,13 @@ android {
         }
     }
 
-
-
 }
 
-//repositories {
-//    flatDir {
-//        dirs 'libs'   // aar目录
-//    }
-//}
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -53,4 +51,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.nineoldandroids:library:2.4.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+
 }

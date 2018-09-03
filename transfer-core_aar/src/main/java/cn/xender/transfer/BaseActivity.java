@@ -28,12 +28,12 @@ public abstract class BaseActivity extends Activity {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setToolbar(int viewId, int titleId) {
+    public void setToolbar(int viewId, String title) {
         Toolbar mToolbarView = (Toolbar) findViewById(viewId);
         setActionBar(mToolbarView);
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            setTitle(titleId);
+            setTitle(title);
             setTitleColor(Color.WHITE);
             actionBar.setHomeAsUpIndicator(R.drawable.tc_ic_actionbar_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -41,9 +41,10 @@ public abstract class BaseActivity extends Activity {
         }
     }
 
-    public void setToolbarLow(int titleViewId, int titleId,int titleHomeId) {
+
+    public void setToolbarLow(int titleViewId, String title, int titleHomeId) {
         TextView toolbar_title = (TextView) findViewById(titleViewId);
-        toolbar_title.setText(titleId);
+        toolbar_title.setText(title);
 
         findViewById(titleHomeId).setOnClickListener(new View.OnClickListener() {
             @Override

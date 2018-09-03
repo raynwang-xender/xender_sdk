@@ -5,4 +5,9 @@
     <dimen name="tc_create_ripple_size">200dp</dimen>
 
 
+    <dimen name="qrcode_margintop">30dp</dimen>
+    <dimen name="qrcode_side_length">240dp</dimen>
+
+
+
 </resources>

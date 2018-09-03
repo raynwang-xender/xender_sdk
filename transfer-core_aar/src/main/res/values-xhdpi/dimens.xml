@@ -1,0 +1,4 @@
+<resources >
+    <dimen name="qrcode_margintop">40dp</dimen>
+    <dimen name="progressbar_margintop">160dp</dimen>
+</resources>

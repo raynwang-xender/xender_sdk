@@ -1,0 +1,7 @@
+<resources >
+    <dimen name="qrcode_margintop">60dp</dimen>
+    <dimen name="progressbar_margintop">180dp</dimen>
+
+    <!--mi6 n5 oppoF3-->
+
+</resources>

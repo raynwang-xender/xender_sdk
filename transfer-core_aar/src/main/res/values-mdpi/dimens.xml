@@ -1,0 +1,4 @@
+<resources >
+    <dimen name="qrcode_margintop">30dp</dimen>
+
+</resources>

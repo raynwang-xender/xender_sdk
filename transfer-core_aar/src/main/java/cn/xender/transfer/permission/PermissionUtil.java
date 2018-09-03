@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.xender.transfer.R;
+import cn.xender.transfer.ShareActivityContent;
 
 
 public class PermissionUtil {
@@ -181,16 +182,18 @@ public class PermissionUtil {
      * 是否允许权限dialog
      */
     public static void showPermissionDlg(final Activity mContext){
+        ShareActivityContent content = ShareActivityContent.getInstance();
 
         new AlertDialog.Builder(mContext)
-                .setMessage("需要一些权限，连接身边好友")
-                .setPositiveButton("允许", new DialogInterface.OnClickListener() {
+                .setCancelable(false)//点击外部区域，不关
+                .setMessage(content.getDlg_1_msg())
+                .setPositiveButton(content.getDlg_1_positive(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         requestAllNeededPermission(mContext);
                     }
                 })
-                .setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                .setNegativeButton(content.getDlg_1_negative(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mContext.finish();
@@ -199,10 +202,12 @@ public class PermissionUtil {
     }
 
     public static void showSettingPermissionDlg(final Activity mContext){
+        ShareActivityContent content = ShareActivityContent.getInstance();
 
         new AlertDialog.Builder(mContext)
-                .setMessage("需要到设置页面手动开启存储和位置权限")
-                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                .setCancelable(false)//点击外部区域，不关
+                .setMessage(content.getDlg_4_msg())
+                .setPositiveButton(content.getDlg_4_positive(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -211,7 +216,7 @@ public class PermissionUtil {
                         mContext.startActivityForResult(intent, PermissionUtil.BACK_FROM_SETTING_PERMISSION);
                     }
                 })
-                .setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                .setNegativeButton(content.getDlg_4_negative(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mContext.finish();

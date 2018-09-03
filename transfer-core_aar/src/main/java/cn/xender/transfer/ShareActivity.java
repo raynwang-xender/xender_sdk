@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -15,18 +14,18 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import cn.xender.core.ap.CoreApManager;
 import cn.xender.core.ap.CoreCreateApCallback;
 import cn.xender.core.ap.CreateApEvent;
 import cn.xender.core.server.utils.ActionListener;
 import cn.xender.core.server.utils.ActionProtocol;
-import cn.xender.core.server.utils.NeedSharedFiles;
 import cn.xender.transfer.permission.PermissionUtil;
 import cn.xender.transfer.views.NougatOpenApDlg;
 
@@ -35,8 +34,8 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
     private LinearLayout tc_content_container;
     private RelativeLayout rl_status;
-    private TextView tv_status;
-    private ImageView iv_status;
+    private TextView tv_status, tv_film_name, tv_film_volume;
+    private ImageView iv_status, iv_film_pic;
 
     private ActionProtocol protocol;
 
@@ -47,22 +46,27 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
         setContentView(R.layout.tc_share_activity);
 
+        getContentFromInstance();
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){//21 5.0
-            setToolbar(R.id.toolbar,R.string.vidmix_title);
+            setToolbar(R.id.toolbar,title);
         }else{
-            setToolbarLow(R.id.toolbar_title,R.string.vidmix_title,R.id.home_back);
+            setToolbarLow(R.id.toolbar_title,title,R.id.home_back);
         }
 
         tc_content_container = findViewById(R.id.tc_content_container);
+        iv_film_pic = findViewById(R.id.iv_film_pic);
+        if (!TextUtils.isEmpty(pic_url)) {
+            Glide.with(this).load(pic_url).into(iv_film_pic);
+        }
+        tv_film_name = findViewById(R.id.tv_film_name);
+        tv_film_name.setText(film_name);
+        tv_film_volume = findViewById(R.id.tv_film_volume);
+        tv_film_volume.setText(film_volume);
         rl_status = findViewById(R.id.rl_status);
         tv_status = findViewById(R.id.tv_status);
+        tv_status.setText(connecting);
         iv_status = new ImageView(this);
-
-        /**
-         * Rayn
-         * 只有正在创建..需要更改？
-         */
-        addWaitingLayout();
 
         CoreApManager.getInstance().initApplicationContext(getApplicationContext());
 
@@ -73,10 +77,22 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         protocol.register(this);
     }
 
-    private void addWaitingLayout(){
-        View tc_waiting_layout = LayoutInflater.from(this).inflate(R.layout.tc_waiting_layout,null);
-        tc_content_container.removeAllViews();
-        tc_content_container.addView(tc_waiting_layout);
+    private String title;
+    private String invite;
+    private String pic_url;
+    private String film_name;
+    private String film_volume;
+    private String connecting;
+    private String sending;
+
+    private void getContentFromInstance() {
+        title = ShareActivityContent.getInstance().getTitle();
+        invite = ShareActivityContent.getInstance().getInvite();
+        pic_url = ShareActivityContent.getInstance().getPic_url();
+        film_name = ShareActivityContent.getInstance().getFilm_name();
+        film_volume = ShareActivityContent.getInstance().getFilm_volume();
+        connecting = ShareActivityContent.getInstance().getConnecting();
+        sending = ShareActivityContent.getInstance().getSending();
     }
 
     /**
@@ -120,7 +136,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         //CREATE_OK = 6
         if(result.isOk() && !TextUtils.isEmpty(result.getUrl())){
 
-            int qrSize = PhonePxConversion.dip2px(ShareActivity.this,200);
+            int qrSize = PhonePxConversion.dip2px(ShareActivity.this,230);
 
             new QrCodeCreateWorker().startWork(ShareActivity.this,_handler,result.getUrl(),qrSize,qrSize, Color.WHITE,true);
 
@@ -220,14 +236,15 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     private void showQuitDlg(){
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setMessage(R.string.tc_quit_dlg_content)
-                .setPositiveButton(R.string.tc_quit_dlg_quit, new DialogInterface.OnClickListener() {
+                .setCancelable(false)//点击外部区域，不关
+                .setMessage(ShareActivityContent.getInstance().getDlg_2_msg())
+                .setPositiveButton(ShareActivityContent.getInstance().getDlg_2_positive(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
                 })
-                .setNegativeButton(R.string.tc_quit_dlg_cancel, null)
+                .setNegativeButton(ShareActivityContent.getInstance().getDlg_2_negative(), null)
                 .create();
 
         dialog.show();
@@ -239,41 +256,26 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         View tc_qr_layout = LayoutInflater.from(this).inflate(R.layout.tc_qr_layout,null);
         tc_content_container.removeAllViews();
 
+        TextView tv_invite = tc_qr_layout.findViewById(R.id.tv_invite);
+        tv_invite.setText(invite);
+
         tc_content_container.addView(tc_qr_layout);
         ((ImageView)findViewById(R.id.tc_qr_code_iv)).setImageBitmap(QrCodeCreateWorker.getQrBitmap());
-
-//        tv_status.setText("Connecting..");
-//        rl_status.removeAllViews();
-//        rl_status.addView(tv_status);
 
     }
 
 
     private void showTransferingLayout(){
-
-        addWaitingLayout();
-
-        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
-        tc_waiting_des_tv.setText(R.string.tc_transferring);
-
-        tv_status.setText("Sending File..");
+        tv_status.setText(sending);
     }
 
     private void showTransferSuccessLayout(){
-        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
-        tc_waiting_des_tv.setText(R.string.tc_transfer_success);
-
         iv_status.setImageDrawable(getResources().getDrawable(R.drawable.complete));
         rl_status.removeAllViews();
         rl_status.addView(iv_status);
-
     }
 
     private void showTransferFailureLayout(){
-
-        TextView tc_waiting_des_tv = findViewById(R.id.tc_waiting_des_tv);
-        tc_waiting_des_tv.setText(R.string.tc_transfer_failure);
-
         iv_status.setImageDrawable(getResources().getDrawable(R.drawable.fail));
         rl_status.removeAllViews();
         rl_status.addView(iv_status);

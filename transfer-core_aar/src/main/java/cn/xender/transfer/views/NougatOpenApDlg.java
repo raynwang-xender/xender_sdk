@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.view.KeyEvent;
 
 import cn.xender.transfer.R;
+import cn.xender.transfer.ShareActivityContent;
 
 
 public class NougatOpenApDlg {
@@ -23,11 +24,12 @@ public class NougatOpenApDlg {
     }
 
     private void init() {
+        ShareActivityContent content = ShareActivityContent.getInstance();
         if(dialog==null){
             dialog = new AlertDialog.Builder(mActivity)
-                    .setCancelable(false)
-                    .setMessage(R.string.tc_nougat_open_ap_warn_content)
-                    .setPositiveButton(R.string.tc_nougat_open_ap_warn_btn, new DialogInterface.OnClickListener() {
+                    .setCancelable(false)//点击外部区域，不关
+                    .setMessage(content.getDlg_3_msg())
+                    .setPositiveButton(content.getDlg_3_positive(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             try {
@@ -44,7 +46,7 @@ public class NougatOpenApDlg {
                             }
                         }
                     })
-                    .setNegativeButton(R.string.tc_dlg_exit, new DialogInterface.OnClickListener() {
+                    .setNegativeButton(content.getDlg_3_negative(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mActivity.finish();

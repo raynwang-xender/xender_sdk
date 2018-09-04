@@ -14,6 +14,14 @@ public class ShareActivityContent {
     }
 
     /**
+     * Rayn
+     * 关闭Activity的时候，都要把数据单例置空
+     */
+    public static void setNull(){
+        instance = null;
+    }
+
+    /**
      * 上方标题
      */
     private String title = "Send File";

@@ -49,6 +49,7 @@ public class NougatOpenApDlg {
                     .setNegativeButton(content.getDlg_3_negative(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            ShareActivityContent.setNull();
                             mActivity.finish();
                         }
                     })
@@ -63,7 +64,7 @@ public class NougatOpenApDlg {
 
                 if(event.getAction() ==KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK ){
                     dismiss();
-
+                    ShareActivityContent.setNull();
                     mActivity.finish();
                 }
                 return false;

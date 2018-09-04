@@ -84,15 +84,17 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     private String film_volume;
     private String connecting;
     private String sending;
+    private ShareActivityContent content;
 
     private void getContentFromInstance() {
-        title = ShareActivityContent.getInstance().getTitle();
-        invite = ShareActivityContent.getInstance().getInvite();
-        pic_url = ShareActivityContent.getInstance().getPic_url();
-        film_name = ShareActivityContent.getInstance().getFilm_name();
-        film_volume = ShareActivityContent.getInstance().getFilm_volume();
-        connecting = ShareActivityContent.getInstance().getConnecting();
-        sending = ShareActivityContent.getInstance().getSending();
+        content = ShareActivityContent.getInstance();
+        title = content.getTitle();
+        invite = content.getInvite();
+        pic_url = content.getPic_url();
+        film_name = content.getFilm_name();
+        film_volume = content.getFilm_volume();
+        connecting = content.getConnecting();
+        sending = content.getSending();
     }
 
     /**
@@ -173,6 +175,13 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         }else if(result.isOff()){
                 finish();
         }
+    }
+
+    //退出的时候把单例置空
+    @Override
+    public void finish() {
+        content = null;
+        super.finish();
     }
 
 

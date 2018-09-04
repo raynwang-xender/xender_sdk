@@ -77,6 +77,7 @@ public abstract class BaseActivity extends Activity {
     }
 
     void onTitleHomeClick(){
+        ShareActivityContent.setNull();
         finish();
     }
 

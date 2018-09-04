@@ -196,6 +196,7 @@ public class PermissionUtil {
                 .setNegativeButton(content.getDlg_1_negative(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ShareActivityContent.setNull();
                         mContext.finish();
                     }
                 }).show();
@@ -219,6 +220,7 @@ public class PermissionUtil {
                 .setNegativeButton(content.getDlg_4_negative(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ShareActivityContent.setNull();
                         mContext.finish();
                     }
                 }).show();

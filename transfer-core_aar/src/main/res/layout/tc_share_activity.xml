@@ -50,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/vidmix"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:layout_centerVertical="true"/>
 
                 <ImageView
                     android:id="@+id/vidmix_to_xender"
@@ -64,7 +65,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/xender"
                     android:layout_toRightOf="@+id/vidmix_to_xender"
-                    android:layout_marginLeft="24dp"/>
+                    android:layout_marginLeft="24dp"
+                    android:layout_centerVertical="true"/>
 
             </RelativeLayout>
 

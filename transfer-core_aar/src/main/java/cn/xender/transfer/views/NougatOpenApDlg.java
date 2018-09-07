@@ -7,7 +7,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.view.KeyEvent;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import cn.xender.core.ap.CoreApManager;
 import cn.xender.transfer.R;
@@ -16,7 +20,7 @@ import cn.xender.transfer.ShareActivityContent;
 
 public class NougatOpenApDlg {
 
-    private AlertDialog dialog;
+    private MaterialDialog dialog;
     private Activity mActivity;
 
     public NougatOpenApDlg(Activity mActivity){
@@ -27,12 +31,15 @@ public class NougatOpenApDlg {
     private void init() {
         ShareActivityContent content = ShareActivityContent.getInstance();
         if(dialog==null){
-            dialog = new AlertDialog.Builder(mActivity)
-                    .setCancelable(false)//点击外部区域，不关
-                    .setMessage(content.getDlg_3_msg())
-                    .setPositiveButton(content.getDlg_3_positive(), new DialogInterface.OnClickListener() {
+
+            dialog = new MaterialDialog.Builder(mActivity)
+                    .cancelable(false)
+                    .content(content.getDlg_3_msg())
+                    .positiveText(content.getDlg_3_positive())
+                    .negativeText(content.getDlg_3_negative())
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             try {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setComponent(new ComponentName("com.android.settings","com.android.settings.TetherSettings"));
@@ -47,16 +54,16 @@ public class NougatOpenApDlg {
                             }
                         }
                     })
-                    .setNegativeButton(content.getDlg_3_negative(), new DialogInterface.OnClickListener() {
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            ShareActivityContent.setNull();
                             ShareActivityContent.setNull();
                             CoreApManager.getInstance().createFailed();
                             mActivity.finish();
                         }
                     })
-                    .create();
-
+                    .build();
         }
 
 

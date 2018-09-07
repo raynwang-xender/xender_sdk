@@ -27,35 +27,6 @@ public abstract class BaseActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setToolbar(int viewId, String title) {
-        Toolbar mToolbarView = (Toolbar) findViewById(viewId);
-        setActionBar(mToolbarView);
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            setTitle(title);
-            setTitleColor(Color.WHITE);
-            actionBar.setHomeAsUpIndicator(R.drawable.tc_ic_actionbar_back);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-        }
-    }
-
-
-    public void setToolbarLow(int titleViewId, String title, int titleHomeId) {
-        TextView toolbar_title = (TextView) findViewById(titleViewId);
-        toolbar_title.setText(title);
-
-        findViewById(titleHomeId).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onTitleHomeClick();
-            }
-        });
-    }
-
-
-
     @Override
     protected void onResume() {
         super.onResume();

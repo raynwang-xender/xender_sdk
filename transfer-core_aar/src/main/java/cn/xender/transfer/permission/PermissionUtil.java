@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +21,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,46 +188,52 @@ public class PermissionUtil {
     public static void showPermissionDlg(final Activity mContext){
         ShareActivityContent content = ShareActivityContent.getInstance();
 
-        new AlertDialog.Builder(mContext)
-                .setCancelable(false)//点击外部区域，不关
-                .setMessage(content.getDlg_1_msg())
-                .setPositiveButton(content.getDlg_1_positive(), new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(mContext)
+                .cancelable(false)
+                .content(content.getDlg_1_msg())
+                .positiveText(content.getDlg_1_positive())
+                .negativeText(content.getDlg_1_negative())
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         requestAllNeededPermission(mContext);
                     }
                 })
-                .setNegativeButton(content.getDlg_1_negative(), new DialogInterface.OnClickListener() {
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         ShareActivityContent.setNull();
                         mContext.finish();
                     }
-                }).show();
+                })
+                .show();
     }
 
     public static void showSettingPermissionDlg(final Activity mContext){
         ShareActivityContent content = ShareActivityContent.getInstance();
 
-        new AlertDialog.Builder(mContext)
-                .setCancelable(false)//点击外部区域，不关
-                .setMessage(content.getDlg_4_msg())
-                .setPositiveButton(content.getDlg_4_positive(), new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(mContext)
+                .cancelable(false)
+                .content(content.getDlg_4_msg())
+                .positiveText(content.getDlg_4_positive())
+                .negativeText(content.getDlg_4_negative())
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts("package", mContext.getPackageName(), null);
                         intent.setData(uri);
                         mContext.startActivityForResult(intent, PermissionUtil.BACK_FROM_SETTING_PERMISSION);
                     }
                 })
-                .setNegativeButton(content.getDlg_4_negative(), new DialogInterface.OnClickListener() {
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         ShareActivityContent.setNull();
                         mContext.finish();
                     }
-                }).show();
+                })
+                .show();
 
     }
 }

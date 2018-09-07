@@ -5,7 +5,31 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/tc_toolbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#121416">
+
+        <ImageView
+            android:id="@+id/iv_left_narrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/tc_ic_actionbar_back"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send File"
+            android:textColor="@color/tc_white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_left_narrow"
+            android:layout_marginLeft="30dp"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +49,13 @@
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:layout_centerInParent="true">
 
                 <ProgressBar
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_centerInParent="true"/>
+                    />
 
             </RelativeLayout>
 
@@ -62,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="#424756"
+                android:background="#414752"
                 android:layout_margin="20dp">
                 <!--背景3-->
 

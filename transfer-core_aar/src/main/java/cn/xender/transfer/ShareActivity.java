@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 
@@ -54,15 +56,9 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
         getContentFromInstance();
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){//21 5.0
-            setToolbar(R.id.toolbar,title);
-        }else{
-            setToolbarLow(R.id.toolbar_title,title,R.id.home_back);
-        }
-
         tc_content_container = findViewById(R.id.tc_content_container);
         iv_film_pic = findViewById(R.id.iv_film_pic);
-        if (new File(pic_url).exists()) {
+        if (!TextUtils.isEmpty(pic_url)) {
             Glide.with(this).load(pic_url).into(iv_film_pic);
         }
         tv_film_name = findViewById(R.id.tv_film_name);
@@ -75,6 +71,14 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         iv_status = new ImageView(this);
         tv_invite = findViewById(R.id.tv_invite);
         tv_invite.setText(invite);
+
+        //左上角箭头
+        findViewById(R.id.iv_left_narrow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showQuitDlg();
+            }
+        });
 
         CoreApManager.getInstance().initApplicationContext(getApplicationContext());
 
@@ -154,7 +158,7 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         //CREATE_OK = 6
         if(result.isOk() && !TextUtils.isEmpty(result.getUrl())){
 
-            int qrSize = PhonePxConversion.dip2px(ShareActivity.this,240);
+            int qrSize = PhonePxConversion.dip2px(ShareActivity.this,180);
 
             new QrCodeCreateWorker().startWork(ShareActivity.this,_handler,result.getUrl(),qrSize,qrSize, Color.WHITE,true);
 
@@ -262,24 +266,17 @@ public class ShareActivity extends BaseActivity implements ActionListener {
     private void showQuitDlg(){
 
         new MaterialDialog.Builder(this)
-                .content("222222222222222222222")
-                .positiveText("222yes")
-                .negativeText("222no")
+                .cancelable(false)
+                .content(ShareActivityContent.getInstance().getDlg_2_msg())
+                .positiveText(ShareActivityContent.getInstance().getDlg_2_positive())
+                .negativeText(ShareActivityContent.getInstance().getDlg_2_negative())
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finish();
+                    }
+                })
                 .show();
-
-//        AlertDialog dialog = new AlertDialog.Builder(this)
-//                .setCancelable(false)//点击外部区域，不关
-//                .setMessage(ShareActivityContent.getInstance().getDlg_2_msg())
-//                .setPositiveButton(ShareActivityContent.getInstance().getDlg_2_positive(), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//                })
-//                .setNegativeButton(ShareActivityContent.getInstance().getDlg_2_negative(), null)
-//                .create();
-//
-//        dialog.show();
     }
 
 

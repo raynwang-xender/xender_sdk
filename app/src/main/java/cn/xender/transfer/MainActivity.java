@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import cn.xender.core.server.utils.NeedSharedFiles;
-import cn.xender.core.server.utils.NeedSharedFiles$FileItem;
 import cn.xender.transfertest.R;
 
 public class MainActivity extends Activity {
@@ -22,8 +21,8 @@ public class MainActivity extends Activity {
 
                 NeedSharedFiles.confirmStart();//初始化
                 NeedSharedFiles.setShareMyApk(true);//是否传输apk包，默认true
-                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles$FileItem.CATE_IMAGE);
-//                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles.FileItem.CATE_IMAGE);
+//                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles$FileItem.CATE_IMAGE);
+                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles.FileItem.CATE_IMAGE);
 
                 ShareActivityContent content = ShareActivityContent.getInstance();
                 content.setTitle("titletitle");

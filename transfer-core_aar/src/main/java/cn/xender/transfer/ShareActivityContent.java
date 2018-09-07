@@ -4,9 +4,9 @@ public class ShareActivityContent {
 
     private ShareActivityContent(){}
 
-    private static ShareActivityContent instance;
+    private static ShareActivityContent instance = null;
 
-    public static ShareActivityContent getInstance(){
+    public static synchronized ShareActivityContent getInstance(){
         if (null == instance){
             instance = new ShareActivityContent();
         }
@@ -17,8 +17,10 @@ public class ShareActivityContent {
      * Rayn
      * 关闭Activity的时候，都要把数据单例置空
      */
-    public static void setNull(){
-        instance = null;
+    public static synchronized void setNull(){
+        if (instance != null) {
+            instance = null;
+        }
     }
 
     /**

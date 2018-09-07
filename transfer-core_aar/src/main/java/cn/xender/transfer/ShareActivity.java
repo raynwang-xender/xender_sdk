@@ -61,7 +61,6 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         if (!TextUtils.isEmpty(pic_url)) {
             Glide.with(this).load(pic_url).into(iv_film_pic);
         }
-        System.out.println("---Rayn ");
         tv_film_name = findViewById(R.id.tv_film_name);
         tv_film_name.setText(film_name);
         tv_film_volume = findViewById(R.id.tv_film_volume);

@@ -5,14 +5,32 @@
     android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/tc_qr_code_iv"
+
+    <!--<ImageView-->
+        <!--android:id="@+id/tc_qr_code_iv"-->
+        <!--android:layout_width="@dimen/qrcode_side_length"-->
+        <!--android:layout_height="@dimen/qrcode_side_length"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="@dimen/qrcode_margintop"-->
+        <!--android:background="@drawable/tc_qr_bg"-->
+        <!--android:scaleType="centerInside" />-->
+
+
+    <FrameLayout
         android:layout_width="@dimen/qrcode_side_length"
         android:layout_height="@dimen/qrcode_side_length"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/qrcode_margintop"
         android:background="@drawable/tc_qr_bg"
-        android:scaleType="center" />
+        android:layout_marginTop="@dimen/qrcode_margintop">
+
+        <ImageView
+            android:id="@+id/tc_qr_code_iv"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside" />
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/tv_invite"

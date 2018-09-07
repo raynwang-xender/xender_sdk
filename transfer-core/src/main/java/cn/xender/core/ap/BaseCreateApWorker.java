@@ -71,6 +71,11 @@ public class BaseCreateApWorker implements ICreateApWorker {
     @Override
     public void createAp(String ssid, String password, long timeout, int requestCode, CoreCreateApCallback callback) {
 
+        /**
+         * Rayn
+         * creating默认是false，比较之后是true，!之后就不走了，往下
+         * 下一次就creating就设置成true了
+         */
         if(!creating.compareAndSet(false, true)){
             return;
         }
@@ -152,6 +157,11 @@ public class BaseCreateApWorker implements ICreateApWorker {
         }
 
 
+        /**
+         * Rayn
+         * 检测wifi是否开启，热点是否开启，开了的话就关掉，然后doOpenApOpt
+         * 如果都else也会然后doOpenApOpt
+         */
         if (WifiAPUtil.isWifiEnabled(getWifiManager())) {
             if (Logger.r) {
                 Logger.c(TAG, "wifi enabled, turn it off, and waiting " + ssid);
@@ -276,8 +286,6 @@ public class BaseCreateApWorker implements ICreateApWorker {
 
 
     void doOpenApOpt(final String ssid, final String password) {
-
-
 
 
     }
@@ -495,8 +503,6 @@ public class BaseCreateApWorker implements ICreateApWorker {
 
             }
         }).start();
-
-
     }
 
     void handleNoIpQuestionAfterFetchApIp(){

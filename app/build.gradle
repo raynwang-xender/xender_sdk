@@ -30,18 +30,18 @@ android {
     }
 
 }
-
-repositories {
-    flatDir {
-        dirs 'libs'   // aar目录
-    }
-}
+//
+//repositories {
+//    flatDir {
+//        dirs 'libs'   // aar目录
+//    }
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':transfer-core')
     implementation project(':transfer-core_aar')
-//    compile (name: 'transfer-core_aar-release0905', ext:'aar')
+//    compile (name: 'transfer-core_aar-release0906', ext:'aar')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'

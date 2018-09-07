@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 
 import cn.xender.core.ap.CoreApManager;
@@ -244,7 +247,9 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
     private void showQuitDlg(){
 
-        AlertDialog dialog = new AlertDialog.Builder(this)
+//        MaterialDialog materialDialogdialog = new MaterialDialog()
+
+        AlertDialog dialog = new AlertDialog.Builder(this,3)
                 .setCancelable(false)//点击外部区域，不关
                 .setMessage(ShareActivityContent.getInstance().getDlg_2_msg())
                 .setPositiveButton(ShareActivityContent.getInstance().getDlg_2_positive(), new DialogInterface.OnClickListener() {

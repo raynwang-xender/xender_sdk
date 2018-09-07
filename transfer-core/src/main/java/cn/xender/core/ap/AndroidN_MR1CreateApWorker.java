@@ -95,7 +95,7 @@ public class AndroidN_MR1CreateApWorker extends BaseCreateApWorker {
 
         if(needManualOpenAp() && creating.get()){
             if(callback != null){
-                callback.callback(CreateApEvent.save25ConfigEvent(requestCode));
+                callback.callback(CreateApEvent.save25ConfigEvent(requestCode));//给CreateApEvent设置type，25 7.1
             }
         }
 

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.view.KeyEvent;
 
+import cn.xender.core.ap.CoreApManager;
 import cn.xender.transfer.R;
 import cn.xender.transfer.ShareActivityContent;
 
@@ -50,6 +51,7 @@ public class NougatOpenApDlg {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ShareActivityContent.setNull();
+                            CoreApManager.getInstance().createFailed();
                             mActivity.finish();
                         }
                     })
@@ -58,18 +60,19 @@ public class NougatOpenApDlg {
         }
 
 
-        dialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-
-                if(event.getAction() ==KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK ){
-                    dismiss();
-                    ShareActivityContent.setNull();
-                    mActivity.finish();
-                }
-                return false;
-            }
-        });
+//        dialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
+//            @Override
+//            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//
+//                if(event.getAction() ==KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK ){
+//                    System.out.println("---Rayn -----------");
+////                    dismiss();
+//                    ShareActivityContent.setNull();
+//                    mActivity.finish();
+//                }
+//                return false;
+//            }
+//        });
     }
 
     public void dismiss(){

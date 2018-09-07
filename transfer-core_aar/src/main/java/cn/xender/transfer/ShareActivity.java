@@ -137,6 +137,14 @@ public class ShareActivity extends BaseActivity implements ActionListener {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bbb && !CoreApManager.getInstance().isApEnabled()) {
+            showManualOpenDialog();
+        }
+    }
+
     private void handleCreateResult(CreateApEvent result,boolean retryIfNeed) {
         //CREATE_OK = 6
         if(result.isOk() && !TextUtils.isEmpty(result.getUrl())){
@@ -189,12 +197,13 @@ public class ShareActivity extends BaseActivity implements ActionListener {
 
 
     private NougatOpenApDlg dlg;
+    private boolean bbb = false;
 
     private void showManualOpenDialog(){
         if(dlg == null){
             dlg = new NougatOpenApDlg(this);
         }
-
+        bbb = true;
         dlg.show();
     }
 

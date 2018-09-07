@@ -6,45 +6,15 @@
 
 
 
-    <!--<ImageView-->
-        <!--android:id="@+id/tc_qr_code_iv"-->
-        <!--android:layout_width="@dimen/qrcode_side_length"-->
-        <!--android:layout_height="@dimen/qrcode_side_length"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="@dimen/qrcode_margintop"-->
-        <!--android:background="@drawable/tc_qr_bg"-->
-        <!--android:scaleType="centerInside" />-->
-
-
-    <FrameLayout
-        android:layout_width="@dimen/qrcode_side_length"
-        android:layout_height="@dimen/qrcode_side_length"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/tc_qr_bg"
-        android:layout_marginTop="@dimen/qrcode_margintop">
-
-        <ImageView
-            android:id="@+id/tc_qr_code_iv"
-            android:layout_width="230dp"
-            android:layout_height="230dp"
-            android:layout_gravity="center"
-            android:scaleType="centerInside" />
-    </FrameLayout>
-
-
-    <TextView
-        android:id="@+id/tv_invite"
-        style="@style/tc_text_style_normal"
+    <ImageView
+        android:id="@+id/tc_qr_code_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:lineSpacingExtra="10dp"
-        android:paddingLeft="@dimen/tc_common_margin"
-        android:paddingRight="@dimen/tc_common_margin"
-        android:text="@string/qr_code_des"
-        android:textColor="#8C9BAD"
-        android:textSize="14sp" />
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/tc_qr_bg"
+        android:scaleType="center" />
+
+
 
 
 </LinearLayout>

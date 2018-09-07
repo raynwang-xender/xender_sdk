@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="#414752"
+                android:background="@drawable/bottom_card_bg"
                 android:layout_margin="20dp">
                 <!--背景3-->
 

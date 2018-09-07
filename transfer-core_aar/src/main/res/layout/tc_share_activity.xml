@@ -24,7 +24,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/progressbar_margintop"/>
+                android:layout_marginTop="160dp"/>
 
         </LinearLayout>
 

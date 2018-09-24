@@ -9,8 +9,6 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
-        <item name="android:textColorPrimary">@color/tc_txt_color</item>
-        <item name="android:windowBackground">@color/tc_bg_color</item>
     </style>
 
 

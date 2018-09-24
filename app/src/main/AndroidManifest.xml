@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="cn.xender.transfer.ShareActivity"
+        <activity android:name="cn.xender.transfer.MyShareActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" />
 

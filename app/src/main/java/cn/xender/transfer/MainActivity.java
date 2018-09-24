@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import cn.xender.core.server.utils.NeedSharedFiles;
+import cn.xender.aar.ShareActivityContent;
 import cn.xender.transfertest.R;
+import cn.xender.core.server.utils.NeedSharedFiles;
+
 
 public class MainActivity extends Activity {
 
@@ -19,19 +21,10 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                NeedSharedFiles.confirmStart();//初始化
-                NeedSharedFiles.setShareMyApk(true);//是否传输apk包，默认true
-//                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles$FileItem.CATE_IMAGE);
-                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png", NeedSharedFiles.FileItem.CATE_IMAGE);
 
+                NeedSharedFiles.setForceShareApk(true);
+                //dialog的文字，需要设置
                 ShareActivityContent content = ShareActivityContent.getInstance();
-                content.setTitle("titletitle");
-                content.setInvite("inviteinvite");
-                content.setPic_url("/storage/emulated/0/aaa.png");
-                content.setFilm_name("film_namefilm_name");
-                content.setFilm_volume("100mb");
-                content.setConnecting("connectingconnecting");
-                content.setSending("sendingsending");
                 content.setDlg_1_msg("11111111");
                 content.setDlg_1_positive("111yes");
                 content.setDlg_1_negative("111no");
@@ -45,11 +38,12 @@ public class MainActivity extends Activity {
                 content.setDlg_4_positive("444yes");
                 content.setDlg_4_negative("444no");
 
-                Intent intent = new Intent(MainActivity.this,ShareActivity.class);
+                Intent intent = new Intent(MainActivity.this,MyShareActivity.class);
                 startActivity(intent);
 
             }
         });
+
 
     }
 }

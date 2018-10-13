@@ -19,7 +19,7 @@
         android:id="@+id/share_btn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="启动SDK"
+        android:text="Start SDK"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textSize="18sp"
@@ -32,7 +32,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="60dp"
         android:textSize="26sp"
-        android:text="这是一个集成Xender SDK的App"
+        android:text="This is an App accessed SDK"
         android:gravity="center"/>
 
 </LinearLayout>

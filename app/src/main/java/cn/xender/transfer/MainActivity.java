@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import cn.xender.aar.ShareActivityContent;
+import cn.xender.aar.StatisticsParams;
 import cn.xender.transfertest.R;
 import cn.xender.core.server.utils.NeedSharedFiles;
 
@@ -21,22 +22,28 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
-                NeedSharedFiles.setForceShareApk(true);
                 //dialog的文字，需要设置
                 ShareActivityContent content = ShareActivityContent.getInstance();
-                content.setDlg_1_msg("11111111");
+                content.setDlg_1_msg("11111111 Need some permissions to share with friends");
                 content.setDlg_1_positive("111yes");
                 content.setDlg_1_negative("111no");
-                content.setDlg_2_msg("22222222");
+                content.setDlg_2_msg("22222222 Confirm disconnection?");
                 content.setDlg_2_positive("222yes");
                 content.setDlg_2_negative("222no");
-                content.setDlg_3_msg("3333333");
+                content.setDlg_3_msg("3333333 Android 7.1 need turning on hotspot manually");
                 content.setDlg_3_positive("333yes");
                 content.setDlg_3_negative("333no");
-                content.setDlg_4_msg("4444444");
+                content.setDlg_4_msg("4444444 Please enter system setting to allow storage and location permissions");
                 content.setDlg_4_positive("444yes");
                 content.setDlg_4_negative("444no");
+
+                //每次必传apk
+                NeedSharedFiles.setForceShareApk(true);
+
+                //设置key secret
+                StatisticsParams.initKeyAndSecret("2b2fd8a6751247bbbbfe6307b6783f38","0c91908ee768436b826cf6819c09218f");
+                //
+                StatisticsParams.addCustomParams("params111","params222");
 
                 Intent intent = new Intent(MainActivity.this,MyShareActivity.class);
                 startActivity(intent);

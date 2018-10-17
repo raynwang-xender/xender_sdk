@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 
                 //设置key secret
                 StatisticsParams.initKeyAndSecret("2b2fd8a6751247bbbbfe6307b6783f38","0c91908ee768436b826cf6819c09218f");
-                //
+
                 StatisticsParams.addCustomParams("params111","params222");
 
                 Intent intent = new Intent(MainActivity.this,MyShareActivity.class);

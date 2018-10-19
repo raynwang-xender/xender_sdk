@@ -48,63 +48,104 @@ public class MyShareActivity extends ShareActivity {
     }
 
 
-//    @Override
-//    public void someoneOnline() {
-//        Toast.makeText(this,"connect success",Toast.LENGTH_SHORT).show();
-//    }
-//    @Override
-//    public void someoneOffline() {
-//    }
-//    /**
-//     * @param s     android_id
-//     * @param s1    channel
-//     * @param s2    filePath
-//     */
-//    @Override
-//    public void transferSuccess(String s, String s1, String s2) {   //每传一个文件就走一次
-//                                                                    //Run once per file.
-//        Toast.makeText(this,s2+"transfer success",Toast.LENGTH_SHORT).show();
-//    }
-//    /**
-//     * @param s     filePath
-//     */
-//    @Override
-//    public void transferFailure(String s) {
-//    }
-//    /**
-//     * @param s     android_id
-//     * @param s1    filePath
-//     */
-//    @Override
-//    public void transferAll(String s, String s1) {  //传完所有，走一次
-//                                                    //Run once after all files.
-//        Toast.makeText(this,"transfer all",Toast.LENGTH_SHORT).show();
-//    }
-
-
-    @Override
-    protected void connect() {
-        System.out.println("---Rayn 连上了");
-    }
-
-
-    @Override
-    protected void allFileSucc(String s, String s1) {
-
-    }
-
-    @Override
-    protected void oneFileFail(String s) {
-
-    }
-
+    /**
+     * One file success, run once
+     * @param s     phone B android Id
+     * @param s1    channel
+     * @param s2    filepath
+     */
     @Override
     protected void oneFileSucc(String s, String s1, String s2) {
+        super.oneFileSucc(s, s1, s2);
+    }
 
+    /**
+     * One file fail, run once
+     * @param s     filepath
+     */
+    @Override
+    protected void oneFileFail(String s) {
+        super.oneFileFail(s);
+    }
+
+    /**
+     * All files success, run once
+     * @param s     phone B android Id
+     * @param s1    channel
+     */
+    @Override
+    protected void allFileSucc(String s, String s1) {
+        super.allFileSucc(s, s1);
+    }
+
+    /**
+     * Connect successfully
+     */
+    @Override
+    protected void connect() {
+        super.connect();
+    }
+
+    /**
+     * Disconnect
+     */
+    @Override
+    protected void disconnect() {
     }
 
     @Override
-    protected void disconnect() {
+    protected void grantStoragePermi() {
+    }
 
+    @Override
+    protected void grantLocationPermi() {
+    }
+
+    @Override
+    protected void denyStoragePermi() {
+    }
+
+    @Override
+    protected void denyLocationPermi() {
+    }
+
+    @Override
+    protected void denyStoragePermiAndDontAsk() {
+    }
+
+    @Override
+    protected void denyLocationPermiAndDontAsk() {
+    }
+
+    @Override
+    protected void dialog_1_yes() {
+    }
+
+    @Override
+    protected void dialog_2_yes() {
+    }
+
+    @Override
+    protected void dialog_3_yes() {
+    }
+
+    @Override
+    protected void dialog_4_yes() {
+    }
+
+    @Override
+    protected void dialog_1_no() {
+    }
+
+    @Override
+    protected void dialog_2_no() {
+    }
+
+    @Override
+    protected void dialog_3_no() {
+    }
+
+    @Override
+    protected void dialog_4_no() {
     }
 }

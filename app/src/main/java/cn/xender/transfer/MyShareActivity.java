@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import cn.xender.aar.QrCodeCreateWorker;
 import cn.xender.aar.ShareActivity;
-import cn.xender.core.server.utils.NeedSharedFiles;
 import cn.xender.transfertest.R;
 
 /**
@@ -84,13 +83,6 @@ public class MyShareActivity extends ShareActivity {
     @Override
     protected void connect() {
         super.connect();
-    }
-
-    /**
-     * Disconnect
-     */
-    @Override
-    protected void disconnect() {
     }
 
     @Override

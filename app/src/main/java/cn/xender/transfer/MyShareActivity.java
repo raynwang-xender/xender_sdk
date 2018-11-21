@@ -85,6 +85,9 @@ public class MyShareActivity extends ShareActivity {
         super.connect();
     }
 
+
+
+
     @Override
     protected void grantStoragePermi() {
     }

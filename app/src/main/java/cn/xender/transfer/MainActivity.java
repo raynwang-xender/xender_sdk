@@ -22,11 +22,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                NeedSharedFiles.confirmStart();//初始化
+                NeedSharedFiles.confirmStart(); //初始化
+                                                //init
 
-                NeedSharedFiles.setForceShareApk(true);//每次必传apk
+                NeedSharedFiles.setForceShareApk(true); //每次必传apk
+                                                        //force to transfer apk every time
 
                 //dialog的文字，需要设置
+                //set texts for dialogs
                 ShareActivityContent content = ShareActivityContent.getInstance();
                 content.setDlg_1_msg("11111111 Need some permissions to share with friends");
                 content.setDlg_1_positive("111yes");

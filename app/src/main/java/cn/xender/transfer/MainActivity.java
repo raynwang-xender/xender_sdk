@@ -2,7 +2,10 @@ package cn.xender.transfer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import cn.xender.aar.ShareActivityContent;
@@ -22,6 +25,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                NeedSharedFiles.confirmStart();
+
+                NeedSharedFiles.setForceShareApk(true);
+
+                NeedSharedFiles.setNeedOpenXender(true);
+
+                NeedSharedFiles.appendNewFile("/storage/emulated/0/aaa.png",NeedSharedFiles.FileItem.CATE_IMAGE);
+                NeedSharedFiles.appendNewFile("/storage/emulated/0/bbb.mp4",NeedSharedFiles.FileItem.CATE_VIDEO);
+
                 //dialog的文字，需要设置
                 ShareActivityContent content = ShareActivityContent.getInstance();
                 content.setDlg_1_msg("11111111 Need some permissions to share with friends");
@@ -36,9 +48,6 @@ public class MainActivity extends Activity {
                 content.setDlg_4_msg("4444444 Please enter system setting to allow storage and location permissions");
                 content.setDlg_4_positive("444yes");
                 content.setDlg_4_negative("444no");
-
-                //每次必传apk
-                NeedSharedFiles.setForceShareApk(true);
 
                 Intent intent = new Intent(MainActivity.this,MyShareActivity.class);
                 startActivity(intent);

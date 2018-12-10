@@ -5,8 +5,8 @@ android {
     defaultConfig {
         applicationId "cn.xender.transfer"
         minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 4
+        targetSdkVersion 26
+        versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -19,21 +19,18 @@ android {
             keyPassword ""
         }
     }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.xender
-        }
-    }
-
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation (name: 'xender_sdk_1.0.3_test_1210', ext:'aar')
+
+
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'

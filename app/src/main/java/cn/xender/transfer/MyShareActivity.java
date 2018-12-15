@@ -31,7 +31,7 @@ public class MyShareActivity extends ShareActivity {
         container = findViewById(R.id.container);
 
         setQRSize(240); //二维码边长 默认200dp
-                        //default 200dp
+                        //default 200dpe
 
     }
 
